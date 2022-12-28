@@ -1,4 +1,5 @@
-import ToggleButton from '../components/ToggleButton'
+import ToggleButton from './Components/ToggleButton'
+
 function Home() {
   return (
     <>
