@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from "react";
-import SignIn from "./SignIn";
-import ChatRoom from "./ChatRoom";
-import useChat from "./useChat";
-import { STAGE_SIGN_IN, STAGE_CHAT_PAGE } from "../Utils/constants";
+import React from "react"
+import SignIn from "./SignIn"
+import ChatRoom from "./ChatRoom"
+import useChat from "./useChat"
+import { STAGE_SIGN_IN, STAGE_CHAT_PAGE } from "../Utils/constants"
 
-function Chat({socket}) {
+function Chat({ socket }) {
 	const {
 		setUser,
 		user,
 		submitSignIn,
 		joinRoomId,
 		joinRoom,
-    createRoom,
+		createRoom,
 		messageList,
 		setCurrentMessage,
 		sendMessage,
-    onCreateRoomInput,
+		onCreateRoomInput,
 		stage,
 		onSignInInput,
-    room,
-    isConnected,
-    title,
-    setTitle,
-    newRoom,
-    setNewRoom
-	} = useChat(socket);
+		room,
+		isConnected,
+		title,
+		setTitle,
+		newRoom,
+		setNewRoom,
+	} = useChat(socket)
 
 	return (
 		<div className="P_Chat">
@@ -39,19 +39,19 @@ function Chat({socket}) {
 					user={user}
 					joinRoomId={joinRoomId}
 					joinRoom={joinRoom}
-          createRoom={createRoom}
+					createRoom={createRoom}
 					messageList={messageList}
 					setCurrentMessage={setCurrentMessage}
 					sendMessage={sendMessage}
-          onCreateRoomInput={onCreateRoomInput}
-          room={room}
-          title={title}
-          newRoom={newRoom}
-          setNewRoom={setNewRoom}
+					onCreateRoomInput={onCreateRoomInput}
+					room={room}
+					title={title}
+					newRoom={newRoom}
+					setNewRoom={setNewRoom}
 				/>
 			)}
 		</div>
-	);
+	)
 }
 
-export default Chat;
+export default Chat
