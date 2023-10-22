@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallbackv } from "react"
+import { useState, useEffect } from "react"
 import { STAGE_SIGN_IN, STAGE_CHAT_PAGE } from "../Utils/constants"
 import { useCookies } from "react-cookie"
 
@@ -7,7 +7,7 @@ const useChat = (socket) => {
 	const [title, setTitle] = useState("Welcome to the Chat")
 	const [cookies, setCookie] = useCookies(["name"])
 	const [user, setUser] = useState(null)
-	const [roomList, setRoomList] = useState({ name: "" })
+	// const [roomList, setRoomList] = useState({ name: "" })
   const [currentRoom, setCurrentRoom] = useState({})
 	const [messageList, setMessageList] = useState([])
   const [currentMessage, setCurrentMessage] = useState("")

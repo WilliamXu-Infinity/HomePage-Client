@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import './index.css';
@@ -10,13 +10,17 @@ import { io } from 'socket.io-client';
 
 const showMap = {
   Home: true,
-  About: true,
-  Suggestion: true,
+  About: false,
+  Suggestion: false,
   SnackGame: true,
-  Chat: false
+  Chat: false,
+  ShareNotes: true,
+  ToolsPage: false,
+  VisaCheck: true,
+  RPC: true
 }
 
-const defaultPage = "SnackGame"
+const defaultPage = "RPC"
 
 const socket = showMap.Chat ? io('http://localhost:3001') : null
 
