@@ -1,29 +1,43 @@
 import { useEffect, useState, useRef } from "react"
 
 const EACH_ICONS = 5
-const REFRESH_RATE = 100
-const ICON_SIZE = 17
-const SPEED = 10
+const REFRESH_RATE = 50
+const ICON_SIZE = 15
+const SPEED = 50
 
-const useCustomHooks = () => {
+const useRPCHooks = () => {
 	const contentRef = useRef(null)
 	const [positions, setPositions] = useState([])
 	const [start, setStart] = useState(false)
-    const [xRange, setXRange] = useState([])
-    const [yRange, setYRange] = useState([])
+    const [reachToEnd, setReachToEnd] = useState(false)
+	const [xRange, setXRange] = useState([])
+	const [yRange, setYRange] = useState([])
 	const [scores, setScores] = useState([EACH_ICONS, EACH_ICONS, EACH_ICONS]) // r p c
+    const [historyScores, setHistoryScores] = useState([])
 
-    const clickStart = () => {
-        setStart((s) => (!s))
+	const clickStartOrPause = () => {
+        if (reachToEnd) {
+            generateAllIcons()
+            setReachToEnd(false)
+        }
+		setStart((s) => !s)
+	}
+
+    const clickReset = () => {
+        setStart(false)
+        generateAllIcons()
     }
+
 	const generateAllIcons = () => {
 		const positions = []
 
 		for (let i = 0; i < EACH_ICONS * 3; i++) {
 			const yv = Math.floor(Math.random() * SPEED)
 			const xv = yv !== 0 ? Math.sqrt(SPEED * SPEED - yv * yv) : SPEED
-			const x = Math.floor(Math.random() * (xRange[1] - xRange[0])) + xRange[0];
-			const y = Math.floor(Math.random() * (yRange[1] - yRange[0])) + yRange[0];
+			const x =
+				Math.floor(Math.random() * (xRange[1] - xRange[0])) + xRange[0]
+			const y =
+				Math.floor(Math.random() * (yRange[1] - yRange[0])) + yRange[0]
 
 			const types = i % 3
 			let type = "c"
@@ -32,7 +46,7 @@ const useCustomHooks = () => {
 
 			positions.push({ id: i, x, y, xv, yv, type })
 		}
-
+		setScores([EACH_ICONS, EACH_ICONS, EACH_ICONS])
 		setPositions(positions)
 	}
 
@@ -61,12 +75,12 @@ const useCustomHooks = () => {
 	const calculateNewPosition = (positions) => {
 		return positions.map((position) => {
 			const { id, x, y, xv, yv, type } = position
-            const [minWidth, maxWidth] = xRange
-            const [minHeight, maxHeight] = yRange
+			const [minWidth, maxWidth] = xRange
+			const [minHeight, maxHeight] = yRange
 			let nxv = xv,
 				nyv = yv,
-				nx = x,
-				ny = y,
+				nx = x + xv,
+				ny = y + yv,
 				nType = type
 
 			// Bouncing to each other
@@ -91,16 +105,16 @@ const useCustomHooks = () => {
 			})
 
 			// Bouncing edge
-			if (nx + nxv + ICON_SIZE > maxWidth || nx + nxv < minWidth) {
+			if (nx + ICON_SIZE > maxWidth || nx - ICON_SIZE < minWidth) {
 				nxv = -nxv
 			}
 
-			if (ny + nyv + ICON_SIZE > maxHeight || ny + nyv < minHeight) {
+			if (ny + ICON_SIZE > maxHeight || ny - ICON_SIZE < minHeight) {
 				nyv = -nyv
 			}
 
-			nx = x + nxv
-			ny = y + nyv
+			// nx = x + nxv
+			// ny = y + nyv
 
 			return { id, x: nx, y: ny, xv: nxv, yv: nyv, type: nType }
 		})
@@ -110,7 +124,7 @@ const useCustomHooks = () => {
 		setPositions((positions) => calculateNewPosition(positions))
 	}
 
-	const iconStyle = ({ x, y, id, type }) => {
+	const iconStyle = ({ x, y, type }) => {
 		let color = "red"
 		if (type === "r") color = "black"
 		else if (type === "p") color = "blue"
@@ -118,11 +132,10 @@ const useCustomHooks = () => {
 	}
 
 	useEffect(() => {
-		let timer
+        let timer
 
 		if (start) {
-            generateAllIcons()
-			timer = setInterval(() => {
+            timer = setInterval(() => {
 				moveIcon()
 			}, REFRESH_RATE)
 		} else {
@@ -133,29 +146,42 @@ const useCustomHooks = () => {
 	}, [start])
 
 	useEffect(() => {
-        console.log('\x1b[31m%s\x1b[0m', 'WX - check')
+		console.log("\x1b[31m%s\x1b[0m", "WX - check")
 		if (contentRef.current) {
 			const rect = contentRef.current.getBoundingClientRect()
-            const {width, height, x, y} = rect
-            // setXRange([Math.floor(x), Math.floor(width + x)])
-            // setYRange([Math.floor(y), Math.floor(height + y)])
-            setXRange([0, width - 50])
-            setYRange([0, height - y])
+			const { width, height, x, y } = rect
+			// setXRange([Math.floor(x), Math.floor(width + x)])
+			// setYRange([Math.floor(y), Math.floor(height + y)])
+			setXRange([0, width - x])
+			setYRange([0, height - y])
 		}
 	}, [contentRef])
 
+    // Generate initial graph
+    useEffect(() => {
+        generateAllIcons()
+    }, [xRange])
+
+    // when to stop
 	useEffect(() => {
 		const stop = scores.some((s) => s === 0)
-		if (stop) setStart(false)
+		if (stop) {
+            setStart(false)
+            setReachToEnd(true)
+            setHistoryScores(hs => [...hs, [hs.length, ...scores]])
+        }
 	}, [scores])
 
 	return {
 		iconStyle,
 		positions,
 		contentRef,
-        clickStart,
-        scores
+		clickStartOrPause,
+        clickReset,
+		scores,
+        historyScores,
+        start
 	}
 }
 
-export default useCustomHooks
+export default useRPCHooks

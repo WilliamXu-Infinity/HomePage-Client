@@ -1,18 +1,34 @@
 import React from "react"
 import { Newspaper, App, Scissors } from "react-bootstrap-icons"
 import "./RPC.scss"
-import useCustomHooks from './useCustomHooks'
+import useRPCHooks from "./useRPCHooks"
 import MenuBar from "./MenuBar"
 
 const RPC = () => {
-    const { iconStyle, positions, contentRef, clickStart, scores } = useCustomHooks()
+	const { iconStyle, positions, contentRef, clickStartOrPause, clickReset, scores, historyScores, start } =
+		useRPCHooks()
 
 	return (
 		<div className="container-fluid" id="rpc">
 			<div className="row">
 				<div className="col-md-2 menu">
-					<button className="start-button" onClick={() => clickStart()}>Start</button>
-                    <p>{`Rock: ${scores[0]} | Paper: ${scores[1]} | Scissor: ${scores[2]}`}</p>
+					<button
+						className="start-button"
+						onClick={() => clickStartOrPause()}
+					>
+						{`${start ? 'Pause' : 'Start'}`}
+					</button>
+                    <button
+						className="start-button"
+						onClick={() => clickReset()}
+					>
+						Reset
+					</button>
+					<p>{`Rock: ${scores[0]} | Paper: ${scores[1]} | Scissor: ${scores[2]}`}</p>
+                    <p>Histories</p>
+                    {historyScores.map((scores) => {
+                        return <p key={scores[0]}>{`Rock: ${scores[1]} | Paper: ${scores[2]} | Scissor: ${scores[3]}`}</p>
+                    })}
 				</div>
 				<div className="col-md-10 p-0 play-ground" ref={contentRef}>
 					{positions.map((position) => {
