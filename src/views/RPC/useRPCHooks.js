@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react"
 const EACH_ICONS = 5
 const REFRESH_RATE = 50
 const ICON_SIZE = 15
-const SPEED = 50
+const SPEED = 51
 
 const useRPCHooks = () => {
 	const contentRef = useRef(null)
