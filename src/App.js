@@ -1,6 +1,8 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { io } from 'socket.io-client';
+
 import NavBar from "./Views/Navbar"
 import Home from "./Views/Home"
 import About from "./Views/About"
@@ -13,9 +15,26 @@ import VisaCheck from "./Views/VisaCheck"
 import Login from "./Views/Login"
 import RPC from "./Views/RPC"
 
-export default function App({ socket, showMap, defaultPage }) {
+export default function App({ socket }) {
 	const history = useHistory()
 	history.push(`/${defaultPage.toLowerCase()}`)
+
+    const showMap = {
+        Home: true,
+        About: false,
+        Suggestion: false,
+        SnackGame: true,
+        Chat: false,
+        ShareNotes: true,
+        ToolsPage: false,
+        VisaCheck: true,
+        RPC: true,
+        Login: false
+      }
+      
+      const defaultPage = "Home"
+      
+      const socket = showMap.Chat ? io('http://localhost:3001') : null
 
 	return (
 		<Router forceRefresh={false}>
