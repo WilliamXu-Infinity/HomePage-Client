@@ -10,6 +10,7 @@ import SnackGame from "./Views/SnackGame"
 import ShareNotes from "./Views/ShareNotes"
 import ToolsPage from "./Views/ToolsPage"
 import VisaCheck from "./Views/VisaCheck"
+import Login from "./Views/Login"
 import RPC from "./Views/RPC"
 
 export default function App({ socket, showMap, defaultPage }) {
@@ -73,6 +74,12 @@ export default function App({ socket, showMap, defaultPage }) {
                     {showMap.RPC && (
 						<Route path="/RPC">
 							<RPC />
+						</Route>
+					)}
+
+                    {showMap.Login && (
+						<Route path="/login">
+							<Login />
 						</Route>
 					)}
 

@@ -17,10 +17,11 @@ const showMap = {
   ShareNotes: true,
   ToolsPage: false,
   VisaCheck: true,
-  RPC: true
+  RPC: true,
+  Login: true
 }
 
-const defaultPage = "RPC"
+const defaultPage = "Home"
 
 const socket = showMap.Chat ? io('http://localhost:3001') : null
 
