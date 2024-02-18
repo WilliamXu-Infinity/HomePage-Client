@@ -10,7 +10,7 @@ import { io } from 'socket.io-client';
 
 const showMap = {
   Home: true,
-  About: false,
+  About: true,
   Suggestion: false,
   SnackGame: true,
   Chat: false,

@@ -1,5 +1,5 @@
-import React from "react"
-import { useHistory } from "react-router-dom"
+import React, { useEffect } from "react"
+import { useHistory, useLocation } from "react-router-dom"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import NavBar from "./Views/Navbar"
 import Home from "./Views/Home"
@@ -15,7 +15,11 @@ import RPC from "./Views/RPC"
 
 export default function App({ socket, showMap, defaultPage }) {
 	const history = useHistory()
-	history.push(`/${defaultPage.toLowerCase()}`)
+    const location = useLocation()
+
+    useEffect(() => {
+        history.push(location.pathname);
+      }, [location.pathname, history]);
 
 	return (
 		<Router forceRefresh={false}>
