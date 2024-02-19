@@ -17,9 +17,9 @@ export default function App({ socket, showMap, defaultPage }) {
 	const history = useHistory()
     const location = useLocation()
 
-    useEffect(() => {
-        history.push(location.pathname);
-      }, [location.pathname, history]);
+    // useEffect(() => {
+    //     // history.push(location.pathname);
+    //   }, [location.pathname, history]);
 
 	return (
 		<Router forceRefresh={false}>

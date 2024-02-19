@@ -1,4 +1,64 @@
-.content {
+$contentWidth: 1000px
+    
+.content
     display: flex
-    margin: 0 30rem
-}
+    flex-direction: column
+    margin: auto
+    max-width: $contentWidth
+
+    .introContent
+        display: flex
+        justify-content: space-between
+        flex-direction: row
+        align-items: center
+        margin: 40px auto 0
+        width: 100%
+
+        .selfDescribe
+            max-width: 600px
+            max-height: 800px
+            display: flex
+            flex-direction: column
+
+            .text1
+                font-size: 50px
+                font-weight: bold
+            
+            .companyLogos
+                margin-top: 10px
+                margin-right: 20px
+        
+                .companyLogo
+                    width: 40px
+                    cursor: pointer
+                    margin: 20px 20px 20px 0
+            
+        .selfPhoto
+            max-width: 300px
+            border-radius: 50%
+            border: 2px solid black
+                
+
+    .techStack
+        display: flex
+        justify-content: left
+        align-items: center
+        margin-left: 100px
+        width: $contentWidth
+        margin: 40px auto
+
+        .text2
+            font-size: 20px
+            font-weight: bold
+            margin: 0
+
+        .vLine
+            border: 1px solid black
+            height: 20px
+            margin: 20px
+        
+        .skillLogos
+            .logoImg
+                width: 30px
+                margin-right: 20px
+    

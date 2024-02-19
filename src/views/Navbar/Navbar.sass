@@ -1,5 +1,26 @@
 .nav-bar
-  background-color: grey
+    background-color: transparentize(grey, 1)
+    display: flex
+    justify-content: space-between
+    margin: 10px 30px
+    position: sticky
+    top: 0
+    z-index: 100
+    backdrop-filter: blur(10px)
+    
 
+.nameLogo
+    width: 40px
+
+.navList
+    display: flex
+
+.nav-pills .nav-link.active
+    background-color: transparentize(white, 1)  !important
+    color: #f6843e !important
+        
 .nav-item
-  color: white !important
+    color: black !important
+
+    &:hover
+        color: #f6843e !important
