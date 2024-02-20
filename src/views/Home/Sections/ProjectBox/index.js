@@ -4,7 +4,8 @@ import projectData from "../../../../Asset/texts/projectInfo.json"
 
 const ProjectBox = ({}) => {
 	const projectList = projectData.projects
-
+    const url = window.location.href
+    
 	return (
 		<>
 			{projectList.map((project, index) => {
@@ -36,7 +37,7 @@ const ProjectBox = ({}) => {
 							<div className="projectContent">
 								<img
 									className="projectImg"
-									src={imgUrl}
+									src={url + imgUrl}
 									alt="ProjectImg"
 								/>
 								<ul>

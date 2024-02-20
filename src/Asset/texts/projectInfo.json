@@ -3,23 +3,23 @@
 		{
 			"companyName": "Autodesk",
 			"duration": "Jan 2022 – Current",
-			"companyLogo": "http://localhost:3000/img/AutodeskLogo.png",
-			"imgUrl": "http://localhost:3000/img/Autodesk-0.png",
+			"companyLogo": "/img/AutodeskLogo.png",
+			"imgUrl": "/img/Autodesk-0.png",
 			"description": [
 				"Develop Payment system front-end with React.js, SASS, Internal Bootstrap library and HTML.",
 				"Develop and manage new Systems data flow with React useContext, React useState, Redux and localStorage.",
 				"Create React Custom Hooks for accessing react ecosystem, handling data storage, data flow, and monitoring data change through useEffect, useState, useContext and useMemo.",
 				"Experience with event-driven and scheduled AWS Lambda functions to trigger various AWSresources.",
 				"Design and develop RESTful API with CRUD to exchange data from front-end to server.",
-				"Analyze and solve cross-browser compatibility challenges and debugging generated HTML, app styles, and JavaScript in browsers using bro debug of different browsers like Saf Firefox, Google Chrome, and Internet Explorer.",
+				"Analyze and solve cross-browser compatibility chalglenges and debugging generated HTML, app styles, and JavaScript in browsers using bro debug of different browsers like Saf Firefox, Google Chrome, and Internet Explorer.",
 				"Develop back-end with Node.js, Express and apply Microservices Architecture, Reaching different data from different services, such as authorization service from login page, calculating the tax based on user geolocation services and so on."
 			]
 		},
 		{
 			"companyName": "Mezmo",
 			"duration": "Jun 2019 – Feb 2020",
-			"companyLogo": "http://localhost:3000/img/LogdnaLogo.png",
-			"imgUrl": "http://localhost:3000/img/Logdna-0.png",
+			"companyLogo": "/img/LogdnaLogo.png",
+			"imgUrl": "/img/Logdna-0.png",
 			"description": [
 				"Develop Mezmo websites application with Vue.js, Vuex, SASS, CSS3, Nodejs, Express, JavaScript, ES6, Webpack, Microservices Architecture, Restful API, Unit Test, MongoDB.",
 				"Lead a team to implement Drift Chat services into the main application, setting up different themes,  messages, response, and email reply with Dirft APIs.",
@@ -35,8 +35,8 @@
 		{
 			"companyName": "Walmart Labs",
 			"duration": "Jun 2019 – Feb 2020",
-			"companyLogo": "http://localhost:3000/img/WalmartLogo.png",
-			"imgUrl": "http://localhost:3000/img/Walmart-0.png",
+			"companyLogo": "/img/WalmartLogo.png",
+			"imgUrl": "/img/Walmart-0.png",
 			"description": [
 				"Develop Sam’s Club websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, Webpack, Microservices Architecture, Micro Front-End Architecture, Restful API, Unit Test and Functional Test.",
 				"Responsible for login page, two-factor authentication, forgot email page, reset password flow.",
@@ -59,8 +59,8 @@
         {
 			"companyName": "Apple",
 			"duration": "Jul 2018 – Jun 2019",
-			"companyLogo": "http://localhost:3000/img/AppleLogo.webp",
-			"imgUrl": "http://localhost:3000/img/Apple-0.png",
+			"companyLogo": "/img/AppleLogo.webp",
+			"imgUrl": "/img/Apple-0.png",
 			"description": [
 				"Develop several websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, JQuery, Webpack and Restful API.",
                 "Develop React Library with dynamic designing structure and published it on NPM.",

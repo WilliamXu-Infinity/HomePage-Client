@@ -21,6 +21,16 @@ export default function App({ socket, showMap, defaultPage }) {
     //     // history.push(location.pathname);
     //   }, [location.pathname, history]);
 
+    useEffect(() => {
+        const currentUrl = window.location.href;
+        const links = document.querySelectorAll('link[rel="icon"]');
+        links.forEach(link => {
+        const originalHref = link.getAttribute('href');
+        const newHref = originalHref.replace('http://localhost:3000', currentUrl);
+        link.setAttribute('href', newHref);
+        });
+    }, [])
+
 	return (
 		<Router forceRefresh={false}>
 			<div>
