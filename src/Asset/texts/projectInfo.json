@@ -1,0 +1,83 @@
+{
+	"projects": [
+		{
+			"companyName": "Autodesk",
+			"duration": "Jan 2022 – Current",
+			"companyLogo": "http://localhost:3000/img/AutodeskLogo.png",
+			"imgUrl": "http://localhost:3000/img/Autodesk-0.png",
+			"description": [
+				"Develop Payment system front-end with React.js, SASS, Internal Bootstrap library and HTML.",
+				"Develop and manage new Systems data flow with React useContext, React useState, Redux and localStorage.",
+				"Create React Custom Hooks for accessing react ecosystem, handling data storage, data flow, and monitoring data change through useEffect, useState, useContext and useMemo.",
+				"Experience with event-driven and scheduled AWS Lambda functions to trigger various AWSresources.",
+				"Design and develop RESTful API with CRUD to exchange data from front-end to server.",
+				"Analyze and solve cross-browser compatibility challenges and debugging generated HTML, app styles, and JavaScript in browsers using bro debug of different browsers like Saf Firefox, Google Chrome, and Internet Explorer.",
+				"Develop back-end with Node.js, Express and apply Microservices Architecture, Reaching different data from different services, such as authorization service from login page, calculating the tax based on user geolocation services and so on."
+			]
+		},
+		{
+			"companyName": "Mezmo",
+			"duration": "Jun 2019 – Feb 2020",
+			"companyLogo": "http://localhost:3000/img/LogdnaLogo.png",
+			"imgUrl": "http://localhost:3000/img/Logdna-0.png",
+			"description": [
+				"Develop Mezmo websites application with Vue.js, Vuex, SASS, CSS3, Nodejs, Express, JavaScript, ES6, Webpack, Microservices Architecture, Restful API, Unit Test, MongoDB.",
+				"Lead a team to implement Drift Chat services into the main application, setting up different themes,  messages, response, and email reply with Dirft APIs.",
+				"Implementing Stripe payment services into the application by using Stripe payment apis, creating invoices, plans, subscriptions and others for various use cases, and also setting up the test account.",
+				"Develop websites use Microservices Architecture, reaching different data from different services, such as graph data from our backend service running with ES search, different time periods of logs, , user info and search result from backend.",
+				"Creating different util functions for handling time, such as time zone issue, time difference and others.",
+				"Created and maintained MongoDB and Nodejs using mongoose and Express.",
+				"Fetch the services API calls from back-end and map all the data in front end using Vuex with Vue.js.",
+				"Unit Test website component by using Jest, and Vue test library.",
+				"Functional Test for web flow and React components use the Cypress testing framework."
+			]
+		},
+		{
+			"companyName": "Walmart Labs",
+			"duration": "Jun 2019 – Feb 2020",
+			"companyLogo": "http://localhost:3000/img/WalmartLogo.png",
+			"imgUrl": "http://localhost:3000/img/Walmart-0.png",
+			"description": [
+				"Develop Sam’s Club websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, Webpack, Microservices Architecture, Micro Front-End Architecture, Restful API, Unit Test and Functional Test.",
+				"Responsible for login page, two-factor authentication, forgot email page, reset password flow.",
+				"Responsible for register flow, creating a new account with existing membership id and user info.",
+                "Responsible for membership page, join membership page and payment methods.",
+                "Develop website use Microservices Architecture, reaching different data from different service, such as authorization service for login page, payment service for authorize payments and so on.",
+                "Develop website use Micro Front-End Architecture for developing separate page and components.",
+                "Develop web UI interface using CSS3, SASS and React internal Library.",
+                "Develop React HOC for login page, register page and membership page.",
+                "Create Redux Reducer, and Action Create for storing data and control the page flow.",
+                "Use React Lifecycle methods to control the web page flow. ",
+                "Build communications between servers by using GraphQL to pass specific nested data.",
+                "Use React Router to redirecting the page, and Query String to sharing the website page.",
+                "Develop website based on WAI and test website based on WAI.",
+                "Unit Test website component by using Mocha, Enzyme.",
+                "Functional Test for web flow and React component use Nightwatch.js."
+
+			]
+		},
+        {
+			"companyName": "Apple",
+			"duration": "Jul 2018 – Jun 2019",
+			"companyLogo": "http://localhost:3000/img/AppleLogo.webp",
+			"imgUrl": "http://localhost:3000/img/Apple-0.png",
+			"description": [
+				"Develop several websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, JQuery, Webpack and Restful API.",
+                "Develop React Library with dynamic designing structure and published it on NPM.",
+                "Design the website structure using HOC and pure component to build a website based on json file.",
+                "Develop the website with dynamic concept to let those does not have knowledge of JavaScript or react to build their own website.",
+                "Designed the website using CSS3, SASS and Bootstrap as UI development.",
+                "Create web app with React.js and Redux as Front-End development.",
+                "Set up the back-end with Node.js and Express to react the data from server with react socket, and auto push the data to every linked client side.",
+                "Design Dynamic Redux Action Factory to create Redux Actions and Repository dynamically.",
+                "Use React Router to redirecting the website and Query String to sharing the website.",
+                "Use thunk, Axios, ajax to reaching the data from server through api.",
+                "Develop the website with high order component and pure component structure.",
+                "Design the structure using React recompose, Lodash, and other useful react library to improve  efficiency of developing website.",
+                "Use Code-splitting with Webpack bundler and Dynamic Imports code design for Lazy-Loading maximize website performance.",
+                "Use Restful API to communicate with server at the back end to fetch life data every 5 seconds."
+
+			]
+		}
+	]
+}

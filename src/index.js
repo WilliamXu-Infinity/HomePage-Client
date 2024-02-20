@@ -8,6 +8,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { CookiesProvider } from 'react-cookie';
 import { io } from 'socket.io-client';
 
+const showMapPublic = {
+    Home: true,
+    About: false,
+    Suggestion: false,
+    SnackGame: false,
+    Chat: false,
+    ShareNotes: false,
+    ToolsPage: false,
+    VisaCheck: false,
+    RPC: false,
+    Login: false
+  }
+
 const showMap = {
   Home: true,
   About: true,
@@ -28,7 +41,7 @@ const socket = showMap.Chat ? io('http://localhost:3001') : null
 ReactDOM.render(
   <CookiesProvider>
     <BrowserRouter>
-      <App socket={socket} showMap={showMap} defaultPage={defaultPage}/>
+      <App socket={socket} showMap={showMapPublic} defaultPage={defaultPage}/>
     </BrowserRouter>
   </CookiesProvider>,
   document.getElementById('root')

@@ -1,10 +1,11 @@
-$contentWidth: 1000px
-    
+$ContentWidth: 1200px
+$PrimeColor: #FFA409 
+
 .content
     display: flex
     flex-direction: column
     margin: auto
-    max-width: $contentWidth
+    max-width: $ContentWidth
 
     .introContent
         display: flex
@@ -13,8 +14,9 @@ $contentWidth: 1000px
         align-items: center
         margin: 40px auto 0
         width: 100%
+        height: 340px
 
-        .selfDescribe
+        .describeSection
             max-width: 600px
             max-height: 800px
             display: flex
@@ -25,26 +27,40 @@ $contentWidth: 1000px
                 font-weight: bold
             
             .companyLogos
+                display: flex
+                flex-direction: row
                 margin-top: 10px
                 margin-right: 20px
-        
-                .companyLogo
-                    width: 40px
+
+                .logoBox
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+                    margin: 20px 40px 20px 0
+                    width: 50px
                     cursor: pointer
-                    margin: 20px 20px 20px 0
-            
+                    position: relative
+
+                    &:hover
+                        color: $PrimeColor
+        
+                    .companyLogo
+                        width: 40px
+                        margin: 10px auto
+      
         .selfPhoto
             max-width: 300px
             border-radius: 50%
             border: 2px solid black
                 
 
-    .techStack
+    .techStackSection
         display: flex
         justify-content: left
         align-items: center
         margin-left: 100px
-        width: $contentWidth
+        width: $ContentWidth
         margin: 40px auto
 
         .text2
@@ -61,4 +77,9 @@ $contentWidth: 1000px
             .logoImg
                 width: 30px
                 margin-right: 20px
+    
+    .text3
+            color: $PrimeColor
+            font-size: 50px
+            font-weight: bold
     

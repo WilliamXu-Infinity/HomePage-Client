@@ -1,26 +1,31 @@
+$PrimeColor: #FFA409 
+
 .nav-bar
     background-color: transparentize(grey, 1)
     display: flex
     justify-content: space-between
     margin: 10px 30px
     position: sticky
-    top: 0
+    top: 0px
     z-index: 100
-    backdrop-filter: blur(10px)
+    backdrop-filter: blur(3px)
+    height: 50px
     
 
 .nameLogo
     width: 40px
+    object-fit: contain
+
 
 .navList
     display: flex
 
 .nav-pills .nav-link.active
     background-color: transparentize(white, 1)  !important
-    color: #f6843e !important
+    color: $PrimeColor !important
         
 .nav-item
     color: black !important
 
     &:hover
-        color: #f6843e !important
+        color: $PrimeColor !important
