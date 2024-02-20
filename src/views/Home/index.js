@@ -42,13 +42,14 @@ function Home() {
 
 	return (
 		<div className="content">
-			<section className="introContent">
+            <div className="contentBox"><section className="introContent">
 				<div className="describeSection">
 					<p className="text1">Front end developer</p>
 					<p>{"Hi, my name is Tingchao (William) Xu."}</p>
 					<p>A passionate Front-end developer based in LA.</p>
 					<div className="companyLogos">
-						<div className="logoBox">
+						<div className="logoBox" onMouseEnter={handleMouseEnter}
+								onMouseLeave={handleMouseLeave}>
 							<img
 								className="companyLogo"
 								src={resumeLogo}
@@ -56,8 +57,6 @@ function Home() {
 								onClick={handleDownload}
 							/>
 							<p
-								onMouseEnter={handleMouseEnter}
-								onMouseLeave={handleMouseLeave}
 							>
 								{isHovered ? "Download" : "Resume"}
 							</p>
@@ -117,7 +116,8 @@ function Home() {
 				</div>
 			</section>
 			<p className="text3">Projects</p>
-			<ProjectBox />
+			<ProjectBox /></div>
+			
 		</div>
 	)
 }

@@ -1,10 +1,14 @@
 import React from "react"
+import { useHistory, useLocation } from "react-router-dom"
+
 import Logo from "../../Asset/logos/w.png"
 import { Link } from "react-router-dom"
 import { Nav } from "react-bootstrap"
 import "./Navbar.sass"
 
 const NavBar = ({ showMap, defaultPage }) => {
+    const history = useHistory()
+
 	const navbarMenu = []
 	let defaultKey = 0
 
@@ -19,6 +23,10 @@ const NavBar = ({ showMap, defaultPage }) => {
 		}
 	})
 
+    const onClickLogo = () => {
+        history.push("/");
+    }
+
 	return (
 		<>
 			<Nav
@@ -27,7 +35,7 @@ const NavBar = ({ showMap, defaultPage }) => {
 				defaultActiveKey={defaultKey}
 				className="nav-bar"
 			>
-				<img className="nameLogo" src={Logo} alt="" />
+				<img className="nameLogo" src={Logo} alt="" onClick={onClickLogo}/>
 				<div className='navList'>
 					{navbarMenu.map(({ title, url }, key) => {
 						return (

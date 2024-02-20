@@ -15,6 +15,7 @@ const ProjectBox = ({}) => {
 					description,
 					companyLogo,
 				} = project
+
 				return (
 					<section className="projectSection" key={index}>
                         <div class="dashedLine"></div>
