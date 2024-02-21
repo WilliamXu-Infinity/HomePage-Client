@@ -35,7 +35,7 @@
 		{
 			"companyName": "Walmart Labs",
 			"duration": "Jun 2019 – Feb 2020",
-			"companyLogo": "/img/WalmartLogo.png",
+			"companyLogo": "/img/walmartLogo.png",
 			"imgUrl": "/img/Walmart-0.png",
 			"description": [
 				"Develop Sam’s Club websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, Webpack, Microservices Architecture, Micro Front-End Architecture, Restful API, Unit Test and Functional Test.",
