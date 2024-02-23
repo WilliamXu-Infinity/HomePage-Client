@@ -12,6 +12,7 @@ import ToolsPage from "./Views/ToolsPage"
 import VisaCheck from "./Views/VisaCheck"
 import Login from "./Views/Login"
 import RPC from "./Views/RPC"
+import PageNotFound from "./Views/404"
 
 export default function App({ socket, showMap, defaultPage }) {
 	const history = useHistory()
@@ -33,68 +34,70 @@ export default function App({ socket, showMap, defaultPage }) {
 
 			<Switch>
 				{showMap.Home && (
-					<Route path="/home">
+					<Route exact path="/home">
 						<Home />
 					</Route>
 				)}
 
 				{showMap.About && (
-					<Route path="/about">
+					<Route exact path="/about">
 						<About />
 					</Route>
 				)}
 
 				{showMap.Chat && (
-					<Route path="/chat">
+					<Route exact path="/chat">
 						<Chat socket={socket} />
 					</Route>
 				)}
 
 				{showMap.SnackGame && (
-					<Route path="/snackgame">
+					<Route exact path="/snackgame">
 						<SnackGame />
 					</Route>
 				)}
 
 				{showMap.Suggestion && (
-					<Route path="/suggestion">
+					<Route exact path="/suggestion">
 						<Suggestion />
 					</Route>
 				)}
 
 				{showMap.ShareNotes && (
-					<Route path="/sharenotes">
+					<Route exact path="/sharenotes">
 						<ShareNotes />
 					</Route>
 				)}
 
 				{showMap.ToolsPage && (
-					<Route path="/toolspage">
+					<Route exact path="/toolspage">
 						<ToolsPage />
 					</Route>
 				)}
 
 				{showMap.VisaCheck && (
-					<Route path="/visacheck">
+					<Route exact path="/visacheck">
 						<VisaCheck />
 					</Route>
 				)}
 
 				{showMap.RPC && (
-					<Route path="/RPC">
+					<Route exact path="/RPC">
 						<RPC />
 					</Route>
 				)}
 
 				{showMap.Login && (
-					<Route path="/login">
+					<Route exact path="/login">
 						<Login />
 					</Route>
 				)}
 
-				<Route path="/" component={Home}>
+				<Route exact path="/" component={Home}>
 					<Home />
 				</Route>
+
+				<Route><PageNotFound /></Route>
 			</Switch>
 		</>
 		// </Router>

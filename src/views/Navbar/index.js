@@ -31,11 +31,13 @@ const NavBar = ({ showMap, defaultPage }) => {
 	}
 
 	useEffect(() => {
-		setActiveKey(location.pathname)
+		if (location.pathname === "/home" || location.pathname === "/")
+			setActiveKey("/home")
+		else setActiveKey(location.pathname)
 	}, [location.pathname])
 
 	return (
-		<>
+		<div className={"navContent"}>
 			<Nav
 				fill
 				variant="pills"
@@ -66,7 +68,7 @@ const NavBar = ({ showMap, defaultPage }) => {
 					})}
 				</div>
 			</Nav>
-		</>
+		</div>
 	)
 }
 

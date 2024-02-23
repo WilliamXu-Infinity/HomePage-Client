@@ -1,0 +1,17 @@
+@keyframes bounce 
+    0% 
+        top: 50px
+    50% 
+        top: calc(100vh - 200px)
+    100% 
+        top: 50px
+
+.bouncing-div 
+    position: fixed
+    width: 100%
+    text-align: center
+    top: 0
+    animation: bounce 4s infinite
+    color: #FFA409 
+    font-size: 60px
+    font-weight: bolder
