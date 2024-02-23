@@ -17,16 +17,12 @@ export default function App({ socket, showMap, defaultPage }) {
 	const history = useHistory()
     const location = useLocation()
 
-    // useEffect(() => {
-    //     // history.push(location.pathname);
-    //   }, [location.pathname, history]);
-
     useEffect(() => {
         const currentUrl = window.location.href;
         const links = document.querySelectorAll('link[rel="icon"]');
         links.forEach(link => {
         const originalHref = link.getAttribute('href');
-        const newHref = originalHref.replace('http://localhost:3000', currentUrl);
+        const newHref = originalHref.replace(window.location.href, currentUrl);
         link.setAttribute('href', newHref);
         });
     }, [])

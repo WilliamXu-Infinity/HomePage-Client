@@ -18,7 +18,7 @@ const showMapPublic = {
     ToolsPage: false,
     VisaCheck: false,
     RPC: false,
-    Login: false
+    Login: true
   }
 
 const showMap = {

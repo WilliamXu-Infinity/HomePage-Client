@@ -12,16 +12,16 @@ const NavBar = ({ showMap, defaultPage }) => {
 	const navbarMenu = []
 	let defaultKey = 0
 
-	// Object.keys(showMap).map((menu) => {
-	// 	if (showMap[menu]) {
-	// 		navbarMenu.push({
-	// 			title: menu,
-	// 			url: `/${menu.toLowerCase()}`,
-	// 		})
+	Object.keys(showMap).map((menu) => {
+		if (showMap[menu]) {
+			navbarMenu.push({
+				title: menu,
+				url: `/${menu.toLowerCase()}`,
+			})
 
-	// 		if (defaultPage === menu) defaultKey = navbarMenu.length - 1
-	// 	}
-	// })
+			if (defaultPage === menu) defaultKey = navbarMenu.length - 1
+		}
+	})
 
 	const onClickLogo = () => {
 		history.push("/")
