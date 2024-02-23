@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory, useLocation } from "react-router-dom"
 
 import Logo from "../../Asset/logos/w.png"
@@ -8,6 +8,9 @@ import "./Navbar.sass"
 
 const NavBar = ({ showMap, defaultPage }) => {
 	const history = useHistory()
+	const location = useLocation()
+
+	const [activeKey, setActiveKey] = useState()
 
 	const navbarMenu = []
 	let defaultKey = 0
@@ -27,6 +30,10 @@ const NavBar = ({ showMap, defaultPage }) => {
 		history.push("/")
 	}
 
+	useEffect(() => {
+		setActiveKey(location.pathname)
+	}, [location.pathname])
+
 	return (
 		<>
 			<Nav
@@ -34,6 +41,7 @@ const NavBar = ({ showMap, defaultPage }) => {
 				variant="pills"
 				defaultActiveKey={defaultKey}
 				className="nav-bar"
+				activeKey={activeKey}
 			>
 				<img
 					className="nameLogo"
@@ -48,7 +56,7 @@ const NavBar = ({ showMap, defaultPage }) => {
 								<Nav.Link
 									as={Link}
 									to={url}
-									eventKey={key}
+									eventKey={url}
 									className="nav-item"
 								>
 									{title}

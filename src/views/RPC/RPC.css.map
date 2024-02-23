@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": ";AAAA,AAAA,IAAI,CAAC;EACD,KAAK,EAAE,IAAI;EAAQ,oBAAoB;EACvC,MAAM,EAAE,KAAK;CAChB",
-    "sources": [
-        "RPC.scss"
-    ],
-    "names": [],
-    "file": "RPC.css"
-}

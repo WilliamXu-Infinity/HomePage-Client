@@ -18,7 +18,6 @@ function ShareNotes({}) {
     }
 
     const NoteContent = ({contents}) => {
-        console.log('\x1b[31m%s\x1b[0m', `WX - contents: ${JSON.stringify(contents)}`)
         return (
             <ul>
                 {contents.map((content) => {
