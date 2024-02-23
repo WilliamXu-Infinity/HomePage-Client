@@ -23,7 +23,10 @@ export default function App({ socket, showMap, defaultPage }) {
 		const links = document.querySelectorAll('link[rel="icon"]')
 		links.forEach((link) => {
 			const originalHref = link.getAttribute("href")
-			const newHref = originalHref.replace(/[\s\S]*/g, currentUrl)
+			const newHref = originalHref.replace(
+				"http://localhost:3000",
+				currentUrl
+			)
 			link.setAttribute("href", newHref)
 		})
 	}, [])
@@ -97,7 +100,9 @@ export default function App({ socket, showMap, defaultPage }) {
 					<Home />
 				</Route>
 
-				<Route><PageNotFound /></Route>
+				<Route>
+					<PageNotFound />
+				</Route>
 			</Switch>
 		</>
 		// </Router>

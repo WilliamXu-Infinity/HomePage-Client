@@ -19,7 +19,7 @@ const ProjectBox = ({}) => {
 
 				return (
 					<section className="projectSection" key={index}>
-                        <div class="dashedLine"></div>
+                        <div className="dashedLine"></div>
 						<div className="projectContent">
 							<div className="projectHead">
 								<div className="leftContent">
