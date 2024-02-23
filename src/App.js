@@ -15,89 +15,88 @@ import RPC from "./Views/RPC"
 
 export default function App({ socket, showMap, defaultPage }) {
 	const history = useHistory()
-    const location = useLocation()
+	const location = useLocation()
 
-    useEffect(() => {
-        const currentUrl = window.location.href;
-        const links = document.querySelectorAll('link[rel="icon"]');
-        links.forEach(link => {
-        const originalHref = link.getAttribute('href');
-        const newHref = originalHref.replace(window.location.href, currentUrl);
-        link.setAttribute('href', newHref);
-        });
-    }, [])
+	useEffect(() => {
+		const currentUrl = window.location.origin
+		const links = document.querySelectorAll('link[rel="icon"]')
+		links.forEach((link) => {
+			const originalHref = link.getAttribute("href")
+			const newHref = originalHref.replace(/[\s\S]*/g, currentUrl)
+			link.setAttribute("href", newHref)
+		})
+	}, [])
 
 	return (
-		<Router forceRefresh={false}>
-			<div>
-				<NavBar showMap={showMap} defaultPage={defaultPage} />
+		<>
+			<NavBar showMap={showMap} defaultPage={defaultPage} />
 
-				<Switch>
-					{showMap.Home && (
-						<Route path="/home">
-							<Home />
-						</Route>
-					)}
-
-					{showMap.About && (
-						<Route path="/about">
-							<About />
-						</Route>
-					)}
-
-					{showMap.Chat && (
-						<Route path="/chat">
-							<Chat socket={socket} />
-						</Route>
-					)}
-
-					{showMap.SnackGame && (
-						<Route path="/snackgame">
-							<SnackGame />
-						</Route>
-					)}
-
-					{showMap.Suggestion && (
-						<Route path="/suggestion">
-							<Suggestion />
-						</Route>
-					)}
-
-                    {showMap.ShareNotes && (
-						<Route path="/sharenotes">
-							<ShareNotes />
-						</Route>
-					)}
-
-                    {showMap.ToolsPage && (
-						<Route path="/toolspage">
-							<ToolsPage />
-						</Route>
-					)}
-
-                    {showMap.VisaCheck && (
-						<Route path="/visacheck">
-							<VisaCheck />
-						</Route>
-					)}
-
-                    {showMap.RPC && (
-						<Route path="/RPC">
-							<RPC />
-						</Route>
-					)}
-
-                    {showMap.Login && (
-						<Route path="/login">
-							<Login />
-						</Route>
-					)}
-
-					<Route path="/">
+			<Switch>
+				{showMap.Home && (
+					<Route path="/home">
 						<Home />
 					</Route>
-				</Switch>
-			</div>
-		</Router>
+				)}
+
+				{showMap.About && (
+					<Route path="/about">
+						<About />
+					</Route>
+				)}
+
+				{showMap.Chat && (
+					<Route path="/chat">
+						<Chat socket={socket} />
+					</Route>
+				)}
+
+				{showMap.SnackGame && (
+					<Route path="/snackgame">
+						<SnackGame />
+					</Route>
+				)}
+
+				{showMap.Suggestion && (
+					<Route path="/suggestion">
+						<Suggestion />
+					</Route>
+				)}
+
+				{showMap.ShareNotes && (
+					<Route path="/sharenotes">
+						<ShareNotes />
+					</Route>
+				)}
+
+				{showMap.ToolsPage && (
+					<Route path="/toolspage">
+						<ToolsPage />
+					</Route>
+				)}
+
+				{showMap.VisaCheck && (
+					<Route path="/visacheck">
+						<VisaCheck />
+					</Route>
+				)}
+
+				{showMap.RPC && (
+					<Route path="/RPC">
+						<RPC />
+					</Route>
+				)}
+
+				{showMap.Login && (
+					<Route path="/login">
+						<Login />
+					</Route>
+				)}
+
+				<Route path="/" component={Home}>
+					<Home />
+				</Route>
+			</Switch>
+		</>
+		// </Router>
 	)
 }

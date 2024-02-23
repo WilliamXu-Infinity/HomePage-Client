@@ -21,7 +21,7 @@ import cssLogo from "../../Asset/logos/css.png"
 
 function Home() {
 	const handleDownload = () => {
-		const url = window.location.href + "/TingchaoXu_Resume_2024.pdf"
+		const url = window.location.origin + "/TingchaoXu_Resume_2024.pdf"
 		const link = document.createElement("a")
 		link.href = url
 		link.setAttribute("download", "TingchaoXu_Resume_2024.pdf")

@@ -4,7 +4,7 @@ import projectData from "../../../../Asset/texts/projectInfo.json"
 
 const ProjectBox = ({}) => {
 	const projectList = projectData.projects
-    const url = window.location.href
+    const url = window.location.origin
     
 	return (
 		<>
