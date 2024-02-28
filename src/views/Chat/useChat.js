@@ -8,10 +8,10 @@ const useChat = (socket) => {
 	const [cookies, setCookie] = useCookies(["name"])
 	const [user, setUser] = useState(null)
 	// const [roomList, setRoomList] = useState({ name: "" })
-  const [currentRoom, setCurrentRoom] = useState({})
+	const [currentRoom, setCurrentRoom] = useState({})
 	const [messageList, setMessageList] = useState([])
-  const [currentMessage, setCurrentMessage] = useState("")
-  const [newRoom, setNewRoom] = useState({})
+	const [currentMessage, setCurrentMessage] = useState("")
+	const [newRoom, setNewRoom] = useState({})
 	const [stage, setStage] = useState(STAGE_SIGN_IN)
 
 	useEffect(() => {
@@ -30,7 +30,8 @@ const useChat = (socket) => {
 	}
 
 	const createRoom = () => {
-		newRoom?.name && socket.emit("create_room", { user, roomName: newRoom.name })
+		newRoom?.name &&
+			socket.emit("create_room", { user, roomName: newRoom.name })
 	}
 
 	const submitSignIn = async () => {
@@ -83,9 +84,12 @@ const useChat = (socket) => {
 		})
 
 		socket.on("join_room", (room) => {
-      console.log('\x1b[31m%s\x1b[0m', `WX - join room: ${JSON.stringify(room)}`)
+			console.log(
+				"\x1b[31m%s\x1b[0m",
+				`WX - join room: ${JSON.stringify(room)}`
+			)
 			setCurrentRoom(room)
-      setNewRoom({})
+			setNewRoom({})
 		})
 
 		socket.on("receive_message", (messageData) => {
@@ -119,8 +123,8 @@ const useChat = (socket) => {
 		isConnected,
 		title,
 		setTitle,
-    newRoom,
-    setNewRoom
+		newRoom,
+		setNewRoom,
 	}
 }
 
