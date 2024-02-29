@@ -18,18 +18,20 @@ export default function App({ socket, showMap, defaultPage }) {
 	const history = useHistory()
 	const location = useLocation()
 
-	useEffect(() => {
-		const currentUrl = window.location.origin
-		const links = document.querySelectorAll('link[rel="icon"]')
-		links.forEach((link) => {
-			const originalHref = link.getAttribute("href")
-			const newHref = originalHref.replace(
-				"http://localhost:3000",
-				currentUrl
-			)
-			link.setAttribute("href", newHref)
-		})
-	}, [])
+	// useEffect(() => {
+	// 	const currentUrl = window.location.origin
+	// 	const links = document.querySelectorAll('link[rel="icon"]')
+	// 	links.forEach((link) => {
+	// 		const originalHref = link.getAttribute("href")
+	// 		const newHref = originalHref.replace(
+	// 			"http://localhost:3000",
+	// 			currentUrl
+	// 		)
+	// 		link.setAttribute("href", newHref)
+	// 	})
+	// }, [])
+
+	// console.log('\x1b[31m%s\x1b[0m', 'WX - check - App')
 
 	return (
 		<>

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import ProjectBox from "./Sections/ProjectBox"
 import "./Home.sass"
 
@@ -40,84 +40,108 @@ function Home() {
 		setIsHovered(false)
 	}
 
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		try {
+	// 			const response = await fetch(
+	// 				"https://william-xu-home-page-c5cbdc316c00.herokuapp.com"
+	// 			)
+	// 			const data = await response.json()
+	// 			console.log(
+	// 				"\x1b[31m%s\x1b[0m",
+	// 				`WX - data: ${JSON.stringify(data)}`
+	// 			)
+	// 		} catch (error) {
+	// 			console.error("Error fetching data:", error)
+	// 		}
+	// 	}
+
+	// 	fetchData()
+	// }, [])
+
 	return (
 		<div className="content">
-            <div className="contentBox"><section className="introContent">
-				<div className="describeSection">
-					<p className="text1">Front end developer</p>
-					<p>{"Hi, my name is Tingchao (William) Xu."}</p>
-					<p>A passionate Front-end developer based in LA.</p>
-					<div className="companyLogos">
-						<div className="logoBox" onMouseEnter={handleMouseEnter}
-								onMouseLeave={handleMouseLeave}>
-							<img
-								className="companyLogo"
-								src={resumeLogo}
-								alt="Resume"
-								onClick={handleDownload}
-							/>
-							<p
-							>
-								{isHovered ? "Download" : "Resume"}
-							</p>
-						</div>
-
-						<div className="logoBox">
-							<a
-								href="https://www.linkedin.com/in/tingchao-xu-2b49a491/"
-								target="_blank"
-								rel="noopener noreferrer"
+			<div className="contentBox">
+				<section className="introContent">
+					<div className="describeSection">
+						<p className="text1">Front end developer</p>
+						<p>{"Hi, my name is Tingchao (William) Xu."}</p>
+						<p>A passionate Front-end developer based in LA.</p>
+						<div className="companyLogos">
+							<div
+								className="logoBox"
+								onMouseEnter={handleMouseEnter}
+								onMouseLeave={handleMouseLeave}
 							>
 								<img
 									className="companyLogo"
-									src={linkedInLogo}
-									alt=""
+									src={resumeLogo}
+									alt="Resume"
+									onClick={handleDownload}
 								/>
-							</a>
-							<p>LinkedIn</p>
-						</div>
+								<p>{isHovered ? "Download" : "Resume"}</p>
+							</div>
 
-						<div className="logoBox">
-							<a
-								href="https://github.com/WilliamXu-Infinity"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<img
-									className="companyLogo"
-									src={githubLogo}
-									alt=""
-								/>
-							</a>
-							<p>Github</p>
+							<div className="logoBox">
+								<a
+									href="https://www.linkedin.com/in/tingchao-xu-2b49a491/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<img
+										className="companyLogo"
+										src={linkedInLogo}
+										alt=""
+									/>
+								</a>
+								<p>LinkedIn</p>
+							</div>
+
+							<div className="logoBox">
+								<a
+									href="https://github.com/WilliamXu-Infinity"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<img
+										className="companyLogo"
+										src={githubLogo}
+										alt=""
+									/>
+								</a>
+								<p>Github</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<img className="selfPhoto" src={selfImg} alt="" />
-			</section>
+					<img className="selfPhoto" src={selfImg} alt="" />
+				</section>
 
-			<section className="techStackSection">
-				<p className="text2">Tech Stack</p>
-				<div className="vLine"></div>
-				<div className="skillLogos">
-					<img className="logoImg" src={reactLogo} alt="React" />
-					<img className="logoImg" src={vueLogo} alt="Vue" />
-					<img
-						className="logoImg"
-						src={javascriptLogo}
-						alt="Javascript"
-					/>
-					<img className="logoImg" src={htmlLogo} alt="HTML" />
-					<img className="logoImg" src={nodeLogo} alt="Nodejs" />
-					<img className="logoImg" src={cssLogo} alt="CSS" />
-					<img className="logoImg" src={sassLogo} alt="Sass" />
-					<img className="logoImg" src={mongodbLogo} alt="MongoDB" />
-					<img className="logoImg" src={mysqlLogo} alt="MySQL" />
-				</div>
-			</section>
-			<p className="text3">Projects</p>
-			<ProjectBox /></div>
-			
+				<section className="techStackSection">
+					<p className="text2">Tech Stack</p>
+					<div className="vLine"></div>
+					<div className="skillLogos">
+						<img className="logoImg" src={reactLogo} alt="React" />
+						<img className="logoImg" src={vueLogo} alt="Vue" />
+						<img
+							className="logoImg"
+							src={javascriptLogo}
+							alt="Javascript"
+						/>
+						<img className="logoImg" src={htmlLogo} alt="HTML" />
+						<img className="logoImg" src={nodeLogo} alt="Nodejs" />
+						<img className="logoImg" src={cssLogo} alt="CSS" />
+						<img className="logoImg" src={sassLogo} alt="Sass" />
+						<img
+							className="logoImg"
+							src={mongodbLogo}
+							alt="MongoDB"
+						/>
+						<img className="logoImg" src={mysqlLogo} alt="MySQL" />
+					</div>
+				</section>
+				<p className="text3">Projects</p>
+				<ProjectBox />
+			</div>
 		</div>
 	)
 }
