@@ -19,6 +19,23 @@ $PrimeColor: #FFA409
         margin: 20px
 
     .logoList
+        opacity: 0
+        animation: fadeIn 2s linear forwards, moveRight 2s linear forwards
+
+        @keyframes fadeIn 
+            0% 
+                opacity: 0
+            
+            100% 
+                opacity: 1
+
+        @keyframes moveRight 
+            0% 
+                transform: translateX(15px)
+            
+            100% 
+                transform: translateX(0)
+
         .logoImg
             width: 30px
             margin-right: 20px

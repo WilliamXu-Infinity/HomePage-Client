@@ -32,7 +32,7 @@ const Intro = () => {
 	return (
 		<section className="introContent">
 			<div className="describeSection">
-				<p className="text1">Software Engineer</p>
+				<p className="text1 js-scroll slide-top">Software Engineer</p>
 				<p>{"Hi, my name is Tingchao (William) Xu."}</p>
 				<p>A passionate Software Engineer based in LA.</p>
 				<div className="companyLogos">

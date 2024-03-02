@@ -3,7 +3,7 @@ import "./index.sass"
 import projectData from "../../../../Asset/texts/projectInfo.json"
 import SectionHeader from "../SectionHeader"
 
-const ProjectBox = ({}) => {
+const ProjectBox = () => {
 	const projectList = projectData.projects
     const url = window.location.origin
     const logoList = projectList.map(p => p.companyLogo)
