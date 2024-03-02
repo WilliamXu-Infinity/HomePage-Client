@@ -18,6 +18,7 @@ const ProjectBox = () => {
 					imgUrl,
 					description,
 					companyLogo,
+                    title
 				} = project
 
 				return (
@@ -31,7 +32,7 @@ const ProjectBox = () => {
 										src={companyLogo}
 										alt="Autodesk"
 									/>
-									<p className="text4">{companyName}</p>
+									<p className="text4">{companyName} - {title}</p>
 								</div>
 								<div className="rightContent">
 									<p>{duration}</p>
