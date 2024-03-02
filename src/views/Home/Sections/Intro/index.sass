@@ -1,0 +1,49 @@
+$PrimeColor: #FFA409 
+
+.introContent
+    display: flex
+    justify-content: space-between
+    flex-direction: row
+    align-items: center
+    margin: 40px auto 0
+    width: 100%
+    height: 340px
+
+    .describeSection
+        max-width: 600px
+        max-height: 800px
+        display: flex
+        flex-direction: column
+
+        .text1
+            font-size: 50px
+            font-weight: bold
+        
+        .companyLogos
+            display: flex
+            flex-direction: row
+            margin-top: 10px
+            margin-right: 20px
+
+            .logoBox
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+                margin: 20px 40px 20px 0
+                width: 50px
+                cursor: pointer
+                position: relative
+
+                &:hover
+                    color: $PrimeColor
+    
+                .companyLogo
+                    width: 40px
+                    margin: 10px auto
+    
+    .selfPhoto
+        max-width: 300px
+        border-radius: 50%
+        border: 2px solid black
+            

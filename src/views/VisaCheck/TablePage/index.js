@@ -1,16 +1,16 @@
 import React from "react"
 import Table from "react-bootstrap/Table"
-import jsonData from "../data.json"
+import tableData from "../data.json"
+import "./TablePage.sass"
 
 const TableContent = () => {
-	const data = jsonData
-
 	return (
-		<div>
+		<div className="table-content">
 			<Table striped bordered hover responsive>
 				<thead>
 					<tr>
 						<th>Name</th>
+						<th>Visa Type</th>
 						<th>Check Date</th>
 						<th>Clear Date</th>
 						<th>Location</th>
@@ -18,8 +18,8 @@ const TableContent = () => {
 						<th>Note</th>
 					</tr>
 				</thead>
-				<tbody>
-					{data.map((item) => {
+				<tbody className="tableBody">
+					{tableData.map((item) => {
 						const {
 							email,
 							name,
@@ -28,12 +28,14 @@ const TableContent = () => {
 							status,
 							clearDate,
 							degree,
+							visaType,
 						} = item
 						return (
 							<tr key={email}>
 								<td>{name}</td>
+								<td>{visaType}</td>
 								<td>{checkDate}</td>
-								<td>{clearDate}</td>
+								<td>{clearDate ? clearDate : "Pending"}</td>
 								<td>{location}</td>
 								<td>{degree}</td>
 							</tr>

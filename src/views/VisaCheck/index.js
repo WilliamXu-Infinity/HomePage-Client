@@ -1,15 +1,18 @@
-import React from "react"
-import JsonData from "./data.json"
-import MenuBar from "./MenuBar"
-import TableContent from "./TableContent"
+import React, { useState } from "react"
+import EditPage from "./EditPage"
+import TablePage from "./TablePage"
 
 const VisaCheck = () => {
-	console.log("\x1b[31m%s\x1b[0m", "WX - check - 0")
+    const [isEdit, setIsEdit] = useState(false)
+
 	return (
-		<div>
-			{/* <MenuBar /> */}
-			<TableContent />
-		</div>
+		<>
+            {
+                isEdit ?
+                <EditPage /> :
+                <TablePage /> 
+            }
+        </>
 	)
 }
 

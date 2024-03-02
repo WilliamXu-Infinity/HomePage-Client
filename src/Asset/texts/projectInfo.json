@@ -2,6 +2,7 @@
 	"projects": [
 		{
 			"companyName": "Autodesk",
+            "title": "Software Engineer",
 			"duration": "Jan 2022 – Current",
 			"companyLogo": "/img/AutodeskLogo.png",
 			"imgUrl": "/img/Autodesk-0.png",
@@ -17,6 +18,7 @@
 		},
 		{
 			"companyName": "Mezmo",
+            "title": "Software Engineer",
 			"duration": "Jun 2019 – Feb 2020",
 			"companyLogo": "/img/LogdnaLogo.png",
 			"imgUrl": "/img/Logdna-0.png",
@@ -34,6 +36,7 @@
 		},
 		{
 			"companyName": "Walmart Labs",
+            "title": "Software Engineer",
 			"duration": "Jun 2019 – Feb 2020",
 			"companyLogo": "/img/walmartLogo.png",
 			"imgUrl": "/img/Walmart-0.png",
@@ -58,6 +61,7 @@
 		},
         {
 			"companyName": "Apple",
+            "title": "Software Engineer",
 			"duration": "Jul 2018 – Jun 2019",
 			"companyLogo": "/img/AppleLogo.webp",
 			"imgUrl": "/img/Apple-0.png",
