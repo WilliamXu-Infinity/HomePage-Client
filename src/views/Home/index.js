@@ -14,10 +14,6 @@ function Home() {
 					"https://william-xu-home-page-c5cbdc316c00.herokuapp.com/"
 				)
 				const data = await response.data
-				console.log(
-					"\x1b[31m%s\x1b[0m",
-					`WX - response: ${JSON.stringify(data)}`
-				)
 			} catch (error) {
 				console.log(
 					"\x1b[31m%s\x1b[0m",

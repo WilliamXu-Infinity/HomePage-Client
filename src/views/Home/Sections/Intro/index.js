@@ -10,6 +10,32 @@ import linkedInLogo from "../../../../Asset/logos/linkedin.png"
 import githubLogo from "../../../../Asset/logos/github.png"
 import hiLogo from "../../../../Asset/hi.png"
 
+const StringList = [
+	"をちたはぬ3Xひoと153とにwる",
+	"七tくよちQqH5しCかeせもゆ百",
+	"ろふたけ2tぬy九か4cあけやrろ",
+	"うoえ六のjかは9れD5りxゆ5お",
+	"YはqるI4jlつAdeぬも1やS",
+	"わもw亿ちhてw三DうYjちかてA",
+	"SXgこせたなGみe五wpけ0GC",
+	"Soれ百8ゆみidXたよ万Qeeつ",
+	"Sofあ7KReしutやたる九りぬ",
+	"SoftoxtW4六ua四H四dS",
+	"SoftwつyくかいA75万よすS",
+	"SoftwarWえVこw六5九はW",
+	"SoftwarとC亿けくxi3Jゆ",
+	"Software3かv二oほ四0x",
+	"Software ちN2八pHあく",
+	"Software EIbいむんきJ",
+	"Software EnjPsS万め",
+	"Software Engま十Fたd",
+	"Software EngiSHaP",
+	"Software Engind二た",
+	"Software EngineEな",
+	"Software Engineeち",
+	"Software Engineer",
+]
+
 function generateStrings(numberOfString, count, string) {
 	const stringLength = string.length - count
 	const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" // 英文字母
@@ -33,6 +59,7 @@ function generateStrings(numberOfString, count, string) {
 		strings.push(string.slice(0, count) + randomString)
 	}
 
+	StringList.push(strings[0])
 	return strings
 }
 
@@ -43,15 +70,14 @@ const Intro = () => {
 	useEffect(() => {
 		let count = 0,
 			waitTimes = 5
-		const string = "Software Engineer"
 		const interval = setInterval(() => {
-			const strings = generateStrings(1, count, string)
-			setTestString(strings[0])
+			const string = StringList[count]
+			setTestString(string)
 			if (waitTimes > 0) {
 				waitTimes--
 			} else count++
-			if (count > string.length) clearInterval(interval)
-		}, 60)
+			if (count >= StringList.length) clearInterval(interval)
+		}, 80)
 
 		return () => clearInterval(interval)
 	}, [])
@@ -77,11 +103,12 @@ const Intro = () => {
 	return (
 		<section className="introContent">
 			<div className="describeSection">
-				<p className="text1 js-scroll slide-top">{testString}
-                <img className="hiLogo" src={hiLogo} alt="hi" />
-                </p>
-                
-                <p>{"Hi, my name is Tingchao (William) Xu."}</p>
+				<p className="text1 js-scroll slide-top">
+					{testString}
+					<img className="hiLogo" src={hiLogo} alt="hi" />
+				</p>
+
+				<p>{"Hi, my name is Tingchao (William) Xu."}</p>
 				<p>A passionate Software Engineer based in LA.</p>
 				<div className="companyLogos">
 					<div
