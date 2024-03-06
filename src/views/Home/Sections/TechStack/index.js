@@ -60,11 +60,14 @@ const TechStack = () => {
 				return (
 					<div key={index} className="techStackList">
 						<p className="listTitle">{title}:</p>
-						{skills.map((skill, index) => {
+						{skills.map((skill, i) => {
 							return (
-								<p key={index} className="listSkill">
-									{skill} |
-								</p>
+								<>
+									<p key={i} className="listSkill">
+										{skill}
+									</p>
+									<div className="vLine"></div>
+								</>
 							)
 						})}
 					</div>
