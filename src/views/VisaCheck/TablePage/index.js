@@ -1,9 +1,8 @@
 import React from "react"
 import Table from "react-bootstrap/Table"
-import tableData from "../data.json"
 import "./TablePage.sass"
 
-const TableContent = () => {
+const TableContent = ({ tableData, setIsEdit }) => {
 	return (
 		<div className="table-content">
 			<Table striped bordered hover responsive>
@@ -15,11 +14,11 @@ const TableContent = () => {
 						<th>Clear Date</th>
 						<th>Location</th>
 						<th>Degree</th>
-						<th>Note</th>
+						<th><button className="add-new" onClick={() => setIsEdit(true)}>+</button></th>
 					</tr>
 				</thead>
 				<tbody className="tableBody">
-					{tableData.map((item) => {
+					{tableData && tableData.map((item) => {
 						const {
 							email,
 							name,

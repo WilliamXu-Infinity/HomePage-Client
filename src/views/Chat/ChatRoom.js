@@ -12,7 +12,6 @@ export const ChatRoom = ({
 	newRoom,
 	setNewRoom,
 }) => {
-	console.log("\x1b[31m%s\x1b[0m", `WX - user: ${JSON.stringify(user)}`)
 	return (
 		<>
 			<h3>{`Hi ${user?.username}! - ${title}`}</h3>

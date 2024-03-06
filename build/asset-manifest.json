@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.0f955059.css",
-    "main.js": "/static/js/main.be69718f.js",
+    "main.js": "/static/js/main.c5f2f418.js",
     "static/js/511.17a8daf2.chunk.js": "/static/js/511.17a8daf2.chunk.js",
     "static/media/img-0.png": "/static/media/img-0.c061dde6db865ab82fef.png",
     "static/media/UniversityOfArizonaLogo.jpeg": "/static/media/UniversityOfArizonaLogo.4014e39bc292883edc66.jpeg",
@@ -14,11 +14,11 @@
     "index.html": "/index.html",
     "static/media/mongodb.svg": "/static/media/mongodb.bfa6cdd80f4a99232cadb39ebbb976d2.svg",
     "main.0f955059.css.map": "/static/css/main.0f955059.css.map",
-    "main.be69718f.js.map": "/static/js/main.be69718f.js.map",
+    "main.c5f2f418.js.map": "/static/js/main.c5f2f418.js.map",
     "511.17a8daf2.chunk.js.map": "/static/js/511.17a8daf2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0f955059.css",
-    "static/js/main.be69718f.js"
+    "static/js/main.c5f2f418.js"
   ]
 }

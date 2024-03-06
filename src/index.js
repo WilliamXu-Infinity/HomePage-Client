@@ -15,7 +15,7 @@ const showMapPublic = {
 	Chat: false,
 	ShareNotes: false,
 	ToolsPage: false,
-	VisaCheck: false,
+	VisaCheck: true,
 	RPC: false,
 	Login: false,
 }
