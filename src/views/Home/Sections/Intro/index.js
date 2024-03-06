@@ -65,18 +65,13 @@ function generateStrings(numberOfString, count, string) {
 
 const Intro = () => {
 	const [isHovered, setIsHovered] = useState(false)
-	const [testString, setTestString] = useState("XXXXXXXXXXXX")
+	const [testString, setTestString] = useState("")
 
 	useEffect(() => {
-		let count = 0,
-			waitTimes = 5
+		let count = 0
 		const interval = setInterval(() => {
-			const string = StringList[count]
-			setTestString(string)
-			if (waitTimes > 0) {
-				waitTimes--
-			} else count++
-			if (count >= StringList.length) clearInterval(interval)
+			setTestString(StringList[count])
+			if (++count >= StringList.length) clearInterval(interval)
 		}, 80)
 
 		return () => clearInterval(interval)
