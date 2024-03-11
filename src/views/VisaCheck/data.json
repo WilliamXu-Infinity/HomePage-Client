@@ -1,6 +1,5 @@
 [
 	{
-		"uid": "000001",
 		"email": "def@gmail.com",
 		"name": "Alice",
 		"checkDate": "6/15/2023",
@@ -14,7 +13,6 @@
 		"Note": "Approved recently"
 	},
 	{
-		"uid": "000002",
 		"email": "ghi@gmail.com",
 		"name": "Bob",
 		"checkDate": "7/5/2023",
@@ -28,7 +26,6 @@
 		"Note": "Still checking"
 	},
 	{
-		"uid": "000003",
 		"email": "jkl@gmail.com",
 		"name": "Carol",
 		"checkDate": "7/20/2023",
@@ -42,7 +39,6 @@
 		"Note": "Rejected due to incomplete documents"
 	},
 	{
-		"uid": "000004",
 		"email": "mno@gmail.com",
 		"name": "David",
 		"checkDate": "8/10/2023",
@@ -56,7 +52,6 @@
 		"Note": "Extension requested"
 	},
 	{
-		"uid": "000005",
 		"email": "pqr@gmail.com",
 		"name": "Emma",
 		"checkDate": "8/25/2023",
@@ -70,7 +65,6 @@
 		"Note": "Approved without any issues"
 	},
 	{
-		"uid": "000006",
 		"email": "stu@gmail.com",
 		"name": "Frank",
 		"checkDate": "9/10/2023",
@@ -84,7 +78,6 @@
 		"Note": "Transfer in process"
 	},
 	{
-		"uid": "000007",
 		"email": "vwx@gmail.com",
 		"name": "Grace",
 		"checkDate": "9/25/2023",
@@ -98,7 +91,6 @@
 		"Note": "Rejected due to financial documents"
 	},
 	{
-		"uid": "000008",
 		"email": "yz@gmail.com",
 		"name": "Henry",
 		"checkDate": "10/10/2023",
@@ -112,7 +104,6 @@
 		"Note": "Under review"
 	},
 	{
-		"uid": "000009",
 		"email": "xyz@gmail.com",
 		"name": "Ivy",
 		"checkDate": "10/25/2023",
@@ -126,7 +117,6 @@
 		"Note": "Extension granted"
 	},
 	{
-		"uid": "000010",
 		"email": "abc123@gmail.com",
 		"name": "John",
 		"checkDate": "11/10/2023",

@@ -1,27 +1,28 @@
 import React, { useReducer } from "react"
 import axios from "axios"
 import "./index.sass"
+import { API_URL } from "../../Utils/constants"
 
 const initialState = {
-    name:  "",
+	name: "",
 	email: "",
-	checkDate:  "",
-	visaType:  "",
-	visaEntry:  "",
-	location:  "",
-	major:  "",
-	status:  "",
-	clearDate:  "",
-	degree:  "",
-	Note:  "",
+	checkDate: "",
+	visaType: "",
+	visaEntry: "",
+	location: "",
+	major: "",
+	status: "",
+	clearDate: "",
+	degree: "",
+	Note: "",
 }
 
 const reducer = (state, action) => {
 	switch (action.type) {
 		case "UPDATE_INPUT":
 			return { ...state, [action.field]: action.value }
-        case "RESET_DATA":
-            return initialState
+		case "RESET_DATA":
+			return initialState
 		default:
 			return state
 	}
@@ -33,16 +34,13 @@ const EditPage = ({ setIsEdit }) => {
 	const handleSubmit = async () => {
 		// e.preventDefault()
 		try {
-			const response = await axios.post(
-				"https://william-xu-home-page-c5cbdc316c00.herokuapp.com/add-info",
-				state
-			)
-            dispatch({ type: "RESET_DATA"})
-            setIsEdit(false)
+			const response = await axios.post(API_URL + "/add-user", state)
+			dispatch({ type: "RESET_DATA" })
+			setIsEdit(false)
 		} catch (error) {
 			console.log(
 				"\x1b[31m%s\x1b[0m",
-				`WX - error: ${JSON.stringify(error)}`
+				`WX - error: ${JSON.stringify(error.message)}`
 			)
 		}
 	}

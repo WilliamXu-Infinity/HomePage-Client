@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import EditPage from "./EditPage"
 import TablePage from "./TablePage"
 import axios from "axios"
+import { API_URL } from '../Utils/constants'
 
 const VisaCheck = () => {
 	const [isEdit, setIsEdit] = useState(false)
@@ -11,7 +12,7 @@ const VisaCheck = () => {
         if (isEdit) return
 		const fetchData = async () => {
 			try {
-				const response = await axios.get("https://william-xu-home-page-c5cbdc316c00.herokuapp.com/getlist")
+				const response = await axios.get(API_URL + "/users")
 				const data = await response.data
 				setTableData(data)
 			} catch (error) {
