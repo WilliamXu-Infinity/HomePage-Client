@@ -30,7 +30,7 @@ const TackStack = [
 	},
 	{
 		title: "Back-End",
-		skills: ["Node.js", "Express", "RESTful API"],
+		skills: ["Node.js", "Python", "Express", "RESTful API", "GraphQL"],
 	},
 	{
 		title: "Database",
@@ -62,7 +62,7 @@ const TechStack = () => {
 						<p className="listTitle">{title}:</p>
 						{skills.map((skill, i) => {
 							return (
-								<div key={i} >
+								<div key={i} className="skillBox">
 									<p className="listSkill">
 										{skill}
 									</p>

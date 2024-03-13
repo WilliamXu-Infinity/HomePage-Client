@@ -35,13 +35,6 @@ $PrimeColor: #FFA409
         align-items: center
         margin: 10px 0
 
-        .vLine
-            position: relative
-            border: 1px solid $PrimeColor
-            height: 15px
-            margin: 5px
-            
-
         .listTitle
             margin-right: 20px
             font-size: 16px
@@ -49,7 +42,18 @@ $PrimeColor: #FFA409
             margin: 0
             width: 90px
 
-        .listSkill
-            margin: 0 5px
-            word-break: break-all
+        .skillBox
+            display: flex
+            flex-direction: row
+
+            .vLine
+                position: relative
+                border: 1px solid $PrimeColor
+                height: 15px
+                width: 1px
+                margin: 5px
+                
+            .listSkill
+                margin: 0 5px
+                word-break: break-all
 

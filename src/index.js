@@ -28,7 +28,7 @@ const showMap = {
 	Chat: false,
 	ShareNotes: true,
 	ToolsPage: false,
-	VisaCheck: true,
+	VisaCheck: false,
 	RPC: true,
 	Login: false,
 }
