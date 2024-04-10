@@ -77,7 +77,7 @@ const Intro = () => {
 				</p>
 
 				<p>{"Hi, my name is Tingchao (William) Xu."}</p>
-				<p>A passionate Software Engineer based in LA.</p>
+				<p>A passionate Software Engineer based in CA.</p>
 				<div className="companyLogos">
 					<div
 						className="logoBox"

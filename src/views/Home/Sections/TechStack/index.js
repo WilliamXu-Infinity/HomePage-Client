@@ -11,6 +11,9 @@ import mongodbLogo from "../../../../Asset/logos/mongodb.svg"
 import vueLogo from "../../../../Asset/logos/vue.png"
 import mysqlLogo from "../../../../Asset/logos/mysql.png"
 import cssLogo from "../../../../Asset/logos/css.png"
+import reactQueryLogo from "../../../../Asset/logos/reactquery.png"
+import typeScriptLogo from "../../../../Asset/logos/typescript.png"
+
 
 const TackStack = [
 	{
@@ -18,10 +21,12 @@ const TackStack = [
 		skills: [
 			"React",
 			"React-Native",
+            "React-Query",
 			"Vue",
 			"Redux",
 			"Vuex",
 			"JavaScript",
+            "TypeScript",
 			"HTML",
 			"CSS3",
 			"Sass/Less",
@@ -42,12 +47,14 @@ const LogoList = [
 	reactLogo,
 	vueLogo,
 	javascriptLogo,
+    typeScriptLogo,
 	htmlLogo,
 	nodeLogo,
 	cssLogo,
 	sassLogo,
 	mongodbLogo,
 	mysqlLogo,
+    reactQueryLogo
 ]
 
 const TechStack = () => {

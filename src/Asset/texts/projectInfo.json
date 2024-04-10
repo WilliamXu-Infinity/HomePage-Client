@@ -2,41 +2,39 @@
 	"projects": [
 		{
 			"companyName": "Autodesk",
-            "title": "Software Engineer",
+			"title": "Software Engineer",
 			"duration": "Jan 2022 – Current",
 			"companyLogo": "/img/AutodeskLogo.png",
 			"imgUrl": "/img/Autodesk-0.png",
 			"description": [
-				"Develop Payment system front-end with React.js, SASS, Internal Bootstrap library and HTML.",
-				"Develop and manage new Systems data flow with React useContext, React useState, Redux and localStorage.",
-				"Create React Custom Hooks for accessing react ecosystem, handling data storage, data flow, and monitoring data change through useEffect, useState, useContext and useMemo.",
-				"Experience with event-driven and scheduled AWS Lambda functions to trigger various AWSresources.",
-				"Design and develop RESTful API with CRUD to exchange data from front-end to server.",
-				"Analyze and solve cross-browser compatibility chalglenges and debugging generated HTML, app styles, and JavaScript in browsers using bro debug of different browsers like Saf Firefox, Google Chrome, and Internet Explorer.",
-				"Develop back-end with Node.js, Express and apply Microservices Architecture, Reaching different data from different services, such as authorization service from login page, calculating the tax based on user geolocation services and so on."
+				"Developed Autodesk Digital Payment System and applications utilizing React, Redux, Hooks, React-Query, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, Typescript, ES6, Google Analytics, MySQL, MongoDB,, AEM, Restful API, GraphQL, Unit Test and Functional Test.",
+				"Led 2 engineers to implement core features such as checkout page (payment step, address step and so on), invoice and product page, and improved web performance by 30%.",
+				"Developed the backend infrastructure with Node.js and Express, seamlessly integrating with various services such as tax calculation service, product info, user info and so on.",
+				"Developed RESTful API and GraphQL to communicate between front-end, services and database.",
+				"Utilize CMS with AEM for creating, managing, and delivering digital content across various channels such as websites, mobile apps, and forms.",
+				"Unit test components and utilities with Jest, and conduct Functional tests for web flows and React components using the Cypress testing framework.",
+				"Mentored 3+ engineers both on the tech side and career path."
 			]
 		},
 		{
-			"companyName": "Mezmo",
-            "title": "Software Engineer",
+			"companyName": "LogDNA",
+			"title": "Software Engineer",
 			"duration": "Jun 2019 – Feb 2020",
 			"companyLogo": "/img/LogdnaLogo.png",
 			"imgUrl": "/img/Logdna-0.png",
 			"description": [
-				"Develop Mezmo websites application with Vue.js, Vuex, SASS, CSS3, Nodejs, Express, JavaScript, ES6, Webpack, Microservices Architecture, Restful API, Unit Test, MongoDB.",
-				"Lead a team to implement Drift Chat services into the main application, setting up different themes,  messages, response, and email reply with Dirft APIs.",
-				"Implementing Stripe payment services into the application by using Stripe payment apis, creating invoices, plans, subscriptions and others for various use cases, and also setting up the test account.",
-				"Develop websites use Microservices Architecture, reaching different data from different services, such as graph data from our backend service running with ES search, different time periods of logs, , user info and search result from backend.",
-				"Creating different util functions for handling time, such as time zone issue, time difference and others.",
-				"Created and maintained MongoDB and Nodejs using mongoose and Express.",
-				"Fetch the services API calls from back-end and map all the data in front end using Vuex with Vue.js.",
-				"Unit Test website component by using Jest, and Vue test library.",
-				"Functional Test for web flow and React components use the Cypress testing framework."
+				"Develop LogDNA websites application with JavaScript, ES6, Vue.js, Vuex, SASS, CSS3, Nodejs, Express, Restful API, GraphQL, Webpack, MongoDB, Redis, Unit Test and Functional Test.",
+				"Developed a few core features such as alarm system (sms or email), search and sort logs from Redis, data graph, payment system (Stripe), customer services chat (Drift).",
+				"Led 3 engineers to implement Drift Chat services into the application, effective communication and coordination across PD, UI/UX, Engineer, and Customer Service teams. Resulting in a 50% reduction in customer load.",
+				"Led 3 engineers to implement Stripe payment services by using Stripe payment apis to create invoices, plans, subscriptions and others for various use cases.",
+				"Store and maintain user info in MongoDB with Nodejs, Express, RestFul API, and mongoose.",
+				"Unit test components and utilities with Jest, and conduct functional tests for web flows and Vue components using the Cypress testing framework.",
+				"Mentored 3+ engineers both on the tech side and career path."
 			]
 		},
 		{
 			"companyName": "Walmart Labs",
-            "title": "Software Engineer",
+			"title": "Software Engineer",
 			"duration": "Jun 2019 – Feb 2020",
 			"companyLogo": "/img/walmartLogo.png",
 			"imgUrl": "/img/Walmart-0.png",
@@ -44,43 +42,41 @@
 				"Develop Sam’s Club websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, Webpack, Microservices Architecture, Micro Front-End Architecture, Restful API, Unit Test and Functional Test.",
 				"Responsible for login page, two-factor authentication, forgot email page, reset password flow.",
 				"Responsible for register flow, creating a new account with existing membership id and user info.",
-                "Responsible for membership page, join membership page and payment methods.",
-                "Develop website use Microservices Architecture, reaching different data from different service, such as authorization service for login page, payment service for authorize payments and so on.",
-                "Develop website use Micro Front-End Architecture for developing separate page and components.",
-                "Develop web UI interface using CSS3, SASS and React internal Library.",
-                "Develop React HOC for login page, register page and membership page.",
-                "Create Redux Reducer, and Action Create for storing data and control the page flow.",
-                "Use React Lifecycle methods to control the web page flow. ",
-                "Build communications between servers by using GraphQL to pass specific nested data.",
-                "Use React Router to redirecting the page, and Query String to sharing the website page.",
-                "Develop website based on WAI and test website based on WAI.",
-                "Unit Test website component by using Mocha, Enzyme.",
-                "Functional Test for web flow and React component use Nightwatch.js."
-
+				"Responsible for membership page, join membership page and payment methods.",
+				"Develop website use Microservices Architecture, reaching different data from different service, such as authorization service for login page, payment service for authorize payments and so on.",
+				"Develop website use Micro Front-End Architecture for developing separate page and components.",
+				"Develop web UI interface using CSS3, SASS and React internal Library.",
+				"Develop React HOC for login page, register page and membership page.",
+				"Create Redux Reducer, and Action Create for storing data and control the page flow.",
+				"Use React Lifecycle methods to control the web page flow. ",
+				"Build communications between servers by using GraphQL to pass specific nested data.",
+				"Use React Router to redirecting the page, and Query String to sharing the website page.",
+				"Develop website based on WAI and test website based on WAI.",
+				"Unit Test website component by using Mocha, Enzyme.",
+				"Functional Test for web flow and React component use Nightwatch.js."
 			]
 		},
-        {
+		{
 			"companyName": "Apple",
-            "title": "Software Engineer",
+			"title": "Software Engineer",
 			"duration": "Jul 2018 – Jun 2019",
 			"companyLogo": "/img/AppleLogo.webp",
 			"imgUrl": "/img/Apple-0.png",
 			"description": [
 				"Develop several websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, JQuery, Webpack and Restful API.",
-                "Develop React Library with dynamic designing structure and published it on NPM.",
-                "Design the website structure using HOC and pure component to build a website based on json file.",
-                "Develop the website with dynamic concept to let those does not have knowledge of JavaScript or react to build their own website.",
-                "Designed the website using CSS3, SASS and Bootstrap as UI development.",
-                "Create web app with React.js and Redux as Front-End development.",
-                "Set up the back-end with Node.js and Express to react the data from server with react socket, and auto push the data to every linked client side.",
-                "Design Dynamic Redux Action Factory to create Redux Actions and Repository dynamically.",
-                "Use React Router to redirecting the website and Query String to sharing the website.",
-                "Use thunk, Axios, ajax to reaching the data from server through api.",
-                "Develop the website with high order component and pure component structure.",
-                "Design the structure using React recompose, Lodash, and other useful react library to improve  efficiency of developing website.",
-                "Use Code-splitting with Webpack bundler and Dynamic Imports code design for Lazy-Loading maximize website performance.",
-                "Use Restful API to communicate with server at the back end to fetch life data every 5 seconds."
-
+				"Develop React Library with dynamic designing structure and published it on NPM.",
+				"Design the website structure using HOC and pure component to build a website based on json file.",
+				"Develop the website with dynamic concept to let those does not have knowledge of JavaScript or react to build their own website.",
+				"Designed the website using CSS3, SASS and Bootstrap as UI development.",
+				"Create web app with React.js and Redux as Front-End development.",
+				"Set up the back-end with Node.js and Express to react the data from server with react socket, and auto push the data to every linked client side.",
+				"Design Dynamic Redux Action Factory to create Redux Actions and Repository dynamically.",
+				"Use React Router to redirecting the website and Query String to sharing the website.",
+				"Use thunk, Axios, ajax to reaching the data from server through api.",
+				"Develop the website with high order component and pure component structure.",
+				"Design the structure using React recompose, Lodash, and other useful react library to improve  efficiency of developing website.",
+				"Use Code-splitting with Webpack bundler and Dynamic Imports code design for Lazy-Loading maximize website performance.",
+				"Use Restful API to communicate with server at the back end to fetch life data every 5 seconds."
 			]
 		}
 	]
