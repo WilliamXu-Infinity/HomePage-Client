@@ -18,6 +18,8 @@ const showMapPublic = {
 	VisaCheck: true,
 	RPC: false,
 	Login: false,
+    FreshMemory: false,
+    JumpingButton: false,
 }
 
 const showMap = {
@@ -31,6 +33,8 @@ const showMap = {
 	VisaCheck: false,
 	RPC: true,
 	Login: false,
+    FreshMemory: true,
+    JumpingButton: true
 }
 
 const defaultPage = "Home"
@@ -42,7 +46,7 @@ ReactDOM.render(
 		<HashRouter>
 			<App
 				socket={socket}
-				showMap={showMapPublic}
+				showMap={showMap}
 				defaultPage={defaultPage}
 			/>
 		</HashRouter>

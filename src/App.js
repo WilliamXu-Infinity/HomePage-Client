@@ -13,6 +13,8 @@ import VisaCheck from "./Views/VisaCheck"
 import Login from "./Views/Login"
 import RPC from "./Views/RPC"
 import PageNotFound from "./Views/404"
+import FreshMemory from "./Views/FreshMemory"
+import JumpingButton from "./Views/Components/JumpingButton"
 
 export default function App({ socket, showMap, defaultPage }) {
 	const history = useHistory()
@@ -33,80 +35,38 @@ export default function App({ socket, showMap, defaultPage }) {
 
 	// console.log('\x1b[31m%s\x1b[0m', 'WX - check - App')
 
+    const routes = [
+        { path: "/home", component: Home, show: showMap.Home },
+        { path: "/about", component: About, show: showMap.About },
+        { path: "/chat", component: Chat, show: showMap.Chat, props: { socket } },
+        { path: "/snackgame", component: SnackGame, show: showMap.SnackGame },
+        { path: "/suggestion", component: Suggestion, show: showMap.Suggestion },
+        { path: "/sharenotes", component: ShareNotes, show: showMap.ShareNotes },
+        { path: "/toolspage", component: ToolsPage, show: showMap.ToolsPage },
+        { path: "/visacheck", component: VisaCheck, show: showMap.VisaCheck },
+        { path: "/freshmemory", component: FreshMemory, show: showMap.FreshMemory },
+        { path: "/RPC", component: RPC, show: showMap.RPC },
+        { path: "/login", component: Login, show: showMap.Login },
+        { path: "/", component: Home, show: showMap},
+        { path: "/jumpingbutton", component: JumpingButton, show: true}
+    ];
+
 	return (
 		<>
-			<NavBar showMap={showMap} defaultPage={defaultPage} />
+			<NavBar showMap={showMap} defaultPage={defaultPage} />		
 
-			<Switch>
-				{showMap.Home && (
-					<Route exact path="/home">
-						<Home />
-					</Route>
-				)}
-
-				{showMap.About && (
-					<Route exact path="/about">
-						<About />
-					</Route>
-				)}
-
-				{showMap.Chat && (
-					<Route exact path="/chat">
-						<Chat socket={socket} />
-					</Route>
-				)}
-
-				{showMap.SnackGame && (
-					<Route exact path="/snackgame">
-						<SnackGame />
-					</Route>
-				)}
-
-				{showMap.Suggestion && (
-					<Route exact path="/suggestion">
-						<Suggestion />
-					</Route>
-				)}
-
-				{showMap.ShareNotes && (
-					<Route exact path="/sharenotes">
-						<ShareNotes />
-					</Route>
-				)}
-
-				{showMap.ToolsPage && (
-					<Route exact path="/toolspage">
-						<ToolsPage />
-					</Route>
-				)}
-
-				{showMap.VisaCheck && (
-					<Route exact path="/visacheck">
-						<VisaCheck />
-					</Route>
-				)}
-
-				{showMap.RPC && (
-					<Route exact path="/RPC">
-						<RPC />
-					</Route>
-				)}
-
-				{showMap.Login && (
-					<Route exact path="/login">
-						<Login />
-					</Route>
-				)}
-
-				<Route exact path="/" component={Home}>
-					<Home />
-				</Route>
-
-				<Route>
-					<PageNotFound />
-				</Route>
-			</Switch>
+            <Switch>
+                {routes.map((route, index) => 
+                    route.show && (
+                    <Route key={index} exact path={route.path} {...route.props}>
+                        <route.component />
+                    </Route>
+                    )
+                )}
+                <Route>
+                    <PageNotFound />
+                </Route>
+            </Switch>
 		</>
-		// </Router>
 	)
 }

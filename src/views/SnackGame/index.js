@@ -44,18 +44,21 @@ const SnackGame = () => {
         setDirection(() => null)
     }
 
-    const isNotOppositeDirection = (newDirection) => {
-        console.log('\x1b[31m%s\x1b[0m', `WX - newDirection: ${newDirection} ${direction}`)
-        console.log('\x1b[31m%s\x1b[0m', `WX - direction: ${direction}`)
-        switch (direction) {
+    const isNotOppositeDirection = (newDirection, direction) => {
+        if (!direction) return true
+        switch (newDirection) {
             case Direction.UP:
-				if (newDirection === Direction.DOWN) return false
+				if (direction === Direction.DOWN) return false
+                break;
 			case Direction.DOWN:
-				if (newDirection === Direction.UP) return false
+				if (direction === Direction.UP) return false
+                break;
 			case Direction.LEFT:
-				if (newDirection === Direction.RIGHT) return false
+				if (direction === Direction.RIGHT) return false
+                break;
 			case Direction.RIGHT:
-				if (newDirection === Direction.LEFT) return false
+				if (direction === Direction.LEFT) return false
+                break;
 			default:
 				return true
         }
@@ -133,9 +136,14 @@ const SnackGame = () => {
     useEffect(() => {
         window.addEventListener("keydown", (e) => {
 			const newDirection = getDirectionFromKey(e.key)
-			if (newDirection !== null && isNotOppositeDirection(newDirection)) {
-				setDirection(newDirection)
-			}
+            console.log('\x1b[31m%s\x1b[0m', `WX - newDirection: ${newDirection}`)
+            console.log('\x1b[31m%s\x1b[0m', `WX - direction: ${JSON.stringify(direction)}`)
+            console.log('\x1b[31m%s\x1b[0m', `WX - isNotOppositeDirection(newDirection, direction): ${JSON.stringify(isNotOppositeDirection(newDirection, direction))}`)
+            setDirection(newDirection)
+            // if (direction === null) setDirection(newDirection)
+			// else if (isNotOppositeDirection(newDirection, direction)) {
+			// 	setDirection(newDirection)
+			// }
 		})
     }, [])
 
