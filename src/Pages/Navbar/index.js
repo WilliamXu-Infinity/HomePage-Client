@@ -6,25 +6,28 @@ import { Link } from "react-router-dom"
 import { Nav } from "react-bootstrap"
 import "./Navbar.sass"
 
-const NavBar = ({ showMap, defaultPage }) => {
+const NavBar = ({ routeMap, defaultPage }) => {
 	const history = useHistory()
 	const location = useLocation()
 
 	const [activeKey, setActiveKey] = useState()
+    const [navbarMenu, setNavBarMenu] = useState([])
+	const defaultKey = 0
 
-	const navbarMenu = []
-	let defaultKey = 0
+    useEffect(() => {
+        const menu = routeMap
+            .filter(routObj => {
+                return routObj.path !== '/' && routObj.show
+            })
+            .map(routObj => {
+                return {
+                    title: routObj.title,
+                    url: `/${routObj.title.toLowerCase()}`,
+                }
+        })
 
-	Object.keys(showMap).map((menu) => {
-		if (showMap[menu]) {
-			navbarMenu.push({
-				title: menu,
-				url: `/${menu.toLowerCase()}`,
-			})
-
-			if (defaultPage === menu) defaultKey = navbarMenu.length - 1
-		}
-	})
+        setNavBarMenu(menu)
+    }, [])
 
 	const onClickLogo = () => {
 		history.push("/")

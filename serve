@@ -3,18 +3,18 @@ $ react-scripts build global add serve -s build
 Creating an optimized production build...
 Compiled with warnings.
 
-./src/Views/RPC/useRPCHooks.js
+./src/Pages/RPC/useRPCHooks.js
   Line 146:5:  React Hook useEffect has a missing dependency: 'moveIcon'. Either include it or remove the dependency array          react-hooks/exhaustive-deps
   Line 163:8:  React Hook useEffect has a missing dependency: 'generateAllIcons'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
 
-./src/Views/Navbar/index.js
+./src/Pages/Navbar/index.js
   Line 2:22:   'useLocation' is defined but never used       no-unused-vars
   Line 15:34:  Expected to return a value in arrow function  array-callback-return
 
-./src/Views/VisaCheck/index.js
+./src/Pages/VisaCheck/index.js
   Line 2:8:  'JsonData' is defined but never used  no-unused-vars
 
-./src/Views/ShareNotes/index.js
+./src/Pages/ShareNotes/index.js
   Line 3:10:   'logRoles' is defined but never used                no-unused-vars
   Line 5:21:   Unexpected empty object pattern                     no-empty-pattern
   Line 16:11:  'NoteFileLists' is assigned a value but never used  no-unused-vars
@@ -33,11 +33,11 @@ Compiled with warnings.
   Line 17:8:  'history' is assigned a value but never used   no-unused-vars
   Line 18:8:  'location' is assigned a value but never used  no-unused-vars
 
-./src/Views/ToolsPage/index.js
+./src/Pages/ToolsPage/index.js
   Line 4:9:  'inputValue' is assigned a value but never used  no-unused-vars
   Line 5:9:  'jsonData' is assigned a value but never used    no-unused-vars
 
-./src/Views/SnackGame/index.js
+./src/Pages/SnackGame/index.js
   Line 53:4:   Expected a 'break' statement before 'case'                                                                                           no-fallthrough
   Line 55:4:   Expected a 'break' statement before 'case'                                                                                           no-fallthrough
   Line 57:4:   Expected a 'break' statement before 'case'                                                                                           no-fallthrough
@@ -45,25 +45,25 @@ Compiled with warnings.
   Line 140:8:  React Hook useEffect has a missing dependency: 'isNotOppositeDirection'. Either include it or remove the dependency array            react-hooks/exhaustive-deps
   Line 153:5:  React Hook useEffect has missing dependencies: 'generateNewMap' and 'snackBody'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
 
-./src/Views/Login/index.js
+./src/Pages/Login/index.js
   Line 5:12:  'email' is assigned a value but never used        no-unused-vars
   Line 6:12:  'password' is assigned a value but never used     no-unused-vars
   Line 6:22:  'setPassword' is assigned a value but never used  no-unused-vars
 
-./src/Views/Home/Sections/ProjectBox/index.js
+./src/Pages/Home/Sections/ProjectBox/index.js
   Line 5:21:  Unexpected empty object pattern  no-empty-pattern
 
-./src/Views/Chat/index.js
+./src/Pages/Chat/index.js
   Line 5:25:  'STAGE_CHAT_PAGE' is defined but never used       no-unused-vars
   Line 9:3:   'setUser' is assigned a value but never used      no-unused-vars
   Line 22:3:  'isConnected' is assigned a value but never used  no-unused-vars
   Line 24:3:  'setTitle' is assigned a value but never used     no-unused-vars
 
-./src/Views/RPC/index.js
+./src/Pages/RPC/index.js
   Line 5:8:    'MenuBar' is defined but never used                      no-unused-vars
   Line 34:32:  Expected to return a value at the end of arrow function  array-callback-return
 
-./src/Views/Chat/useChat.js
+./src/Pages/Chat/useChat.js
   Line 8:18:   'setCookie' is assigned a value but never used                                                                                    no-unused-vars
   Line 72:5:   React Hook useEffect has missing dependencies: 'cookies.userId' and 'socket'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
   Line 104:5:  React Hook useEffect has a missing dependency: 'messageList'. Either include it or remove the dependency array                    react-hooks/exhaustive-deps

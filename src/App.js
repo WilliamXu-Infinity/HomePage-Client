@@ -1,22 +1,40 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory, useLocation } from "react-router-dom"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import NavBar from "./Views/Navbar"
-import Home from "./Views/Home"
-import About from "./Views/About"
-import Chat from "./Views/Chat"
-import Suggestion from "./Views/Suggestion"
-import SnackGame from "./Views/SnackGame"
-import ShareNotes from "./Views/ShareNotes"
-import ToolsPage from "./Views/ToolsPage"
-import VisaCheck from "./Views/VisaCheck"
-import Login from "./Views/Login"
-import RPC from "./Views/RPC"
-import PageNotFound from "./Views/404"
-import FreshMemory from "./Views/FreshMemory"
-import JumpingButton from "./Views/Components/JumpingButton"
+import NavBar from "./Pages/Navbar"
+import Home from "./Pages/Home"
+import About from "./Pages/About"
+import Chat from "./Pages/Chat"
+import Suggestion from "./Pages/Suggestion"
+import SnackGame from "./Pages/SnackGame"
+import ShareNotes from "./Pages/ShareNotes"
+import ToolsPage from "./Pages/ToolsPage"
+import VisaCheck from "./Pages/VisaCheck"
+import Login from "./Pages/Login"
+import RPC from "./Pages/RPC"
+import PageNotFound from "./Pages/404"
+import FreshMemory from "./Pages/FreshMemory"
+import JumpingButton from "./Pages/Components/JumpingButton"
+import SystemDesignPage from "./Pages/SystemDesignPage"
+import { io } from "socket.io-client"
+import "./App.sass"
 
-export default function App({ socket, showMap, defaultPage }) {
+const DevelopMode = false
+
+export default function App() {
+    const [backgroundColor, setBackgroundColor] = useState('white');
+    const defaultPage = "Home"
+
+    // const socket = DevelopMode ? io("http://localhost:3001") : null
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+          setBackgroundColor('black');
+        }, 3000);
+    
+        return () => clearTimeout(timeoutId);
+      }, []);
+
 	const history = useHistory()
 	const location = useLocation()
 
@@ -33,30 +51,100 @@ export default function App({ socket, showMap, defaultPage }) {
 	// 	})
 	// }, [])
 
-	// console.log('\x1b[31m%s\x1b[0m', 'WX - check - App')
-
-    const routes = [
-        { path: "/home", component: Home, show: showMap.Home },
-        { path: "/about", component: About, show: showMap.About },
-        { path: "/chat", component: Chat, show: showMap.Chat, props: { socket } },
-        { path: "/snackgame", component: SnackGame, show: showMap.SnackGame },
-        { path: "/suggestion", component: Suggestion, show: showMap.Suggestion },
-        { path: "/sharenotes", component: ShareNotes, show: showMap.ShareNotes },
-        { path: "/toolspage", component: ToolsPage, show: showMap.ToolsPage },
-        { path: "/visacheck", component: VisaCheck, show: showMap.VisaCheck },
-        { path: "/freshmemory", component: FreshMemory, show: showMap.FreshMemory },
-        { path: "/RPC", component: RPC, show: showMap.RPC },
-        { path: "/login", component: Login, show: showMap.Login },
-        { path: "/", component: Home, show: showMap},
-        { path: "/jumpingbutton", component: JumpingButton, show: true}
+    const routeMap = [
+        {
+            path: "/",
+            component: Home,
+            title: "Home",
+            show: true
+        },
+        {
+            path: "/home",
+            component: Home,
+            title: "Home",
+            show: true
+        },
+        {
+            path: "/about",
+            component: About,
+            title: "About",
+            show: DevelopMode
+        },
+        // {
+        //     path: "/chat",
+        //     component: Chat,
+        //     title: "Chat",
+        //     show: DevelopMode,
+        //     props: { socket }
+        // },
+        {
+            path: "/snackgame",
+            component: SnackGame,
+            title: "SnackGame",
+            show: DevelopMode
+        },
+        {
+            path: "/suggestion",
+            component: Suggestion,
+            title: "Suggestion",
+            show: DevelopMode
+        },
+        {
+            path: "/sharenotes",
+            component: ShareNotes,
+            title: "ShareNotes",
+            show: DevelopMode
+        },
+        {
+            path: "/toolspage",
+            component: ToolsPage,
+            title: "ToolsPage",
+            show: DevelopMode
+        },
+        {
+            path: "/visacheck",
+            component: VisaCheck,
+            title: "VisaCheck",
+            show: DevelopMode
+        },
+        {
+            path: "/freshmemory",
+            component: FreshMemory,
+            title: "FreshMemory",
+            show: DevelopMode
+        },
+        {
+            path: "/RPC",
+            component: RPC,
+            title: "RPC",
+            show: DevelopMode
+        },
+        {
+            path: "/login",
+            component: Login,
+            title: "Login",
+            show: DevelopMode
+        },
+        {
+            path: "/jumpingbutton",
+            component: JumpingButton,
+            title: "JumpingButton",
+            show: DevelopMode
+        },
+        {
+            path: "/systemdesignpage",
+            component: SystemDesignPage,
+            title: "SystemDesignPage",
+            show: DevelopMode
+        }
     ];
 
 	return (
-		<>
-			<NavBar showMap={showMap} defaultPage={defaultPage} />		
+		<div className={`transition-background ${backgroundColor}`}>
+			<NavBar routeMap={routeMap} defaultPage={defaultPage} />		
 
             <Switch>
-                {routes.map((route, index) => 
+                {routeMap.map((route, index) => 
                     route.show && (
                     <Route key={index} exact path={route.path} {...route.props}>
                         <route.component />
@@ -67,6 +155,6 @@ export default function App({ socket, showMap, defaultPage }) {
                     <PageNotFound />
                 </Route>
             </Switch>
-		</>
+		</div>
 	)
 }

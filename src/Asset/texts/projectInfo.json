@@ -1,9 +1,23 @@
 {
 	"projects": [
 		{
+			"companyName": "Walmart Labs",
+			"title": "Senior Front-End Developer",
+			"duration": "Apr 2024 – Current",
+			"companyLogo": "/img/walmartLogo.png",
+			"imgUrl": "/img/Walmart-1.png",
+			"description": [
+				"Developing list and registry service and web page by utilizing React, Hooks, React-Query, SASS, CSS3, Nodejs, Express, JavaScript, Typescript, ES6, GraphQL, Unit Test and Functional Test.",
+				"Implemented multiple new features for Lists and Registry leveraging the React library, including the creation of shared components, managing complex data flows within components, and fetching data via GraphQL. Ensured robust functionality through integration and unit testing before deploying to the production environment.",
+				"Developed List and Registry data for three distinct regions using GraphQL, facilitating seamless data transfer and integration between back-end and front-end systems.",
+				"Designed and developed features at the architectural level, focusing on enhancing web performance, scalability, and code reusability.",
+				"Mentored mid-level developers by conducting code rePages, facilitating knowledge transfer, assigning tasks, and collaborating on new initiatives to foster team growth and efficiency."
+			]
+		},
+		{
 			"companyName": "Autodesk",
 			"title": "Software Engineer",
-			"duration": "Jan 2022 – Current",
+			"duration": "Jan 2022 – Feb 2024",
 			"companyLogo": "/img/AutodeskLogo.png",
 			"imgUrl": "/img/Autodesk-0.png",
 			"description": [

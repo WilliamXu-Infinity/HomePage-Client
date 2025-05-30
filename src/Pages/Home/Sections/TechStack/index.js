@@ -17,30 +17,29 @@ import typeScriptLogo from "../../../../Asset/logos/typescript.png"
 
 const TackStack = [
 	{
-		title: "Front-End",
+		title: "Languages",
 		skills: [
-			"React",
-			"React-Native",
-            "React-Query",
-			"Vue",
-			"Redux",
-			"Vuex",
 			"JavaScript",
-            "TypeScript",
+			"TypeScript",
+            "Python",
+			"Java",
 			"HTML",
 			"CSS3",
-			"Sass/Less",
-			"Bootstrip",
+			"ES6",
 		],
 	},
 	{
-		title: "Back-End",
-		skills: ["Node.js", "Python", "Express", "RESTful API", "GraphQL"],
+		title: "Front-End",
+		skills: ["React", "Redux", "Next.js", "Vue", "Vuex", "React-Native", "Node.js", "Express", "Three.js", "D3.js"],
 	},
 	{
-		title: "Database",
-		skills: ["MongoDB", "MySQL", "SQL", "Redis"],
+		title: "Back-End",
+		skills: ["MongoDB", "Redis", "MySQL", "Restful API", "GraphQL"],
 	},
+    {
+        title: "Cloud & Testing",
+        skills: ["AWS", "Unit Test", "End-End Test", "Integration Testing"]
+    },
 ]
 
 const LogoList = [
@@ -66,7 +65,7 @@ const TechStack = () => {
 				const { title, skills } = list
 				return (
 					<div key={index} className="techStackList">
-						<p className="listTitle">{title}:</p>
+						<div className="listTitle">{title}:</div>
 						{skills.map((skill, i) => {
 							return (
 								<div key={i} className="skillBox">

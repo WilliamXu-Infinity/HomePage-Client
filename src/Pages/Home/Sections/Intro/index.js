@@ -51,10 +51,10 @@ const Intro = () => {
 	}, [])
 
 	const handleDownload = () => {
-		const url = window.location.origin + "/TingchaoXu_Resume_2024.pdf"
+		const url = window.location.origin + "/TingchaoXu_Resume.pdf"
 		const link = document.createElement("a")
 		link.href = url
-		link.setAttribute("download", "TingchaoXu_Resume_2024.pdf")
+		link.setAttribute("download", "TingchaoXu_Resume.pdf")
 		document.body.appendChild(link)
 		link.click()
 		document.body.removeChild(link)
@@ -77,7 +77,7 @@ const Intro = () => {
 				</p>
 
 				<p>{"Hi, my name is Tingchao (William) Xu."}</p>
-				<p>A passionate Software Engineer based in CA.</p>
+				<p>A passionate Senior Software Engineer based in CA.</p>
 				<div className="companyLogos">
 					<div
 						className="logoBox"
