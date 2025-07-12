@@ -25,12 +25,14 @@ $PrimeColor: #FFA409
             animation: fadeIn 1s linear forwards, moveRight 1s linear forwards
             animation-delay: 3s
 
-        .text1
+        .title-string
+            min-height: 60px
             font-size: 50px
             font-weight: bold
             opacity: 0
             animation: fadeIn 2s linear forwards, moveRight 2s linear forwards
             overflow: visible
+            white-space: nowrap
 
             @keyframes fadeIn 
                 0% 
@@ -45,22 +47,7 @@ $PrimeColor: #FFA409
                 
                 100% 
                     transform: translateX(0)
-            
-            
-            
-            
-        // .js-scroll 
-        //     opacity: 0
-        //     transition: opacity 500ms
 
-        // .js-scroll.scrolled 
-        //     opacity: 1
-
-        // .scrolled.slide-top 
-        //     animation: slide-top 1s ease-in-out both
-
-
-        
         .companyLogos
             display: flex
             flex-direction: row

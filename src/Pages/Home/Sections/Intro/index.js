@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import "./index.sass"
 
 // Public files
@@ -17,33 +17,39 @@ const StringList = [
 	"うoえ六のjかは9れD5りxゆ5お",
 	"YはqるI4jlつAdeぬも1やS",
 	"わもw亿ちhてw三DうYjちかてA",
-	"SXgこせたなGみe五wpけ0GC",
-	"Soれ百8ゆみidXたよ万Qeeつ",
-	"Sofあ7KReしutやたる九りぬ",
-	"SoftoxtW4六ua四H四dS",
-	"SoftwつyくかいA75万よすS",
-	"SoftwarWえVこw六5九はW",
-	"SoftwarとC亿けくxi3Jゆ",
-	"Software3かv二oほ四0x",
-	"Software ちN2八pHあく",
-	"Software EIbいむんきJ",
-	"Software EnjPsS万め",
-	"Software Engま十Fたd",
-	"Software EngiSHaP",
-	"Software Engind二た",
-	"Software EngineEな",
-	"Software Engineeち",
-	"Software Engineer",
+	"Sをちたはぬ3Xひoと153とにwる",
+  "Se七tくよちQqH5しCかeせもゆ百",
+  "Senろふたけ2tぬy九か4cあけやrろ",
+  "Seniうoえ六のjかは9れD5りxゆ5お",
+  "SenioYはqるI4jlつAdeぬも1やS",
+  "Seniorわもw亿ちhてw三DうYjちかて",
+  "Senior SXgこせたなGみe五wpけ0GC",
+  "Senior Soれ百8ゆみidXたよ万Qeeつ",
+  "Senior Sofあ7KReしutやたる九りぬ",
+  "Senior SoftoxtW4六ua四H四dS",
+  "Senior SoftwつyくかいA75万よすS",
+  "Senior SoftwarWえVこw六5九はW",
+  "Senior SoftwarとC亿けくxi3Jゆ",
+  "Senior Software3かv二oほ四0x",
+  "Senior Software ちN2八pHあく",
+  "Senior Software EIbいむんき",
+  "Senior Software EnjPsS万め",
+  "Senior Software Engま十Fたd",
+  "Senior Software EngiSHaP",
+  "Senior Software Engind二た",
+  "Senior Software EngineEな",
+  "Senior Software Engineeち",
+  "Senior Software Engineer"
 ]
 
 const Intro = () => {
 	const [isHovered, setIsHovered] = useState(false)
-	const [testString, setTestString] = useState("")
+	const [titleString, setTilteString] = useState("")
 
 	useEffect(() => {
 		let count = 0
 		const interval = setInterval(() => {
-			setTestString(StringList[count])
+			setTilteString(StringList[count])
 			if (++count >= StringList.length) clearInterval(interval)
 		}, 80)
 
@@ -71,8 +77,8 @@ const Intro = () => {
 	return (
 		<section className="introContent">
 			<div className="describeSection">
-				<p className="text1 js-scroll slide-top">
-					{testString}
+				<p className="title-string">
+					{titleString}
 					<img className="hiLogo" src={hiLogo} alt="hi" />
 				</p>
 
