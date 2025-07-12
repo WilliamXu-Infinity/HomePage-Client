@@ -16,6 +16,8 @@ import PageNotFound from "./Pages/404"
 import FreshMemory from "./Pages/FreshMemory"
 import JumpingButton from "./Pages/Components/JumpingButton"
 import SystemDesignPage from "./Pages/SystemDesignPage"
+import WorkFlow from "./Pages/WorkFlow"
+
 import { io } from "socket.io-client"
 import "./App.sass"
 
@@ -62,6 +64,12 @@ export default function App() {
             path: "/home",
             component: Home,
             title: "Home",
+            show: true
+        },
+        {
+            path: "/workflow",
+            component: WorkFlow,
+            title: "WorkFlow",
             show: true
         },
         {
