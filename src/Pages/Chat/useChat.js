@@ -72,40 +72,40 @@ const useChat = (socket) => {
 		}
 	}, [])
 
-	useEffect(() => {
-		console.log("\x1b[31m%s\x1b[0m", "WX - check - 1")
-		socket.on("sign_in", (user) => {
-			console.log(
-				"\x1b[31m%s\x1b[0m",
-				`WX - sign in user: ${JSON.stringify(user)}`
-			)
-			setUser(user)
-			setStage(STAGE_CHAT_PAGE)
-		})
+	// useEffect(() => {
+	// 	console.log("\x1b[31m%s\x1b[0m", "WX - check - 1")
+	// 	socket.on("sign_in", (user) => {
+	// 		console.log(
+	// 			"\x1b[31m%s\x1b[0m",
+	// 			`WX - sign in user: ${JSON.stringify(user)}`
+	// 		)
+	// 		setUser(user)
+	// 		setStage(STAGE_CHAT_PAGE)
+	// 	})
 
-		socket.on("join_room", (room) => {
-			console.log(
-				"\x1b[31m%s\x1b[0m",
-				`WX - join room: ${JSON.stringify(room)}`
-			)
-			setCurrentRoom(room)
-			setNewRoom({})
-		})
+	// 	socket.on("join_room", (room) => {
+	// 		console.log(
+	// 			"\x1b[31m%s\x1b[0m",
+	// 			`WX - join room: ${JSON.stringify(room)}`
+	// 		)
+	// 		setCurrentRoom(room)
+	// 		setNewRoom({})
+	// 	})
 
-		socket.on("receive_message", (messageData) => {
-			console.log(`receive message: ${messageData.message}`)
-			console.log(messageList)
+	// 	socket.on("receive_message", (messageData) => {
+	// 		console.log(`receive message: ${messageData.message}`)
+	// 		console.log(messageList)
 
-			setMessageList((list) => [...list, messageData])
-		})
+	// 		setMessageList((list) => [...list, messageData])
+	// 	})
 
-		socket.on("rooms_update", (rooms) => {
-			console.log(
-				"\x1b[31m%s\x1b[0m",
-				`WX - rooms: ${JSON.stringify(rooms)}`
-			)
-		})
-	}, [socket])
+	// 	socket.on("rooms_update", (rooms) => {
+	// 		console.log(
+	// 			"\x1b[31m%s\x1b[0m",
+	// 			`WX - rooms: ${JSON.stringify(rooms)}`
+	// 		)
+	// 	})
+	// }, [socket])
 
 	return {
 		setUser,

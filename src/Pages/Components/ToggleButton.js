@@ -9,7 +9,6 @@ export class ToggleButton extends Component {
   }
 
   handleClick() {
-    console.log(this.state)
     this.setState((state) => ({buttonStatus: !state.buttonStatus}))
   }
 

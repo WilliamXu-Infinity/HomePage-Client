@@ -136,9 +136,6 @@ const SnackGame = () => {
     useEffect(() => {
         window.addEventListener("keydown", (e) => {
 			const newDirection = getDirectionFromKey(e.key)
-            console.log('\x1b[31m%s\x1b[0m', `WX - newDirection: ${newDirection}`)
-            console.log('\x1b[31m%s\x1b[0m', `WX - direction: ${JSON.stringify(direction)}`)
-            console.log('\x1b[31m%s\x1b[0m', `WX - isNotOppositeDirection(newDirection, direction): ${JSON.stringify(isNotOppositeDirection(newDirection, direction))}`)
             setDirection(newDirection)
             // if (direction === null) setDirection(newDirection)
 			// else if (isNotOppositeDirection(newDirection, direction)) {
