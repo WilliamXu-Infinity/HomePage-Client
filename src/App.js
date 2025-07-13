@@ -70,7 +70,7 @@ export default function App() {
             path: "/workflow",
             component: WorkFlow,
             title: "WorkFlow",
-            show: true
+            show: DevelopMode
         },
         {
             path: "/about",

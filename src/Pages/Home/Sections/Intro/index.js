@@ -39,7 +39,7 @@ const StringList = [
   "Senior Software Engind二た",
   "Senior Software EngineEな",
   "Senior Software Engineeち",
-  "Senior Software Engineer !"
+  "Senior Software Engineer"
 ]
 
 const Intro = () => {
