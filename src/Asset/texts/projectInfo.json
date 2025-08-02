@@ -4,8 +4,12 @@
 			"companyName": "Walmart Labs",
 			"title": "Senior Front-End Developer",
 			"duration": "Apr 2024 – Current",
-			"companyLogo": "/img/walmartLogo.png",
-			"imgUrl": "/img/Walmart-1.png",
+			"companyLogo": "/img/logos/walmartLogo.png",
+			"imgUrls": [
+        "/img/projects/Walmart-0.png",
+        "/img/projects/Walmart-1.png",
+        "/img/projects/Walmart-2.png"
+      ],
 			"description": [
 				"Developing list and registry service and web page by utilizing React, Hooks, React-Query, SASS, CSS3, Nodejs, Express, JavaScript, Typescript, ES6, GraphQL, Unit Test and Functional Test.",
 				"Implemented multiple new features for Lists and Registry leveraging the React library, including the creation of shared components, managing complex data flows within components, and fetching data via GraphQL. Ensured robust functionality through integration and unit testing before deploying to the production environment.",
@@ -18,8 +22,9 @@
 			"companyName": "Autodesk",
 			"title": "Software Engineer",
 			"duration": "Jan 2022 – Feb 2024",
-			"companyLogo": "/img/AutodeskLogo.png",
-			"imgUrl": "/img/Autodesk-0.png",
+			"companyLogo": "/img/logos/AutodeskLogo.png",
+			"imgUrls": [
+      ],
 			"description": [
 				"Developed Autodesk Digital Payment System and applications utilizing React, Redux, Hooks, React-Query, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, Typescript, ES6, Google Analytics, MySQL, MongoDB,, AEM, Restful API, GraphQL, Unit Test and Functional Test.",
 				"Led 2 engineers to implement core features such as checkout page (payment step, address step and so on), invoice and product page, and improved web performance by 30%.",
@@ -34,8 +39,9 @@
 			"companyName": "LogDNA",
 			"title": "Software Engineer",
 			"duration": "Jun 2019 – Feb 2020",
-			"companyLogo": "/img/LogdnaLogo.png",
-			"imgUrl": "/img/Logdna-0.png",
+			"companyLogo": "/img/logos/LogdnaLogo.png",
+			"imgUrls": [
+      ],
 			"description": [
 				"Develop LogDNA websites application with JavaScript, ES6, Vue.js, Vuex, SASS, CSS3, Nodejs, Express, Restful API, GraphQL, Webpack, MongoDB, Redis, Unit Test and Functional Test.",
 				"Developed a few core features such as alarm system (sms or email), search and sort logs from Redis, data graph, payment system (Stripe), customer services chat (Drift).",
@@ -50,8 +56,9 @@
 			"companyName": "Walmart Labs",
 			"title": "Software Engineer",
 			"duration": "Jun 2019 – Feb 2020",
-			"companyLogo": "/img/walmartLogo.png",
-			"imgUrl": "/img/Walmart-0.png",
+			"companyLogo": "/img/logos/walmartLogo.png",
+			"imgUrls": [
+      ],
 			"description": [
 				"Develop Sam’s Club websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, Webpack, Microservices Architecture, Micro Front-End Architecture, Restful API, Unit Test and Functional Test.",
 				"Responsible for login page, two-factor authentication, forgot email page, reset password flow.",
@@ -74,8 +81,9 @@
 			"companyName": "Apple",
 			"title": "Software Engineer",
 			"duration": "Jul 2018 – Jun 2019",
-			"companyLogo": "/img/AppleLogo.webp",
-			"imgUrl": "/img/Apple-0.png",
+			"companyLogo": "/img/logos/AppleLogo.webp",
+			"imgUrls": [
+      ],
 			"description": [
 				"Develop several websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, JQuery, Webpack and Restful API.",
 				"Develop React Library with dynamic designing structure and published it on NPM.",

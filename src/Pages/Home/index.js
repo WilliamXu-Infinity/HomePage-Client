@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
-import Intro from "./Sections/Intro"
-import TechStack from "./Sections/TechStack"
-import Education from "./Sections/Education"
-import ProjectBox from "./Sections/ProjectBox"
+import Intro from "./Components/Intro"
+import TechStack from "./Components/TechStack"
+import Education from "./Components/Education"
+import ProjectBox from "./Components/ProjectBox"
 import axios from 'axios'
 import "./Home.sass"
 
