@@ -30,7 +30,7 @@ const TackStack = [
 	},
 	{
 		title: "Front-End",
-		skills: ["React", "Redux", "Next.js", "Vue", "Vuex", "React-Native", "Node.js", "Express", "Three.js", "D3.js"],
+		skills: ["React", "Redux", "Next.js", "Vue", "Vuex", "React-Native", "Node.js", "Express", "Tailwind", "Three.js", "D3.js"],
 	},
 	{
 		title: "Back-End",

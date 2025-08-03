@@ -40,13 +40,8 @@ const ProjectBox = () => {
 								</div>
 							</div>
 							<div className="projectContent">
-                <PhotoCarousel imgUrls={imgUrls}/>
-								{/* <img
-									className="projectImg"
-									src={url + imgUrl}
-									alt="ProjectImg"
-								/> */}
-								<ul>
+                {!!imgUrls && !!imgUrls.length && <PhotoCarousel imgUrls={imgUrls}/>}
+								<ul className="list-disc pl-6">
 									{description.map((text, index) => {
 										return <li key={index}>{text}</li>
 									})}

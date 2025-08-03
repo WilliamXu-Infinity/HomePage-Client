@@ -8,7 +8,12 @@
 			"imgUrls": [
         "/img/projects/Walmart-0.png",
         "/img/projects/Walmart-1.png",
-        "/img/projects/Walmart-2.png"
+        "/img/projects/Walmart-2.png",
+        "/img/projects/Walmart-3.png",
+        "/img/projects/Walmart-4.png",
+        "/img/projects/Walmart-5.png",
+        "/img/projects/Walmart-6.png",
+        "/img/projects/Walmart-7.png"
       ],
 			"description": [
 				"Developing list and registry service and web page by utilizing React, Hooks, React-Query, SASS, CSS3, Nodejs, Express, JavaScript, Typescript, ES6, GraphQL, Unit Test and Functional Test.",
@@ -24,6 +29,12 @@
 			"duration": "Jan 2022 – Feb 2024",
 			"companyLogo": "/img/logos/AutodeskLogo.png",
 			"imgUrls": [
+        "/img/projects/Autodesk-0.png",
+        "/img/projects/Autodesk-1.png",
+        "/img/projects/Autodesk-2.png",
+        "/img/projects/Autodesk-3.png",
+        "/img/projects/Autodesk-4.png",
+        "/img/projects/Autodesk-5.png"
       ],
 			"description": [
 				"Developed Autodesk Digital Payment System and applications utilizing React, Redux, Hooks, React-Query, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, Typescript, ES6, Google Analytics, MySQL, MongoDB,, AEM, Restful API, GraphQL, Unit Test and Functional Test.",
@@ -41,6 +52,11 @@
 			"duration": "Jun 2019 – Feb 2020",
 			"companyLogo": "/img/logos/LogdnaLogo.png",
 			"imgUrls": [
+         "/img/projects/LogDNA-0.png",
+         "/img/projects/LogDNA-1.png",
+         "/img/projects/LogDNA-2.png",
+         "/img/projects/LogDNA-3.png",
+         "/img/projects/LogDNA-4.png"
       ],
 			"description": [
 				"Develop LogDNA websites application with JavaScript, ES6, Vue.js, Vuex, SASS, CSS3, Nodejs, Express, Restful API, GraphQL, Webpack, MongoDB, Redis, Unit Test and Functional Test.",
@@ -58,6 +74,9 @@
 			"duration": "Jun 2019 – Feb 2020",
 			"companyLogo": "/img/logos/walmartLogo.png",
 			"imgUrls": [
+        "/img/projects/Sams-0.png",
+        "/img/projects/Sams-1.png",
+        "/img/projects/Sams-2.png"
       ],
 			"description": [
 				"Develop Sam’s Club websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, Webpack, Microservices Architecture, Micro Front-End Architecture, Restful API, Unit Test and Functional Test.",
