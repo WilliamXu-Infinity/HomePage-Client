@@ -7,80 +7,90 @@ const DEFAULT_INTERVAL_MS = 100
 
 const PhotoCarousel = ({ imgUrls }) => {
   const [photoIndex, setPhotoIndex] = useState(0)
-  const [remainTime, setRemainTime] = useState(0)
   const [progress, setProgress] = useState(0)
   const [isPause, setIsPause] = useState(false)
-  const timerRef = new useRef(null)
-  const intervalRef = new useRef(null)
 
-  const nextPhoto = () => setPhotoIndex((prev) => (prev + 1) % imgUrls.length)
-  const prevPhoto = () => setPhotoIndex(prev => (prev < 1) ? imgUrls.length - 1 : prev - 1)
+  const intervalRef = useRef(null)
+  const startTimeRef = useRef(null)
+  const pauseElapsedRef = useRef(0)
+
+  const nextPhoto = () => setPhotoIndex(prev => (prev + 1) % imgUrls.length)
+  const prevPhoto = () => setPhotoIndex(prev => (prev < 1 ? imgUrls.length - 1 : prev - 1))
+  const selectPhoto = (index) => setPhotoIndex(index)
 
   const clearTimer = () => {
-    clearTimeout(timerRef.current)
     clearInterval(intervalRef.current)
   }
 
-  const startTimer = (duretion) => {
-    timerRef.current = setTimeout(() => {
-      nextPhoto()
-    }, duretion)
-  }
+  const startProgressLoop = (startFrom = 0) => {
+    const startTime = Date.now() - startFrom
+    startTimeRef.current = startTime
+    clearTimer()
 
-  const startInterval = (duretion) => {
-    setRemainTime(duretion)
     intervalRef.current = setInterval(() => {
-      setRemainTime(prev => {
-        if (prev - 100 > 0) {
-          const nextProgress = (1 - (prev - 100) / duretion)
-          setProgress(Math.min(nextProgress, 0.98).toFixed(4))
-          return prev - 100
-        } else {
-          setProgress(0)
-          return 0
-        }
-      })
+      const now = Date.now()
+      const elapsed = now - startTime
+      const progressRatio = Math.min(elapsed / DURATION_MS, 1)
+      setProgress(progressRatio.toFixed(4))
+
+      if (elapsed >= DURATION_MS) {
+        clearTimer()
+        setProgress(0)
+        nextPhoto()
+      }
     }, DEFAULT_INTERVAL_MS)
   }
 
-  useEffect(() => {
-    setIsPause(false)
-    setProgress(0)
-    startTimer(DURATION_MS)
-    startInterval(DURATION_MS)
-    return clearTimer
-  }, [photoIndex])
-
-  const handlePrevClick = () => prevPhoto()
-
-  const handleNextClick = () => nextPhoto()
-
   const handlePause = () => {
     clearTimer()
+    const now = Date.now()
+    pauseElapsedRef.current = now - startTimeRef.current
     setIsPause(true)
   }
 
   const handleResume = () => {
-    startTimer(remainTime)
+    startProgressLoop(pauseElapsedRef.current)
     setIsPause(false)
   }
+
+  useEffect(() => {
+    setProgress(0)
+    setIsPause(false)
+    pauseElapsedRef.current = 0
+    startProgressLoop()
+    return clearTimer
+  }, [photoIndex])
 
   if (!imgUrls || !imgUrls.length) {
     return null
   }
 
   return (
-    <>
-      <div className="mr-[10px] mt-[8px]">
-        <img 
-          className="w-fullw-[600px] h-[360px] object-cover shadow-sm"
-          src={PAGE_URL + imgUrls[photoIndex]}
-          alt=""
-          loading="lazy"
+    <div className="mr-[10px] mt-[8px]">
+      <img 
+        className="w-[600px] h-[360px] object-cover shadow-sm"
+        src={PAGE_URL + imgUrls[photoIndex]}
+        alt=""
+        loading="lazy"
+      />
+      {imgUrls.length > 1 && (
+        <ProgressBar 
+          index={photoIndex} 
+          progress={progress} 
+          barCount={imgUrls.length}
+          selectPhoto={selectPhoto}
         />
-        {imgUrls.length > 1 && <ProgressBar index={photoIndex} progress={progress} barCount={imgUrls.length}/>}
-      </div>
-    </>
+      )}
+      {/* <div className="flex gap-2 mt-2">
+        <button onClick={prevPhoto}>Prev</button>
+        <button onClick={nextPhoto}>Next</button>
+        {!isPause ? (
+          <button onClick={handlePause}>Pause</button>
+        ) : (
+          <button onClick={handleResume}>Resume</button>
+        )}
+      </div> */}
+    </div>
   )
 }
 
