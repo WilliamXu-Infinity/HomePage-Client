@@ -6,10 +6,10 @@ const ProgressBar = memo(({index, progress, barCount}) => {
   }, [barCount])
 
   return (
-    <div className="flex flex-1 gap-[10px]">
+    <div className="flex flex-1 gap-[10px] mt-1">
       {bars.map((_, key) => {
         return (
-          <div className="flex-1" key={key}>
+          <div className="flex-1 bg-gray-200" key={key}>
             {index === key ?
              <div 
               className={`

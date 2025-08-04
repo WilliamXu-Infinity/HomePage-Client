@@ -102,6 +102,7 @@
 			"duration": "Jul 2018 – Jun 2019",
 			"companyLogo": "/img/logos/AppleLogo.webp",
 			"imgUrls": [
+        "/img/projects/Apple-0.png"
       ],
 			"description": [
 				"Develop several websites with React, Redux, SASS, CSS3, Bootstrap, Nodejs, Express, JavaScript, ES6, JQuery, Webpack and Restful API.",

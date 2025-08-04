@@ -71,14 +71,14 @@ const PhotoCarousel = ({ imgUrls }) => {
 
   return (
     <>
-      <div className="mr-[10px] mt-[8px] w-[2500px]">
+      <div className="mr-[10px] mt-[8px]">
         <img 
-          className="w-full max-w-[2500px] h-[360px] object-cover shadow-sm"
+          className="w-fullw-[600px] h-[360px] object-cover shadow-sm"
           src={PAGE_URL + imgUrls[photoIndex]}
           alt=""
           loading="lazy"
         />
-        <ProgressBar index={photoIndex} progress={progress} barCount={imgUrls.length}/>
+        {imgUrls.length > 1 && <ProgressBar index={photoIndex} progress={progress} barCount={imgUrls.length}/>}
       </div>
     </>
   )
