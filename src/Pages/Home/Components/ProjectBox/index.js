@@ -1,4 +1,5 @@
 import "./index.sass"
+import LazyLoadSection from "../LazyLoadSection"
 import projectData from "../../../../Asset/texts/projectInfo.json"
 import SectionHeader from "../SectionHeader"
 import PhotoCarousel from "../PhotoCarousel"
@@ -40,7 +41,11 @@ const ProjectBox = () => {
               
               <div className="flex max-w-[1200px] w-full">
                 <div className="flex max-w-[600px] w-full">
-                  {!!imgUrls && !!imgUrls.length && <PhotoCarousel imgUrls={imgUrls} />}
+                  {!!imgUrls?.length && (
+                    <LazyLoadSection>
+                      <PhotoCarousel imgUrls={imgUrls} />
+                    </LazyLoadSection>
+                  )}
                 </div>
                 <div className="flex-1">
                   <ul className="list-disc pl-6">
