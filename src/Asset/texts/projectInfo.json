@@ -4,7 +4,7 @@
 			"companyName": "Walmart Labs",
 			"title": "Senior Front-End Developer",
 			"duration": "Apr 2024 – Current",
-			"companyLogo": "/img/logos/walmartLogo.png",
+			"companyLogo": "/img/logos/WalmartLogo.png",
 			"imgUrls": [
         "/img/projects/Walmart-0.png",
         "/img/projects/Walmart-1.png",
@@ -52,11 +52,11 @@
 			"duration": "Jun 2019 – Feb 2020",
 			"companyLogo": "/img/logos/LogdnaLogo.png",
 			"imgUrls": [
-         "/img/projects/LogDNA-0.png",
          "/img/projects/LogDNA-1.png",
          "/img/projects/LogDNA-2.png",
          "/img/projects/LogDNA-3.png",
-         "/img/projects/LogDNA-4.png"
+         "/img/projects/LogDNA-4.png",
+         "/img/projects/LogDNA-5.png"
       ],
 			"description": [
 				"Develop LogDNA websites application with JavaScript, ES6, Vue.js, Vuex, SASS, CSS3, Nodejs, Express, Restful API, GraphQL, Webpack, MongoDB, Redis, Unit Test and Functional Test.",
@@ -69,10 +69,10 @@
 			]
 		},
 		{
-			"companyName": "Walmart Labs",
+			"companyName": "Walmart Labs (Sam's)",
 			"title": "Software Engineer",
 			"duration": "Jun 2019 – Feb 2020",
-			"companyLogo": "/img/logos/walmartLogo.png",
+			"companyLogo": "/img/logos/SamsLogo.png",
 			"imgUrls": [
         "/img/projects/Sams-0.png",
         "/img/projects/Sams-1.png",

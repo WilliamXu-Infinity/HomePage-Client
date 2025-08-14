@@ -17,7 +17,7 @@ const ProjectBox = () => {
 					imgUrls,
 					description,
 					companyLogo,
-                    title
+          title
 				} = project
 
 				return (
@@ -29,7 +29,7 @@ const ProjectBox = () => {
                   <img
                     className="projectCompanyLogo"
                     src={companyLogo}
-                    alt="Autodesk"
+                    alt="company logo"
                   />
                   <p className="text4">{companyName} - {title}</p>
                 </div>
