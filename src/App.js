@@ -17,6 +17,7 @@ import FreshMemory from "./Pages/FreshMemory"
 import JumpingButton from "./Pages/Components/JumpingButton"
 import SystemDesignPage from "./Pages/SystemDesignPage"
 import WorkFlow from "./Pages/WorkFlow"
+import AICoverLetter from "./Pages/AICoverLetter"
 
 import { io } from "socket.io-client"
 import "./App.sass"
@@ -144,6 +145,12 @@ export default function App() {
             component: SystemDesignPage,
             title: "SystemDesignPage",
             show: DevelopMode
+        },
+        {
+            path: "/aicoverletter",
+            component: AICoverLetter,
+            title: "AICoverLetter",
+            show: true
         }
     ];
 
