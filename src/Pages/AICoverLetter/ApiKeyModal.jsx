@@ -3,6 +3,7 @@ import { useState } from "react";
 // 弹窗组件
 const ApiKeyModal = ({ isOpen, onSave }) => {
   const [inputKey, setInputKey] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
 
   if (!isOpen) return null;
 
@@ -10,27 +11,48 @@ const ApiKeyModal = ({ isOpen, onSave }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded p-6 w-96 shadow-lg">
         <h2 className="text-lg font-bold mb-4">Enter OpenAI API Key</h2>
-        <p>Your API key will be stored temporarily in the session for the purpose of using this application. You are solely responsible for managing and deleting your API key after use. This website does not store your API key permanently and is not responsible for any misuse, exposure, or loss of your API key!!!!</p>
+        <p className="mb-4 text-sm text-gray-700">
+          Your API key will be stored temporarily in the session for the purpose of using this application. You are solely responsible for managing and deleting your API key after use. This website does not store your API key permanently and is not responsible for any misuse, exposure, or loss of your API key.
+        </p>
+
         <input
           type="password"
-          className="w-full border rounded p-2 mb-4"
+          className="w-full border rounded p-2 mb-2"
           value={inputKey}
           onChange={(e) => setInputKey(e.target.value)}
           placeholder="sk-..."
         />
+
+        <label className="flex items-center mb-4">
+          <input
+            type="checkbox"
+            className="mr-2"
+            checked={confirmed}
+            onChange={(e) => setConfirmed(e.target.checked)}
+          />
+          I understand and confirm
+        </label>
+
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className={`w-full px-4 py-2 rounded text-white ${confirmed && inputKey.trim() ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-400 cursor-not-allowed'}`}
           onClick={() => {
-            if (inputKey.trim()) {
+            if (confirmed && inputKey.trim()) {
               onSave(inputKey.trim());
             }
           }}
+          disabled={!confirmed || !inputKey.trim()}
         >
-          Save
+          Save API Key
         </button>
+
+        {inputKey && (
+          <p className="mt-2 text-sm text-gray-600 break-words">
+            Entered key: {inputKey.length > 8 ? inputKey.slice(0, 4) + '****' + inputKey.slice(-4) : inputKey}
+          </p>
+        )}
       </div>
     </div>
   );
 };
 
-export default ApiKeyModal
+export default ApiKeyModal;

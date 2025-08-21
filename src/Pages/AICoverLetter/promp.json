@@ -15,6 +15,22 @@
         ]
       },
       {
+        "step": "Fill Personal Info",
+        "details": [
+          "Use the personal info provided in Input to create a header section for the cover letter.",
+          "The header must only include the following fields if they exist: Name, Email, Phone, linkedin, Personal Website from website.",
+          "add icon in front of it",
+          "Do not include placeholders such as [Your Name] or fields that do not exist in the input.",
+          "Do not include [Date], Hiring Manager, or [Company Address] placeholders.",
+          "Format example (only include available lines):",
+          "John Doe",
+          "[johndoe@email.com]",
+          "[+1 123 456 7890]",
+          "[LinkedIn link]",
+          "[website]"
+        ]
+      },
+      {
         "step": "Drafting the Cover Letter",
         "details": [
           "Write a professional, persuasive English cover letter within 250–350 words, following this structure:",
@@ -37,12 +53,13 @@
     ],
     "input_format": {
       "job_description": "[paste JD]",
-      "resume": "[paste Resume]"
+      "resume": "[paste Resume]",
+      "personal_info": "[personal info]"
     },
     "output_format": [
       "Matching Analysis Table (JD Requirement vs My Experience vs Measurable Result)",
       "Extracted Personal Information from Input Personal Info",
-      "Final Cover Letter (fully optimized, ready to use, with personal info)"
+      "Final Cover Letter (fully optimized, ready to use)"
     ]
   }
 }

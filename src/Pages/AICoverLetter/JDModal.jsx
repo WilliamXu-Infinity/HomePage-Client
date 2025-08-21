@@ -27,13 +27,6 @@ const JDModal = ({ isOpen, onClose, onSave, initialValue }) => {
           value={jdText}
           onChange={(e) => setJdText(e.target.value)}
         />
-        <input
-          type="text"
-          className="w-full border rounded p-2 mb-4"
-          placeholder="Or enter JD URL"
-          value={jdUrl}
-          onChange={(e) => setJdUrl(e.target.value)}
-        />
         <div className="flex justify-end gap-2">
           <button
             className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400"

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ApiKeyModal from "./ApiKeyModal";
 import JDModal from "./JDModal";
+import PIModal from "./PIModal"
 import promptJSON from "./promp.json";
 import { serializePrompt } from "./util";
 import pdfToText from "react-pdftotext";
@@ -14,18 +15,19 @@ const CoverLetterGenerator = () => {
   const [jobDescriptionFile, setJobDescriptionFile] = useState(null);
   const [coverLetter, setCoverLetter] = useState("");
   const [jobInfo, setJobInfo] = useState({});
-  const [personalInfo, setPersonalInfo] = useState({})
+  const [personalInfo, setPersonalInfo] = useState(null)
 
   const [history, setHistory] = useState([]);
   const [selectedHistoryId, setSelectedHistoryId] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const [showJDModal, setShowJDModal] = useState(false);
+  const [showPIModal, setShowPIModal] = useState(false)
   const [jdTextForModal, setJDTextForModal] = useState("");
 
   const client = new OpenAI({ apiKey: apiKey, dangerouslyAllowBrowser: true });
 
-  // 初始化 API Key
+  // 初始化 API Key and Personal Info
   useEffect(() => {
     const storedKey = sessionStorage.getItem("OPENAI_API_KEY");
     if (!storedKey) {
@@ -33,6 +35,9 @@ const CoverLetterGenerator = () => {
     } else {
       setApiKey(storedKey);
     }
+
+    const personalInfo =  JSON.parse(sessionStorage.getItem("PERSONAL_INF"))
+    if (personalInfo) setPersonalInfo(personalInfo)
   }, []);
 
   // 打开 JD Modal 时加载文本
@@ -56,6 +61,11 @@ const CoverLetterGenerator = () => {
     const file = new File([blob], "JobDescription.txt", { type: "text/plain" });
     setJobDescriptionFile(file);
   };
+
+  const handlePISave = (piInfo) => {
+    sessionStorage.setItem("PERSONAL_INF", JSON.stringify(piInfo))
+    setPersonalInfo(piInfo)
+  }
 
   const handleGenerate = async () => {
     if (!apiKey) return alert("API Key is missing!");
@@ -87,11 +97,6 @@ const CoverLetterGenerator = () => {
         },
       });
 
-      console.log(
-        "\x1b[31m%s\x1b[0m",
-        `WX - data: ${JSON.stringify(completion)}`
-      );
-
       // ✅ SDK 返回的依然是 JSON string
       const content = completion.choices[0].message.content || "{}";
       let parsed;
@@ -102,11 +107,6 @@ const CoverLetterGenerator = () => {
         console.error("Failed to parse JSON response:", e);
         parsed = {};
       }
-
-      console.log(
-        "\x1b[31m%s\x1b[0m",
-        `WX - parsed: ${JSON.stringify(parsed)}`
-      );
 
       const newEntry = {
         id: Date.now(),
@@ -183,14 +183,22 @@ const CoverLetterGenerator = () => {
     try {
       const text = await pdfToText(file);
       setResumeText(text);
-      console.log('\x1b[31m%s\x1b[0m', `WX - text: ${JSON.stringify(text)}`)
-      const personalInfo = await getPersonalInfoFromResume(text);
-      console.log('\x1b[31m%s\x1b[0m', `WX - personalInfo: ${JSON.stringify(personalInfo)}`);
-      setPersonalInfo(personalInfo);
+
+      if (!personalInfo) {
+        const personalInfo = await getPersonalInfoFromResume(text);
+        setPersonalInfo(personalInfo);
+      }
     } catch (err) {
       console.error("Failed to extract text from pdf", err);
     }
   };
+
+  const inputRef = useRef(null);
+
+  const handleButtonClick = () => {
+    inputRef.current?.click();
+  };
+
 
   return (
     <div className="flex h-screen">
@@ -203,20 +211,40 @@ const CoverLetterGenerator = () => {
         <div className="flex flex-col gap-2 mb-4">
           {/* 简历上传 */}
           <label className="flex flex-col">
-            <span className="text-sm font-medium">Upload Resume (PDF)</span>
-            <input type="file" accept="application/pdf" onChange={handleUploadResume} />
+            <button
+              type="button"
+              className="mt-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+              onClick={handleButtonClick}
+            >
+              {resumeText === "" ? "Upload" : "Update"} Resume (PDF)
+            </button>
+            <input
+              ref={inputRef}
+              type="file"
+              accept="application/pdf"
+              onChange={handleUploadResume}
+              className="hidden"
+            />
+          </label>
+
+          {/* Personal Info 输入 */}
+          <label className="flex flex-col">
+            <button
+              className="mt-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+              onClick={() => setShowPIModal(true)}
+            >
+              Update Personal Info
+            </button>
           </label>
 
           {/* JD 上传/输入 */}
           <label className="flex flex-col">
-            <span className="text-sm font-medium">Job Description</span>
             <button
               className="mt-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
               onClick={() => setShowJDModal(true)}
             >
-              Enter JD / URL
+              {jobDescriptionFile?.name ? "Update JD" : "Enter JD"}
             </button>
-            <span className="text-xs mt-1">{jobDescriptionFile?.name || ""}</span>
           </label>
 
           {/* 生成按钮 */}
@@ -245,6 +273,14 @@ const CoverLetterGenerator = () => {
           ))}
         </div>
       </div>
+
+      {/* PI Modal */}
+      <PIModal
+        isOpen={showPIModal}
+        onClose={() => setShowPIModal(false)}
+        onSave={handlePISave}
+        initialValue={personalInfo}
+      />
 
       {/* JD Modal */}
       <JDModal

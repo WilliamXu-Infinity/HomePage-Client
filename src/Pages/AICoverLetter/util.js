@@ -5,6 +5,7 @@
  * @returns {string} - 可发送给 OpenAI API 的完整字符串
  */
 export function serializePrompt(promptJSON, jobDescription, resume, personalInfo) {
+  console.log('\x1b[31m%s\x1b[0m', `WX - personalInfo ????: ${JSON.stringify(personalInfo)}`)
   const { instructions, goal, execution_steps, output_format } = promptJSON.prompt;
 
   // 拼接 execution steps
@@ -26,7 +27,7 @@ export function serializePrompt(promptJSON, jobDescription, resume, personalInfo
     Input:
     Job Description: ${jobDescription}
     Resume: ${resume}
-    Personal Info: ${personalInfo}
+    Personal Info: ${JSON.stringify(personalInfo)}
 
     Expected Output:
     ${output_format.join("\n")}
