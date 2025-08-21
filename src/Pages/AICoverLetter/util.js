@@ -4,7 +4,7 @@
  * @param {string} resume - 用户提供的 Resume
  * @returns {string} - 可发送给 OpenAI API 的完整字符串
  */
-export function serializePrompt(promptJSON, jobDescription, resume) {
+export function serializePrompt(promptJSON, jobDescription, resume, personalInfo) {
   const { instructions, goal, execution_steps, output_format } = promptJSON.prompt;
 
   // 拼接 execution steps
@@ -26,6 +26,7 @@ export function serializePrompt(promptJSON, jobDescription, resume) {
     Input:
     Job Description: ${jobDescription}
     Resume: ${resume}
+    Personal Info: ${personalInfo}
 
     Expected Output:
     ${output_format.join("\n")}

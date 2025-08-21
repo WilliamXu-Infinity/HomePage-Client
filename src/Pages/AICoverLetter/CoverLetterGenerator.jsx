@@ -4,6 +4,7 @@ import JDModal from "./JDModal";
 import promptJSON from "./promp.json";
 import { serializePrompt } from "./util";
 import pdfToText from "react-pdftotext";
+import OpenAI from "openai";
 
 const CoverLetterGenerator = () => {
   const [apiKey, setApiKey] = useState(null);
@@ -13,6 +14,7 @@ const CoverLetterGenerator = () => {
   const [jobDescriptionFile, setJobDescriptionFile] = useState(null);
   const [coverLetter, setCoverLetter] = useState("");
   const [jobInfo, setJobInfo] = useState({});
+  const [personalInfo, setPersonalInfo] = useState({})
 
   const [history, setHistory] = useState([]);
   const [selectedHistoryId, setSelectedHistoryId] = useState(null);
@@ -21,9 +23,11 @@ const CoverLetterGenerator = () => {
   const [showJDModal, setShowJDModal] = useState(false);
   const [jdTextForModal, setJDTextForModal] = useState("");
 
+  const client = new OpenAI({ apiKey: apiKey, dangerouslyAllowBrowser: true });
+
   // 初始化 API Key
   useEffect(() => {
-    const storedKey = localStorage.getItem("OPENAI_API_KEY");
+    const storedKey = sessionStorage.getItem("OPENAI_API_KEY");
     if (!storedKey) {
       setShowApiKeyModal(true);
     } else {
@@ -40,8 +44,9 @@ const CoverLetterGenerator = () => {
     }
   }, [showJDModal, jobDescriptionFile]);
 
+  // Save the api key
   const handleSaveApiKey = (key) => {
-    localStorage.setItem("OPENAI_API_KEY", key);
+    sessionStorage.setItem("OPENAI_API_KEY", key);
     setApiKey(key);
     setShowApiKeyModal(false);
   };
@@ -56,45 +61,39 @@ const CoverLetterGenerator = () => {
     if (!apiKey) return alert("API Key is missing!");
 
     const jdText = jobDescriptionFile ? await jobDescriptionFile.text() : "";
-    const serializedInput = serializePrompt(promptJSON, jdText, resumeText);
+    const serializedInput = serializePrompt(promptJSON, jdText, resumeText, personalInfo);
 
     setLoading(true);
     try {
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model: "gpt-4o-mini", // 推荐最新小模型，支持 JSON schema
-          messages: [{ role: "user", content: serializedInput }],
-          temperature: 0.7,
-          response_format: {
-            type: "json_schema",
-            json_schema: {
-              name: "job_info",
-              schema: {
-                type: "object",
-                properties: {
-                  company: { type: "string" },
-                  salary: { type: "string" },
-                  skills: { type: "array", items: { type: "string" } },
-                  coverLetter: { type: "string" },
-                },
-                required: ["company", "skills", "coverLetter"],
+      const completion = await client.chat.completions.create({
+        model: "gpt-4o-mini", // 推荐最新小模型
+        messages: [{ role: "user", content: serializedInput }],
+        temperature: 0.7,
+        response_format: {
+          type: "json_schema",
+          json_schema: {
+            name: "job_info",
+            schema: {
+              type: "object",
+              properties: {
+                company: { type: "string" },
+                salary: { type: "string" },
+                skills: { type: "array", items: { type: "string" } },
+                coverLetter: { type: "string" },
               },
+              required: ["company", "skills", "coverLetter"],
             },
           },
-        }),
+        },
       });
 
-      const data = await response.json();
+      console.log(
+        "\x1b[31m%s\x1b[0m",
+        `WX - data: ${JSON.stringify(completion)}`
+      );
 
-      console.log('\x1b[31m%s\x1b[0m', `WX - data: ${JSON.stringify(data)}`)
-
-      // ✅ 注意：用 `message.parsed` 来拿 JSON schema 的结果
-      const content = data?.choices?.[0]?.message?.content || "{}";
+      // ✅ SDK 返回的依然是 JSON string
+      const content = completion.choices[0].message.content || "{}";
       let parsed;
 
       try {
@@ -104,7 +103,10 @@ const CoverLetterGenerator = () => {
         parsed = {};
       }
 
-      console.log('\x1b[31m%s\x1b[0m', `WX - parsed: ${JSON.stringify(parsed)}`)
+      console.log(
+        "\x1b[31m%s\x1b[0m",
+        `WX - parsed: ${JSON.stringify(parsed)}`
+      );
 
       const newEntry = {
         id: Date.now(),
@@ -114,7 +116,11 @@ const CoverLetterGenerator = () => {
       };
 
       setCoverLetter(parsed.coverLetter);
-      setJobInfo({ company: parsed.company, salary: parsed.salary, skills: parsed.skills });
+      setJobInfo({
+        company: parsed.company,
+        salary: parsed.salary,
+        skills: parsed.skills,
+      });
       setHistory([newEntry, ...history]);
       setSelectedHistoryId(newEntry.id);
     } catch (err) {
@@ -133,12 +139,57 @@ const CoverLetterGenerator = () => {
     setJobInfo({ company: entry.company, salary: entry.salary, skills: entry.skills });
   };
 
-  const extractText = (event) => {
+  const getPersonalInfoFromResume = async (resumeText) => {
+    const response = await client.chat.completions.create({
+      model: "gpt-4.1",
+      messages: [
+        {
+          role: "system",
+          content: "You are an AI that extracts structured personal information from resumes. Return the result strictly as JSON."
+        },
+        {
+          role: "user",
+          content: `Extract name, email, phone, github, linkedin, and personal website from this resume:\n\n${resumeText}`
+        }
+      ],
+      response_format: {
+        type: "json_schema",
+        json_schema: {
+          name: "personal_info",
+          schema: {
+            type: "object",
+            properties: {
+              name: { type: "string" },
+              email: { type: "string" },
+              phone: { type: "string" },
+              github: { type: "string" },
+              linkedin: { type: "string" },
+              website: { type: "string" }
+            },
+            required: ["name", "email"]
+          }
+        }
+      }
+    });
+
+    const raw = response.choices[0].message;
+    const content = raw?.parsed || raw?.content;
+    return typeof content === "string" ? JSON.parse(content) : content;
+  };
+
+  const handleUploadResume = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
-    pdfToText(file)
-      .then((text) => setResumeText(text))
-      .catch(() => console.error("Failed to extract text from pdf"));
+    try {
+      const text = await pdfToText(file);
+      setResumeText(text);
+      console.log('\x1b[31m%s\x1b[0m', `WX - text: ${JSON.stringify(text)}`)
+      const personalInfo = await getPersonalInfoFromResume(text);
+      console.log('\x1b[31m%s\x1b[0m', `WX - personalInfo: ${JSON.stringify(personalInfo)}`);
+      setPersonalInfo(personalInfo);
+    } catch (err) {
+      console.error("Failed to extract text from pdf", err);
+    }
   };
 
   return (
@@ -153,7 +204,7 @@ const CoverLetterGenerator = () => {
           {/* 简历上传 */}
           <label className="flex flex-col">
             <span className="text-sm font-medium">Upload Resume (PDF)</span>
-            <input type="file" accept="application/pdf" onChange={extractText} />
+            <input type="file" accept="application/pdf" onChange={handleUploadResume} />
           </label>
 
           {/* JD 上传/输入 */}

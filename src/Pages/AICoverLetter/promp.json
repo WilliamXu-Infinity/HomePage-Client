@@ -41,8 +41,8 @@
     },
     "output_format": [
       "Matching Analysis Table (JD Requirement vs My Experience vs Measurable Result)",
-      "Extracted Contact Information (Name, Email, Phone, LinkedIn, etc. with placeholders if missing)",
-      "Final Cover Letter (fully optimized, ready to use)"
+      "Extracted Personal Information from Input Personal Info",
+      "Final Cover Letter (fully optimized, ready to use, with personal info)"
     ]
   }
 }
