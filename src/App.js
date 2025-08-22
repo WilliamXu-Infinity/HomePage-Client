@@ -157,18 +157,18 @@ export default function App() {
 	return (
 		<div className={`transition-background ${backgroundColor}`}>
 			<NavBar routeMap={routeMap} defaultPage={defaultPage} />		
-            <Switch>
-                {routeMap.map((route, index) => 
-                    route.show && (
-                    <Route key={index} exact path={route.path} {...route.props}>
-                        <route.component />
-                    </Route>
-                    )
-                )}
-                <Route>
-                    <PageNotFound />
+        <Switch>
+            {routeMap.map((route, index) => 
+                route.show && (
+                <Route key={index} exact path={route.path} {...route.props}>
+                    <route.component />
                 </Route>
-            </Switch>
+                )
+            )}
+            <Route>
+                <PageNotFound />
+            </Route>
+        </Switch>
 		</div>
 	)
 }
