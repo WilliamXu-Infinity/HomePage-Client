@@ -18,11 +18,13 @@ import JumpingButton from "./Pages/Components/JumpingButton"
 import SystemDesignPage from "./Pages/SystemDesignPage"
 import WorkFlow from "./Pages/WorkFlow"
 import AICoverLetter from "./Pages/AICoverLetter"
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { io } from "socket.io-client"
 import "./App.sass"
 
 const DevelopMode = false
+
 
 export default function App() {
     const [backgroundColor, setBackgroundColor] = useState('white');
@@ -157,18 +159,19 @@ export default function App() {
 	return (
 		<div className={`transition-background ${backgroundColor}`}>
 			<NavBar routeMap={routeMap} defaultPage={defaultPage} />		
-        <Switch>
-            {routeMap.map((route, index) => 
-                route.show && (
-                <Route key={index} exact path={route.path} {...route.props}>
-                    <route.component />
-                </Route>
-                )
-            )}
-            <Route>
-                <PageNotFound />
-            </Route>
-        </Switch>
+      <Switch>
+          {routeMap.map((route, index) => 
+              route.show && (
+              <Route key={index} exact path={route.path} {...route.props}>
+                  <route.component />
+              </Route>
+              )
+          )}
+          <Route>
+              <PageNotFound />
+          </Route>
+      </Switch>
+      <SpeedInsights />
 		</div>
 	)
 }
