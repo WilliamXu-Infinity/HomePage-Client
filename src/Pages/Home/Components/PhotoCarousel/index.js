@@ -55,11 +55,19 @@ const PhotoCarousel = ({ imgUrls }) => {
 
   useEffect(() => {
     setProgress(0)
-    setIsPause(false)
     pauseElapsedRef.current = 0
-    startProgressLoop()
+    
+    !isPause && startProgressLoop()
+
+    // Preload image
+    if (imgUrls.length > 1) {
+      const nextIndex = (photoIndex + 1) % imgUrls.length
+      const img = new Image()
+      img.src = PAGE_URL + imgUrls[nextIndex]
+    }
+
     return clearTimer
-  }, [photoIndex])
+  }, [photoIndex, imgUrls])
 
   if (!imgUrls || !imgUrls.length) {
     return null
@@ -72,6 +80,7 @@ const PhotoCarousel = ({ imgUrls }) => {
         src={PAGE_URL + imgUrls[photoIndex]}
         alt=""
         loading="lazy"
+        decoding="async"
       />
       {imgUrls.length > 1 && (
         <ProgressBar 
@@ -79,6 +88,8 @@ const PhotoCarousel = ({ imgUrls }) => {
           progress={progress} 
           barCount={imgUrls.length}
           selectPhoto={selectPhoto}
+          handlePause={handlePause}
+          handleResume={handleResume}
         />
       )}
       {/* <div className="flex gap-2 mt-2">
