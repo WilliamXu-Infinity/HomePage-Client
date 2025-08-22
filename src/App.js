@@ -157,7 +157,6 @@ export default function App() {
 	return (
 		<div className={`transition-background ${backgroundColor}`}>
 			<NavBar routeMap={routeMap} defaultPage={defaultPage} />		
-
             <Switch>
                 {routeMap.map((route, index) => 
                     route.show && (

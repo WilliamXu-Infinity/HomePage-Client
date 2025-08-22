@@ -2,19 +2,26 @@ import { useEffect, useState, useRef } from "react";
 import ApiKeyModal from "./ApiKeyModal";
 import JDModal from "./JDModal";
 import PIModal from "./PIModal"
+import CoverLetterDocument from "./CoverLetterDocument";
 import promptJSON from "./promp.json";
 import { serializePrompt } from "./util";
 import pdfToText from "react-pdftotext";
 import OpenAI from "openai";
+import { CheckCircleIcon, ExclamationCircleIcon, ArrowDownTrayIcon } from "@heroicons/react/24/solid";
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 const CoverLetterGenerator = () => {
   const [apiKey, setApiKey] = useState(null);
   const [showApiKeyModal, setShowApiKeyModal] = useState(false);
 
   const [resumeText, setResumeText] = useState("");
-  const [jobDescriptionFile, setJobDescriptionFile] = useState(null);
+  const [jdText, setJDText] = useState("")
   const [coverLetter, setCoverLetter] = useState("");
-  const [jobInfo, setJobInfo] = useState({});
+  const [jobInfo, setJobInfo] = useState({
+        company: "N/A",
+        salary: "N/A",
+        skills: [],
+      });
   const [personalInfo, setPersonalInfo] = useState(null)
 
   const [history, setHistory] = useState([]);
@@ -23,7 +30,6 @@ const CoverLetterGenerator = () => {
 
   const [showJDModal, setShowJDModal] = useState(false);
   const [showPIModal, setShowPIModal] = useState(false)
-  const [jdTextForModal, setJDTextForModal] = useState("");
 
   const client = new OpenAI({ apiKey: apiKey, dangerouslyAllowBrowser: true });
 
@@ -38,16 +44,13 @@ const CoverLetterGenerator = () => {
 
     const personalInfo =  JSON.parse(sessionStorage.getItem("PERSONAL_INF"))
     if (personalInfo) setPersonalInfo(personalInfo)
-  }, []);
 
-  // 打开 JD Modal 时加载文本
-  useEffect(() => {
-    if (showJDModal && jobDescriptionFile) {
-      jobDescriptionFile.text().then((text) => setJDTextForModal(text));
-    } else if (showJDModal) {
-      setJDTextForModal("");
-    }
-  }, [showJDModal, jobDescriptionFile]);
+    const resume = sessionStorage.getItem("RESUME_TEXT")
+    if (resume) setResumeText(resume)
+    
+    const historyData = JSON.parse(sessionStorage.getItem("HISTORY_DATA"))
+    if (historyData) setHistory(historyData)
+  }, []);
 
   // Save the api key
   const handleSaveApiKey = (key) => {
@@ -57,9 +60,7 @@ const CoverLetterGenerator = () => {
   };
 
   const handleJDSave = (jdText) => {
-    const blob = new Blob([jdText], { type: "text/plain" });
-    const file = new File([blob], "JobDescription.txt", { type: "text/plain" });
-    setJobDescriptionFile(file);
+    setJDText(jdText)
   };
 
   const handlePISave = (piInfo) => {
@@ -70,7 +71,6 @@ const CoverLetterGenerator = () => {
   const handleGenerate = async () => {
     if (!apiKey) return alert("API Key is missing!");
 
-    const jdText = jobDescriptionFile ? await jobDescriptionFile.text() : "";
     const serializedInput = serializePrompt(promptJSON, jdText, resumeText, personalInfo);
 
     setLoading(true);
@@ -111,7 +111,7 @@ const CoverLetterGenerator = () => {
       const newEntry = {
         id: Date.now(),
         resumeText,
-        jobDescriptionFile,
+        jdText,
         ...parsed,
       };
 
@@ -122,6 +122,7 @@ const CoverLetterGenerator = () => {
         skills: parsed.skills,
       });
       setHistory([newEntry, ...history]);
+      sessionStorage.setItem("HISTORY_DATA", JSON.stringify([newEntry, ...history]))
       setSelectedHistoryId(newEntry.id);
     } catch (err) {
       console.error(err);
@@ -135,7 +136,7 @@ const CoverLetterGenerator = () => {
     setSelectedHistoryId(entry.id);
     setCoverLetter(entry.coverLetter);
     setResumeText(entry.resumeText);
-    setJobDescriptionFile(entry.jobDescriptionFile);
+    setJDText(entry.jdText);
     setJobInfo({ company: entry.company, salary: entry.salary, skills: entry.skills });
   };
 
@@ -183,6 +184,7 @@ const CoverLetterGenerator = () => {
     try {
       const text = await pdfToText(file);
       setResumeText(text);
+      sessionStorage.setItem("RESUME_TEXT", text)
 
       if (!personalInfo) {
         const personalInfo = await getPersonalInfoFromResume(text);
@@ -209,49 +211,63 @@ const CoverLetterGenerator = () => {
         <h2 className="text-lg font-bold mb-4">Cover Letter Generator</h2>
 
         <div className="flex flex-col gap-2 mb-4">
-          {/* 简历上传 */}
-          <label className="flex flex-col">
+
+          {/* Resume 上传 */}
+          <div className="flex items-center gap-2">
             <button
               type="button"
-              className="mt-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+              className="flex-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
               onClick={handleButtonClick}
             >
-              {resumeText === "" ? "Upload" : "Update"} Resume (PDF)
+              Resume (PDF)
             </button>
-            <input
-              ref={inputRef}
-              type="file"
-              accept="application/pdf"
-              onChange={handleUploadResume}
-              className="hidden"
-            />
-          </label>
+            <input ref={inputRef} type="file" accept="application/pdf" onChange={handleUploadResume} className="hidden" /> 
+            {resumeText ? (
+              <CheckCircleIcon className="w-5 h-5 text-green-500" />
+            ) : (
+              <ExclamationCircleIcon className="w-5 h-5 text-red-500" />
+            )}
+          </div>
 
           {/* Personal Info 输入 */}
-          <label className="flex flex-col">
+          <div className="flex items-center gap-2">
             <button
-              className="mt-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+              className="flex-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
               onClick={() => setShowPIModal(true)}
             >
-              Update Personal Info
+              Personal Info
             </button>
-          </label>
+            {personalInfo ? (
+              <CheckCircleIcon className="w-5 h-5 text-green-500" />
+            ) : (
+              <ExclamationCircleIcon className="w-5 h-5 text-red-500" />
+            )}
+          </div>
 
           {/* JD 上传/输入 */}
-          <label className="flex flex-col">
+          <div className="flex items-center gap-2">
             <button
-              className="mt-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+              className="flex-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
               onClick={() => setShowJDModal(true)}
             >
-              {jobDescriptionFile?.name ? "Update JD" : "Enter JD"}
+              {jdText ? "Update JD" : "Enter JD"}
             </button>
-          </label>
+            {jdText ? (
+              <CheckCircleIcon className="w-5 h-5 text-green-500" />
+            ) : (
+              <ExclamationCircleIcon className="w-5 h-5 text-red-500" />
+            )}
+          </div>
 
           {/* 生成按钮 */}
           <button
-            className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
+            className={`mt-2 flex-1 px-4 py-2 rounded ${
+              !resumeText || !jdText || !personalInfo
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-600 text-white"
+            }`}
             onClick={handleGenerate}
-            disabled={loading}
+            disabled={!resumeText || !jdText || !personalInfo || loading}
           >
             {loading ? "Generating..." : "Generate"}
           </button>
@@ -263,15 +279,52 @@ const CoverLetterGenerator = () => {
           {history.map((entry) => (
             <div
               key={entry.id}
-              className={`p-2 rounded cursor-pointer mb-1 ${
+              className={`flex justify-between items-center p-2 rounded cursor-pointer mb-1 ${
                 entry.id === selectedHistoryId ? "bg-blue-200" : "hover:bg-gray-200"
               }`}
               onClick={() => handleSelectHistory(entry)}
             >
-              {entry.company || "Unknown Company"}
+              <span>{entry.company || "Unknown Company"}</span>
+
+              <PDFDownloadLink
+                document={
+                  <CoverLetterDocument
+                    coverLetter={entry.coverLetter}
+                  />
+                }
+                fileName={`Cover_Letter_${entry.company}.pdf`}
+                className="p-1 text-gray-600 hover:text-gray-900"
+              >
+                {({ loading }) =>
+                  loading ? "Preparing..." : <ArrowDownTrayIcon className="w-5 h-5" />
+                }
+              </PDFDownloadLink>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* 右侧输出 */}
+      <div className="flex-1 p-6 bg-white flex flex-col">
+        <h2 className="text-lg font-bold mb-4">Generated Results</h2>
+
+        {/* 公司信息 */}
+        {jobInfo.company && (
+          <div className="mb-4 p-4 border rounded bg-gray-50">
+            <p><strong>Company:</strong> {jobInfo.company}</p>
+            {jobInfo.salary && <p><strong>Salary:</strong> {jobInfo.salary}</p>}
+            {jobInfo.skills?.length > 0 ? 
+              (<p><strong>Skills:</strong> {jobInfo.skills.join(", ")}</p>) :
+              <p><strong>Skills:</strong> N/A</p> }
+          </div>
+        )}
+
+        {/* Cover Letter */}
+        <textarea
+          className="flex-1 w-full border rounded p-4 text-sm font-mono mb-2"
+          value={coverLetter}
+          onChange={(e) => setCoverLetter(e.target.value)}
+        />
       </div>
 
       {/* PI Modal */}
@@ -287,31 +340,8 @@ const CoverLetterGenerator = () => {
         isOpen={showJDModal}
         onClose={() => setShowJDModal(false)}
         onSave={handleJDSave}
-        initialValue={jdTextForModal}
+        initialValue={jdText}
       />
-
-      {/* 右侧输出 */}
-      <div className="flex-1 p-6 bg-white overflow-auto">
-        <h2 className="text-lg font-bold mb-4">Generated Results</h2>
-
-        {/* 公司信息 */}
-        {jobInfo.company && (
-          <div className="mb-4 p-4 border rounded bg-gray-50">
-            <p><strong>Company:</strong> {jobInfo.company}</p>
-            {jobInfo.salary && <p><strong>Salary:</strong> {jobInfo.salary}</p>}
-            {jobInfo.skills?.length > 0 && (
-              <p><strong>Skills:</strong> {jobInfo.skills.join(", ")}</p>
-            )}
-          </div>
-        )}
-
-        {/* Cover Letter */}
-        <textarea
-          className="w-full h-[70vh] border rounded p-4 text-sm font-mono"
-          value={coverLetter}
-          onChange={(e) => setCoverLetter(e.target.value)}
-        />
-      </div>
     </div>
   );
 };

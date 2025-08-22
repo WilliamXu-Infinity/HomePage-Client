@@ -19,15 +19,16 @@
         "details": [
           "Use the personal info provided in Input to create a header section for the cover letter.",
           "The header must only include the following fields if they exist: Name, Email, Phone, linkedin, Personal Website from website.",
-          "add icon in front of it",
+          "Do not add icon in front of it",
           "Do not include placeholders such as [Your Name] or fields that do not exist in the input.",
           "Do not include [Date], Hiring Manager, or [Company Address] placeholders.",
+          "After the Personal Info section, add exactly 5 blank lines before starting the Cover Letter text.",
           "Format example (only include available lines):",
           "John Doe",
-          "[johndoe@email.com]",
-          "[+1 123 456 7890]",
-          "[LinkedIn link]",
-          "[website]"
+          "johndoe@email.com",
+          "+1 123 456 7890",
+          "https://www.linkedin.com/in/xxxxx/",
+          "https://www.xxxxx.com"
         ]
       },
       {
@@ -58,7 +59,6 @@
     },
     "output_format": [
       "Matching Analysis Table (JD Requirement vs My Experience vs Measurable Result)",
-      "Extracted Personal Information from Input Personal Info",
       "Final Cover Letter (fully optimized, ready to use)"
     ]
   }
