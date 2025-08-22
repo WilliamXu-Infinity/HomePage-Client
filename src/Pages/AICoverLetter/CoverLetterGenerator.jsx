@@ -188,6 +188,7 @@ const CoverLetterGenerator = () => {
 
       if (!personalInfo) {
         const personalInfo = await getPersonalInfoFromResume(text);
+        sessionStorage.setItem("PERSONAL_INF", JSON.stringify(personalInfo))
         setPersonalInfo(personalInfo);
       }
     } catch (err) {

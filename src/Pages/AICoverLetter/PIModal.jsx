@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const PIModal = ({ isOpen, onClose, onSave, initialValue = {} }) => {
+const PIModal = ({ isOpen, onClose, onSave, initialValue = {}}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,7 +13,6 @@ const PIModal = ({ isOpen, onClose, onSave, initialValue = {} }) => {
   // Prefill form if initialValue exists
   useEffect(() => {
     if (isOpen) {
-      console.log('\x1b[31m%s\x1b[0m', `WX - initialValue: ${JSON.stringify(initialValue)}`)
       setFormData(initialValue);
     }
   }, [isOpen]);
@@ -40,7 +39,7 @@ const PIModal = ({ isOpen, onClose, onSave, initialValue = {} }) => {
           <input
             type="text"
             name="name"
-            value={formData.name}
+            value={formData?.name || ""}
             onChange={handleChange}
             className="w-full border rounded p-2 mb-3"
           />
@@ -49,7 +48,7 @@ const PIModal = ({ isOpen, onClose, onSave, initialValue = {} }) => {
           <input
             type="email"
             name="email"
-            value={formData.email}
+            value={formData?.email || ""}
             onChange={handleChange}
             className="w-full border rounded p-2 mb-3"
           />
@@ -58,7 +57,7 @@ const PIModal = ({ isOpen, onClose, onSave, initialValue = {} }) => {
           <input
             type="text"
             name="phone"
-            value={formData.phone}
+            value={formData?.phone || ""}
             onChange={handleChange}
             className="w-full border rounded p-2 mb-3"
           />
@@ -67,7 +66,7 @@ const PIModal = ({ isOpen, onClose, onSave, initialValue = {} }) => {
           <input
             type="url"
             name="linkedin"
-            value={formData.linkedin}
+            value={formData?.linkedin || ""}
             onChange={handleChange}
             className="w-full border rounded p-2 mb-3"
           />
@@ -76,7 +75,7 @@ const PIModal = ({ isOpen, onClose, onSave, initialValue = {} }) => {
           <input
             type="url"
             name="website"
-            value={formData.website}
+            value={formData?.website || ""}
             onChange={handleChange}
             className="w-full border rounded p-2 mb-3"
           />
@@ -85,7 +84,7 @@ const PIModal = ({ isOpen, onClose, onSave, initialValue = {} }) => {
           <input
             type="url"
             name="github"
-            value={formData.github}
+            value={formData?.github || ""}
             onChange={handleChange}
             className="w-full border rounded p-2 mb-3"
           />
