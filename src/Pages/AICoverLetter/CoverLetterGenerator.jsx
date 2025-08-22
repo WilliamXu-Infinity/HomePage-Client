@@ -207,7 +207,7 @@ const CoverLetterGenerator = () => {
       <ApiKeyModal isOpen={showApiKeyModal} onSave={handleSaveApiKey} />
 
       {/* 左侧控制面板 */}
-      <div className="w-72 bg-gray-100 p-4 flex flex-col">
+      <div className="w-72 bg-gray-100 p-3 flex flex-col">
         <h2 className="text-lg font-bold mb-4">Cover Letter Generator</h2>
 
         <div className="flex flex-col gap-2 mb-4">
@@ -274,8 +274,8 @@ const CoverLetterGenerator = () => {
         </div>
 
         {/* 历史记录 */}
-        <h3 className="text-md font-semibold mt-4 mb-2">History</h3>
-        <div className="flex-1 overflow-y-auto">
+        <h3 className="text-md font-semibold mb-2">History</h3>
+        <div className="flex-1 overflow-y-auto border rounded bg-gray-50">
           {history.map((entry) => (
             <div
               key={entry.id}
@@ -305,8 +305,8 @@ const CoverLetterGenerator = () => {
       </div>
 
       {/* 右侧输出 */}
-      <div className="flex-1 p-6 bg-white flex flex-col">
-        <h2 className="text-lg font-bold mb-4">Generated Results</h2>
+      <div className="flex-1 p-3 bg-white flex flex-col">
+        <h2 className="text-lg font-bold mb-4">Results</h2>
 
         {/* 公司信息 */}
         {jobInfo.company && (
@@ -321,7 +321,7 @@ const CoverLetterGenerator = () => {
 
         {/* Cover Letter */}
         <textarea
-          className="flex-1 w-full border rounded p-4 text-sm font-mono mb-2"
+          className="flex-1 w-full border rounded p-4 text-sm font-mono"
           value={coverLetter}
           onChange={(e) => setCoverLetter(e.target.value)}
         />

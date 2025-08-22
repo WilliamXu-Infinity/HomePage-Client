@@ -1,9 +1,6 @@
-import React, { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useHistory, useLocation } from "react-router-dom"
 import Logo from "../../Asset/logos/w.png"
-
-const TOP_THRESHOLD = 4   // 判定在顶端的阈值(px)
-const DIR_THRESHOLD = 8   // 判定滚动方向的阈值(px)
 
 const NavBar = ({ routeMap = [] }) => {
   const history = useHistory()
@@ -12,7 +9,9 @@ const NavBar = ({ routeMap = [] }) => {
   const [activeKey, setActiveKey] = useState("")
   const [menu, setMenu] = useState([])
   const [showNav, setShowNav] = useState(true)
-  const lastY = useRef(0)
+
+  const isHome = location.pathname === "/" || location.pathname === "/home"
+
 
   // 构建菜单
   useEffect(() => {
@@ -22,57 +21,29 @@ const NavBar = ({ routeMap = [] }) => {
     setMenu(m)
   }, [routeMap])
 
-  // 工具函数：拿当前滚动位置
-  const getScrollTop = () =>
-    Math.max(
-      window.pageYOffset || 0,
-      document.documentElement?.scrollTop || 0,
-      document.body?.scrollTop || 0
-    )
-
-  // 路由变化：高亮同步 + 默认隐藏（除非已在顶端）
+  // scroll + wheel detection
   useEffect(() => {
-    setActiveKey(location.pathname === "/" ? "/home" : location.pathname)
-    const y = Math.max(getScrollTop(), 0)
-    lastY.current = y
-    // 自动隐藏；若当前已在顶端则显示
-    setShowNav(y <= TOP_THRESHOLD)
-  }, [location.pathname])
+    setActiveKey(location.pathname)
+    setShowNav(true)
 
-  // 滚动：下滚隐藏，上滚显示；到顶端一律显示
-  useEffect(() => {
-    let ticking = false
-    const onScroll = () => {
-      if (ticking) return
-      ticking = true
-      requestAnimationFrame(() => {
-        let y = getScrollTop()
-        if (y < 0) y = 0
-
-        if (y <= TOP_THRESHOLD) {
-          // 到顶端：显示
-          setShowNav(true)
-        } else {
-          const delta = y - lastY.current
-          if (delta > DIR_THRESHOLD) {
-            // 下滚：隐藏
-            setShowNav(false)
-          } else if (delta < -DIR_THRESHOLD) {
-            // 上滚：显示
-            setShowNav(true)
-          }
-        }
-
-        lastY.current = y
-        ticking = false
-      })
+    const onWheel = (e) => {
+      if (!isHome) return
+      if (e.deltaY > 0) {
+        // 向下滚 → 隐藏
+        setShowNav(false)
+      } else {
+        // 向上滚 → 显示
+        setShowNav(true)
+      }
     }
 
-    window.addEventListener("scroll", onScroll, { passive: true })
-    // 首次同步一次（防止初始状态不对）
-    onScroll()
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+    window.addEventListener("wheel", onWheel)
+
+    return () => {
+      window.removeEventListener("wheel", onWheel)
+    }
+  }, [location.pathname])
+
 
   return (
     <div
@@ -82,16 +53,24 @@ const NavBar = ({ routeMap = [] }) => {
           : "opacity-0 -translate-y-6 pointer-events-none"
       }`}
     >
-      <nav className="backdrop-blur-md bg-white/60 shadow-sm">
-        <div className="mx-auto max-w-6xl px-4">
+      <nav
+        className={`shadow-sm ${
+          isHome
+            ? "backdrop-blur-md bg-white/60"
+            : "bg-transparent shadow-none"
+        }`}
+      >
+        <div className={`${isHome ? 'mx-auto max-w-6xl' : 'mx-2'}`}>
           <div className="flex h-14 items-center justify-between">
-            <img
-              src={Logo}
-              alt="Logo"
-              className="w-10 h-10 object-contain cursor-pointer"
-              onClick={() => history.push("/")}
-            />
-            <div className="flex items-center gap-4">
+            {isHome && (
+              <img
+                src={Logo}
+                alt="Logo"
+                className="w-10 h-10 object-contain cursor-pointer"
+                onClick={() => history.push("/")}
+              />
+            )}
+            <div className="flex items-center gap-2 ml-auto">
               {menu.map(({ title, url }) => (
                 <Link
                   key={url}

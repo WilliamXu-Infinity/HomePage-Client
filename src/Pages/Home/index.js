@@ -7,23 +7,19 @@ import axios from 'axios'
 import "./Home.sass"
 
 function Home() {
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await axios.get(
-					"https://william-xu-home-page-c5cbdc316c00.herokuapp.com/"
-				)
-				const data = await response.data
-			} catch (error) {
-				console.log(
-					"\x1b[31m%s\x1b[0m",
-					`WX - error: ${JSON.stringify(error)}`
-				)
-			}
-		}
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		try {
+	// 			const response = await axios.get(
+	// 				"https://william-xu-home-page-c5cbdc316c00.herokuapp.com/"
+	// 			)
+	// 			const data = await response.data
+	// 		} catch (error) {
+	// 		}
+	// 	}
 
-		fetchData()
-	}, [])
+	// 	fetchData()
+	// }, [])
 
 	return (
 		<div className="content">

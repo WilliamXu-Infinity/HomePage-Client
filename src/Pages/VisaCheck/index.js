@@ -9,7 +9,7 @@ const VisaCheck = () => {
 	const [tableData, setTableData] = useState([])
 
 	useEffect(() => {
-        if (isEdit) return
+    if (isEdit) return
 		const fetchData = async () => {
 			try {
 				const response = await axios.get(API_URL + "/users")
