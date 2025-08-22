@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 // 弹窗组件
 const ApiKeyModal = ({ isOpen, onSave }) => {
   const [inputKey, setInputKey] = useState("");
   const [confirmed, setConfirmed] = useState(false);
+
+  const history = useHistory();
 
   if (!isOpen) return null;
 
@@ -43,6 +46,13 @@ const ApiKeyModal = ({ isOpen, onSave }) => {
           disabled={!confirmed || !inputKey.trim()}
         >
           Save API Key
+        </button>
+
+        <button
+          className={`w-full px-4 py-2 rounded text-white mt-2 bg-orange-500`}
+          onClick={() => history.push("/")}
+        >
+          Back to Home page
         </button>
 
         {inputKey && (

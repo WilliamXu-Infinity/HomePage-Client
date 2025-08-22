@@ -23,7 +23,8 @@ const NavBar = ({ routeMap = [] }) => {
 
   // scroll + wheel detection
   useEffect(() => {
-    setActiveKey(location.pathname)
+    const currentPath = location.pathname === "/" ? "/home" : location.pathname
+    setActiveKey(currentPath)
     setShowNav(true)
 
     const onWheel = (e) => {
