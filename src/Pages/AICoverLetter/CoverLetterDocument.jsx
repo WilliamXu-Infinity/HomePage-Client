@@ -1,41 +1,69 @@
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import React from "react";
+import { Page, Text, View, Document } from "@react-pdf/renderer";
+import usePDFStyles from "./hooks/usePDFStyles";
+import useTextProcessor from "./hooks/useTextProcessor";
+import usePDFDocument from "./hooks/usePDFDocument";
 
-const styles = StyleSheet.create({
-  page: {
-    padding: 30,
-    fontSize: 12,
-    fontFamily: "Times-Roman"
-  },
-  section: {
-    marginBottom: 10
-  },
-  paragraph: {
-    marginBottom: 2,
-    lineHeight: 1.2
-  },
-  emptyLine: {
-    height: 10
+const CoverLetterDocument = ({ 
+  coverLetter, 
+  companyName = "Company",
+  documentOptions = {} 
+}) => {
+  const styles = usePDFStyles();
+  const { processedLines, formatLine, stats } = useTextProcessor(coverLetter);
+  const { documentProps, pageProps, isValid } = usePDFDocument(coverLetter, {
+    title: `Cover Letter - ${companyName}`,
+    ...documentOptions
+  });
+
+  // Return empty document if content is invalid
+  if (!isValid) {
+    return (
+      <Document {...documentProps}>
+        <Page style={styles.page} {...pageProps}>
+          <View style={styles.section}>
+            <Text style={styles.paragraph}>
+              No content available for the cover letter.
+            </Text>
+          </View>
+        </Page>
+      </Document>
+    );
   }
-});
 
-const CoverLetterDocument = ({ coverLetter }) => {
+  const renderLine = (line, index) => {
+    if (line.isEmpty) {
+      return <Text key={`empty-${index}`} style={styles.emptyLine} />;
+    }
+
+    const formattedContent = formatLine(line);
+    const lineStyle = line.isHeader ? styles.header : styles.paragraph;
+
+    return (
+      <Text key={`line-${index}`} style={lineStyle}>
+        {formattedContent}
+      </Text>
+    );
+  };
+
   return (
-    <Document>
-      <Page style={styles.page}>
+    <Document {...documentProps}>
+      <Page style={styles.page} {...pageProps}>
         <View style={styles.section}>
-          {coverLetter.split("\n").map((line, idx) =>
-            line.trim() === "" ? (
-              <Text key={idx} style={styles.emptyLine} />
-            ) : (
-              <Text key={idx} style={styles.paragraph}>
-                {line}
-              </Text>
-            )
-          )}
+          {processedLines.map((line, index) => renderLine(line, index))}
         </View>
+        
+        {/* Optional footer with document stats */}
+        {stats.totalWords > 0 && (
+          <View style={styles.footer}>
+            <Text>
+              Words: {stats.totalWords} | Estimated reading time: {stats.estimatedReadingTime} min
+            </Text>
+          </View>
+        )}
       </Page>
     </Document>
   );
 };
 
-export default CoverLetterDocument
+export default CoverLetterDocument;
