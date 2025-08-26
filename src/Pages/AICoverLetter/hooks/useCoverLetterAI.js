@@ -4,6 +4,7 @@ import OpenAI from "openai";
 import pdfToText from "react-pdftotext";
 import { serializePrompt } from "../util";
 import promptJSON from "../promp.json";
+import { v4 as uuidv4 } from 'uuid';
 
 export const useCoverLetterAI = (apiKey) => {
   const [resumeText, setResumeText] = useState("");
@@ -33,6 +34,12 @@ export const useCoverLetterAI = (apiKey) => {
 
     const historyData = JSON.parse(sessionStorage.getItem("HISTORY_DATA"));
     if (historyData) setHistory(historyData);
+
+    const historyID = sessionStorage.getItem("HISTORY_ID");
+    if (historyID && historyData) {
+      const entry = historyData.find(entry => entry.id === historyID);
+      if (entry) selectHistory(entry)
+    }
   }, []);
 
   const savePersonalInfo = (piInfo) => {
@@ -141,7 +148,7 @@ export const useCoverLetterAI = (apiKey) => {
       const parsed = JSON.parse(content);
 
       const newEntry = {
-        id: Date.now(),
+        id: uuidv4(),
         resumeText,
         jdText,
         ...parsed,
@@ -157,6 +164,7 @@ export const useCoverLetterAI = (apiKey) => {
       const newHistory = [newEntry, ...history];
       setHistory(newHistory);
       sessionStorage.setItem("HISTORY_DATA", JSON.stringify(newHistory));
+      sessionStorage.setItem("HISTORY_ID", newEntry.id);
       setSelectedHistoryId(newEntry.id);
     } catch (err) {
       console.error(err);
@@ -168,6 +176,7 @@ export const useCoverLetterAI = (apiKey) => {
 
   const selectHistory = (entry) => {
     setSelectedHistoryId(entry.id);
+    sessionStorage.setItem("HISTORY_ID", entry.id);
     setCoverLetter(entry.coverLetter);
     setResumeText(entry.resumeText);
     setJDText(entry.jdText);
