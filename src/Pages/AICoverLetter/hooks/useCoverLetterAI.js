@@ -27,13 +27,28 @@ export const useCoverLetterAI = (apiKey) => {
   const [chatloading, setChatLoading] = useState(false);
   const chatBottomRef = useRef(null);
 
-  useEffect(() => {
-    console.log('\x1b[31m%s\x1b[0m', 'WX - check - 1')
-  }, [history])
-
   const client = apiKey
     ? new OpenAI({ apiKey, dangerouslyAllowBrowser: true })
     : null;
+
+  const setCoverLetterSync = (newText) => {
+    setCoverLetter(newText);
+
+    setHistory(prev => {
+      if (!selectedHistoryId) return prev;
+
+      console.log('\x1b[31m%s\x1b[0m', `WX - prev: ${JSON.stringify(prev)}`)
+
+      const updated = prev.map(e =>
+        e.id === selectedHistoryId ? { ...e, coverLetter: newText } : e
+      );
+
+      console.log('\x1b[31m%s\x1b[0m', `WX - updated: ${JSON.stringify(updated)}`)
+
+      sessionStorage.setItem("HISTORY_DATA", JSON.stringify(updated));
+      return updated;
+    });
+  };
 
   // 初始化 sessionStorage
   useEffect(() => {
@@ -276,6 +291,7 @@ export const useCoverLetterAI = (apiKey) => {
     generateCoverLetter,
     selectHistory,
     setCoverLetter,
+    setCoverLetterSync,
     chatObj: {
       chatHistory,
       sendMessage,

@@ -1,10 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import ApiKeyModal, { useApiKey } from "../../Components/AIApiKeyModal";
 import JDModal from "./JDModal";
 import PIModal from "./PIModal";
-import CoverLetterDocument from "./CoverLetterDocument";
 import { useCoverLetterAI } from "./hooks/useCoverLetterAI";
-import { CheckCircleIcon, ExclamationCircleIcon, ArrowDownTrayIcon } from "@heroicons/react/24/solid";
+import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import HistoryList from "./HistoryList"
 import AIChat from "./AIChat"
 
@@ -24,9 +23,13 @@ const CoverLetterGenerator = () => {
     handleUploadResume,
     generateCoverLetter,
     selectHistory,
-    setCoverLetter,
+    setCoverLetterSync,
     chatObj
   } = useCoverLetterAI(apiKey);
+
+  useEffect(() => {
+    console.log('\x1b[31m%s\x1b[0m', 'WX - check - 11')
+  }, [history])
 
   const [showJDModal, setShowJDModal] = useState(false);
   const [showPIModal, setShowPIModal] = useState(false);
@@ -148,7 +151,7 @@ const CoverLetterGenerator = () => {
           <textarea
             className="w-full shrink-0 resize-none border rounded p-4 text-sm font-mono flex-1 min-h-[70vh]"
             value={coverLetter}
-            onChange={(e) => setCoverLetter(e.target.value)}
+            onChange={(e) => setCoverLetterSync(e.target.value)}
           />
 
           <AIChat chatObj={chatObj} />

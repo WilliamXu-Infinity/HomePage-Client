@@ -33,6 +33,7 @@ const HistoryItem = ({ entry, isSelected, onSelect }) => {
 
 
 const HistoryList = React.memo(function HistoryList({ history, selectedHistoryId, selectHistory }) {
+  console.log('\x1b[31m%s\x1b[0m', 'WX - check - history')
   return (
     <div className="flex-1 overflow-y-auto border rounded bg-gray-50">
       {history.map((entry) => (
