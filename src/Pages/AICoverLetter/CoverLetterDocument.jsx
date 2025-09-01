@@ -1,6 +1,4 @@
-import React from "react";
 import { Page, Text, View, Document } from "@react-pdf/renderer";
-import usePDFStyles from "./hooks/usePDFStyles";
 import useTextProcessor from "./hooks/useTextProcessor";
 import usePDFDocument from "./hooks/usePDFDocument";
 
@@ -9,8 +7,7 @@ const CoverLetterDocument = ({
   companyName = "Company",
   documentOptions = {} 
 }) => {
-  const styles = usePDFStyles();
-  const { processedLines, formatLine, stats } = useTextProcessor(coverLetter);
+  const { processedLines, formatLine, stats, styles } = useTextProcessor(coverLetter);
   const { documentProps, pageProps, isValid } = usePDFDocument(coverLetter, {
     title: `Cover Letter - ${companyName}`,
     ...documentOptions

@@ -5,7 +5,7 @@ import PIModal from "./PIModal";
 import CoverLetterDocument from "./CoverLetterDocument";
 import { useCoverLetterAI } from "./hooks/useCoverLetterAI";
 import { CheckCircleIcon, ExclamationCircleIcon, ArrowDownTrayIcon } from "@heroicons/react/24/solid";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import HistoryList from "./HistoryList"
 import AIChat from "./AIChat"
 
 const CoverLetterGenerator = () => {
@@ -111,35 +111,11 @@ const CoverLetterGenerator = () => {
 
         {/* 历史 */}
         <h3 className="text-md font-semibold mb-2">History</h3>
-        <div className="flex-1 overflow-y-auto border rounded bg-gray-50">
-          {history.map((entry) => (
-            <div
-              key={entry.id}
-              className={`flex justify-between items-center p-2 rounded cursor-pointer mb-1 ${
-                entry.id === selectedHistoryId
-                  ? "bg-blue-200"
-                  : "hover:bg-gray-200"
-              }`}
-              onClick={() => selectHistory(entry)}
-            >
-              <span>{entry.company || "Unknown Company"}</span>
-              <PDFDownloadLink
-                document={
-                  <CoverLetterDocument
-                    coverLetter={entry.coverLetter}
-                    companyName={entry.company}
-                  />
-                }
-                fileName={`Cover_Letter_${entry.company}.pdf`}
-                className="p-1 text-gray-600 hover:text-gray-900"
-              >
-                {({ loading }) =>
-                  loading ? "Preparing..." : <ArrowDownTrayIcon className="w-5 h-5" />
-                }
-              </PDFDownloadLink>
-            </div>
-          ))}
-        </div>
+        <HistoryList
+          history={history}
+          selectedHistoryId={selectedHistoryId}
+          selectHistory={selectHistory}
+        />
       </div>
 
       {/* 右侧输出 */}
