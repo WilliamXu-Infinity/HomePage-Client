@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import ApiKeyModal, { useApiKey } from "../../Components/AIApiKeyModal";
 import JDModal from "./JDModal";
 import PIModal from "./PIModal";
@@ -24,12 +24,10 @@ const CoverLetterGenerator = () => {
     generateCoverLetter,
     selectHistory,
     setCoverLetterSync,
+    coverLetterModified,
+    saveNewCoverletter,
     chatObj
   } = useCoverLetterAI(apiKey);
-
-  useEffect(() => {
-    console.log('\x1b[31m%s\x1b[0m', 'WX - check - 11')
-  }, [history])
 
   const [showJDModal, setShowJDModal] = useState(false);
   const [showPIModal, setShowPIModal] = useState(false);
@@ -118,6 +116,8 @@ const CoverLetterGenerator = () => {
           history={history}
           selectedHistoryId={selectedHistoryId}
           selectHistory={selectHistory}
+          coverLetterModified={coverLetterModified}
+          saveNewCoverletter={saveNewCoverletter}
         />
       </div>
 

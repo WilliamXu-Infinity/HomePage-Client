@@ -10,6 +10,7 @@ export const useCoverLetterAI = (apiKey) => {
   const [resumeText, setResumeText] = useState("");
   const [jdText, setJDText] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
+  const [coverLetterModified, setCoverletterModified] = useState(false)
   const [jobInfo, setJobInfo] = useState({
     company: "N/A",
     salary: "N/A",
@@ -33,14 +34,14 @@ export const useCoverLetterAI = (apiKey) => {
 
   const setCoverLetterSync = (newText) => {
     setCoverLetter(newText);
+    setCoverletterModified(true)
+  };
 
+  const saveNewCoverletter = () => {
     setHistory(prev => {
       if (!selectedHistoryId) return prev;
-
-      console.log('\x1b[31m%s\x1b[0m', `WX - prev: ${JSON.stringify(prev)}`)
-
       const updated = prev.map(e =>
-        e.id === selectedHistoryId ? { ...e, coverLetter: newText } : e
+        e.id === selectedHistoryId ? { ...e, coverLetter: coverLetter } : e
       );
 
       console.log('\x1b[31m%s\x1b[0m', `WX - updated: ${JSON.stringify(updated)}`)
@@ -48,7 +49,8 @@ export const useCoverLetterAI = (apiKey) => {
       sessionStorage.setItem("HISTORY_DATA", JSON.stringify(updated));
       return updated;
     });
-  };
+    setCoverletterModified(false)
+  }
 
   // 初始化 sessionStorage
   useEffect(() => {
@@ -292,6 +294,8 @@ export const useCoverLetterAI = (apiKey) => {
     selectHistory,
     setCoverLetter,
     setCoverLetterSync,
+    coverLetterModified,
+    saveNewCoverletter,
     chatObj: {
       chatHistory,
       sendMessage,
