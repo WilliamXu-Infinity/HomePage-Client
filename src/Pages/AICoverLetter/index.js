@@ -6,6 +6,7 @@ import CoverLetterDocument from "./CoverLetterDocument";
 import { useCoverLetterAI } from "./hooks/useCoverLetterAI";
 import { CheckCircleIcon, ExclamationCircleIcon, ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import AIChat from "./AIChat"
 
 const CoverLetterGenerator = () => {
   const { apiKey, showApiKeyModal, handleSaveApiKey } = useApiKey();
@@ -32,11 +33,11 @@ const CoverLetterGenerator = () => {
   const inputRef = useRef(null);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen overflow-hidden">
       <ApiKeyModal isOpen={showApiKeyModal} onSave={handleSaveApiKey} />
 
       {/* 左侧控制面板 */}
-      <div className="w-72 bg-gray-100 p-3 flex flex-col">
+      <div className="w-72 bg-gray-100 p-3 flex flex-col overflow-y-auto">
         <h2 className="text-lg font-bold mb-4">Cover Letter Generator</h2>
 
         <div className="flex flex-col gap-2 mb-4">
@@ -141,36 +142,40 @@ const CoverLetterGenerator = () => {
       </div>
 
       {/* 右侧输出 */}
-      <div className="flex-1 p-3 bg-white flex flex-col">
-        <h2 className="text-lg font-bold mb-4">Results</h2>
+      <div className="flex-1 min-h-0 flex">
+        <div className="flex-1 p-3 bg-white flex flex-col overflow-y-auto pb-24 h-[100%]">
+          <h2 className="text-lg font-bold mb-4">Results</h2>
 
-        {jobInfo.company && (
-          <div className="mb-4 p-4 border rounded bg-gray-50">
-            <p>
-              <strong>Company:</strong> {jobInfo.company}
-            </p>
-            {jobInfo.salary && (
+          {jobInfo.company && (
+            <div className="mb-4 px-4 py-2 border rounded bg-gray-50">
               <p>
-                <strong>Salary:</strong> {jobInfo.salary}
+                <strong>Company:</strong> {jobInfo.company}
               </p>
-            )}
-            {jobInfo.skills?.length > 0 ? (
-              <p>
-                <strong>Skills:</strong> {jobInfo.skills.join(", ")}
-              </p>
-            ) : (
-              <p>
-                <strong>Skills:</strong> N/A
-              </p>
-            )}
-          </div>
-        )}
+              {jobInfo.salary && (
+                <p>
+                  <strong>Salary:</strong> {jobInfo.salary}
+                </p>
+              )}
+              {jobInfo.skills?.length > 0 ? (
+                <p>
+                  <strong>Skills:</strong> {jobInfo.skills.join(", ")}
+                </p>
+              ) : (
+                <p>
+                  <strong>Skills:</strong> N/A
+                </p>
+              )}
+            </div>
+          )}
 
-        <textarea
-          className="flex-1 w-full border rounded p-4 text-sm font-mono"
-          value={coverLetter}
-          onChange={(e) => setCoverLetter(e.target.value)}
-        />
+          <textarea
+            className="w-full shrink-0 resize-none border rounded p-4 text-sm font-mono flex-1 min-h-[70vh]"
+            value={coverLetter}
+            onChange={(e) => setCoverLetter(e.target.value)}
+          />
+
+          <AIChat apiKey={apiKey} resumeText={resumeText} jdText={jdText} />
+        </div>
       </div>
 
       {/* Modals */}
