@@ -25,6 +25,7 @@ const CoverLetterGenerator = () => {
     generateCoverLetter,
     selectHistory,
     setCoverLetter,
+    chatObj
   } = useCoverLetterAI(apiKey);
 
   const [showJDModal, setShowJDModal] = useState(false);
@@ -174,7 +175,7 @@ const CoverLetterGenerator = () => {
             onChange={(e) => setCoverLetter(e.target.value)}
           />
 
-          <AIChat apiKey={apiKey} resumeText={resumeText} jdText={jdText} />
+          <AIChat chatObj={chatObj} />
         </div>
       </div>
 
