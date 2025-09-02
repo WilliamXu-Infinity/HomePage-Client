@@ -9,7 +9,6 @@ const useTextProcessor = (text) => {
       content: line,
       isEmpty: line.trim() === '',
       isHeader: line.trim().toLowerCase().includes('dear') || 
-                line.trim().toLowerCase().includes('sincerely') ||
                 line.trim().toLowerCase().includes('best regards'),
       wordCount: line.trim().split(/\s+/).filter(word => word.length > 0).length
     }));

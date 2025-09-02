@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { StyleSheet } from "@react-pdf/renderer";
 
 const usePDFDocument = (coverLetter, options = {}) => {
   const {
@@ -8,6 +9,41 @@ const usePDFDocument = (coverLetter, options = {}) => {
     keywords = 'cover letter, job application',
     creator = 'AI Cover Letter Generator'
   } = options;
+
+  const styles = StyleSheet.create({
+    page: {
+      padding: 30,
+      fontSize: 12,
+      fontFamily: "Times-Roman",
+      backgroundColor: "#ffffff"
+    },
+    section: {
+      marginBottom: 10
+    },
+    paragraph: {
+      marginBottom: 2,
+      lineHeight: 1.2,
+      textAlign: "justify"
+    },
+    emptyLine: {
+      height: 10
+    },
+    header: {
+      fontSize: 14,
+      fontWeight: "bold",
+      marginBottom: 15,
+      textAlign: "left"
+    },
+    footer: {
+      position: "absolute",
+      bottom: 30,
+      left: 30,
+      right: 30,
+      textAlign: "left",
+      fontSize: 10,
+      color: "#666666"
+    }
+  });
 
   const documentProps = useMemo(() => ({
     title,
@@ -46,7 +82,8 @@ const usePDFDocument = (coverLetter, options = {}) => {
     pageProps,
     validateContent,
     getFileName,
-    isValid: validateContent(coverLetter)
+    isValid: validateContent(coverLetter),
+    styles
   };
 };
 

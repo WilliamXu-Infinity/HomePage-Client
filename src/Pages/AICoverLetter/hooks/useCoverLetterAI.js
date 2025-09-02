@@ -1,4 +1,3 @@
-// hooks/useCoverLetterAI.js
 import { useState, useEffect, useRef } from "react";
 import OpenAI from "openai";
 import pdfToText from "react-pdftotext";
@@ -10,6 +9,7 @@ export const useCoverLetterAI = (apiKey) => {
   const [resumeText, setResumeText] = useState("");
   const [jdText, setJDText] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
+  const [coverLetterModified, setCoverletterModified] = useState(false)
   const [jobInfo, setJobInfo] = useState({
     company: "N/A",
     salary: "N/A",
@@ -19,10 +19,47 @@ export const useCoverLetterAI = (apiKey) => {
   const [history, setHistory] = useState([]);
   const [selectedHistoryId, setSelectedHistoryId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [chatHistory, setChatHistory] = useState([]);
+  const [messages, setMessages] = useState([
+      { role: "system", content: "You are an AI career assistant that answers based on user's resume and job description." }
+    ]);
+  const [chatInput, setChatInput] = useState("");
+  const [chatloading, setChatLoading] = useState(false);
+  const chatBottomRef = useRef(null);
 
   const client = apiKey
     ? new OpenAI({ apiKey, dangerouslyAllowBrowser: true })
     : null;
+
+  const setCoverLetterSync = (newText) => {
+    setCoverLetter(newText);
+    setCoverletterModified(true)
+  };
+
+  const saveNewCoverletter = () => {
+    setHistory(prev => {
+      if (!selectedHistoryId) return prev;
+      const updated = prev.map(e =>
+        e.id === selectedHistoryId ? { ...e, coverLetter: coverLetter } : e
+      );
+
+      sessionStorage.setItem("HISTORY_DATA", JSON.stringify(updated));
+      return updated;
+    });
+    setCoverletterModified(false)
+  }
+
+  const saveNewChatHistory = () => {
+    setHistory(prev => {
+      if (!selectedHistoryId) return prev;
+      const updated = prev.map(e =>
+        e.id === selectedHistoryId ? { ...e, chatHistory: chatHistory } : e
+      );
+
+      sessionStorage.setItem("HISTORY_DATA", JSON.stringify(updated));
+      return updated;
+    });
+  }
 
   // 初始化 sessionStorage
   useEffect(() => {
@@ -174,11 +211,79 @@ export const useCoverLetterAI = (apiKey) => {
     }
   };
 
+  // AI Chat
+  const sendMessage = async () => {
+    if (!chatInput.trim()) return;
+    if (!client) {
+      alert("Missing API key");
+      return;
+    }
+
+    // UI 聊天记录里只加用户输入的问题
+    const newChatHistory = [...chatHistory, { role: "user", content: chatInput }];
+    setChatHistory(newChatHistory);
+    setTimeout(() => {
+      chatBottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+
+    // 实际发给 API 的消息：在用户问题之前，插入一条隐藏的系统说明，包含 resume 和 JD
+    const hiddenContext = {
+      role: "system",
+      content: `Here is the user's context. Resume:\n${resumeText}\n\nJob Description:\n${jdText}, the question I send is been asked by the compnay when I apply the job, please answer those questions after you do some research on the company, and job description and answer it based on my info from resume.`
+    };
+
+    const newMessages = [
+      ...messages,
+      hiddenContext,
+      { role: "user", content: chatInput }
+    ];
+
+    setChatInput("");
+    setChatLoading(true);
+
+    try {
+      const completion = await client.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: newMessages,
+        temperature: 0.7,
+      });
+
+      const reply = completion.choices[0].message.content;
+
+      // 更新显示的聊天记录
+      setChatHistory([...newChatHistory, { role: "assistant", content: reply }]);
+      // 更新 messages 用于保持对话上下文（不包含隐藏上下文）
+      setMessages([...messages, { role: "user", content: chatInput }, { role: "assistant", content: reply }]);
+
+      // 滚动到底部
+      setTimeout(() => {
+        chatBottomRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to fetch AI response. Check API key or network.");
+    } finally {
+      setChatLoading(false);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
   const selectHistory = (entry) => {
+    // save chat before swith
+    saveNewChatHistory()
+
+    // set data to selected history
     setSelectedHistoryId(entry.id);
     sessionStorage.setItem("HISTORY_ID", entry.id);
     setCoverLetter(entry.coverLetter);
     setResumeText(entry.resumeText);
+    setChatHistory(entry?.chatHistory || [])
     setJDText(entry.jdText);
     setJobInfo({
       company: entry.company,
@@ -202,5 +307,17 @@ export const useCoverLetterAI = (apiKey) => {
     generateCoverLetter,
     selectHistory,
     setCoverLetter,
+    setCoverLetterSync,
+    coverLetterModified,
+    saveNewCoverletter,
+    chatObj: {
+      chatHistory,
+      sendMessage,
+      handleKeyDown,
+      chatloading,
+      chatInput,
+      setChatInput,
+      chatBottomRef
+    }
   };
 };
