@@ -352,6 +352,7 @@ export const useCoverLetterAI = (apiKey) => {
     // flags
     loading,
     coverLetterModified,
+    isLoading: loading || chatLoading,
 
     // actions
     saveJD,

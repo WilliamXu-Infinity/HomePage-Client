@@ -1,5 +1,5 @@
-const AIChat = ({ chatObj }) => {
-  const { chatHistory, chatBottomRef, chatInput, setChatInput, handleKeyDown, chatLoading, sendMessage} = chatObj
+const AIChat = ({ chatObj, isLoading }) => {
+  const { chatHistory, chatBottomRef, chatInput, setChatInput, handleKeyDown, sendMessage} = chatObj
   return (
     <div className="flex flex-col">
       <div className="flex-1 p-3 overflow-y-auto space-y-3 mb-4">
@@ -30,12 +30,12 @@ const AIChat = ({ chatObj }) => {
           />
           <button
             className={`px-4 py-2 rounded text-white ${
-              chatLoading ? "bg-gray-400" : "bg-green-500 hover:bg-green-600"
+              isLoading ? "bg-gray-400" : "bg-green-500 hover:bg-green-600"
             }`}
             onClick={sendMessage}
-            disabled={chatLoading}
+            disabled={isLoading}
           >
-            {chatLoading ? "..." : "Send"}
+            {isLoading ? "..." : "Send"}
           </button>
         </div>
       </div>

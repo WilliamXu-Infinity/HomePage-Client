@@ -18,6 +18,7 @@ const CoverLetterGenerator = () => {
     history,
     selectedHistoryId,
     loading,
+    isLoading,
     saveJD,
     savePersonalInfo,
     handleUploadResume,
@@ -118,6 +119,7 @@ const CoverLetterGenerator = () => {
           selectHistory={selectHistory}
           coverLetterModified={coverLetterModified}
           saveNewCoverletter={saveNewCoverletter}
+          isLoading={isLoading}
         />
       </div>
 
@@ -154,7 +156,7 @@ const CoverLetterGenerator = () => {
             onChange={(e) => setCoverLetterSync(e.target.value)}
           />
 
-          <AIChat chatObj={chatObj} />
+          <AIChat chatObj={chatObj} isLoading={isLoading}/>
         </div>
       </div>
 
