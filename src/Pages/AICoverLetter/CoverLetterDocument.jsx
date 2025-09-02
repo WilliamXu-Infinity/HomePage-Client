@@ -8,7 +8,6 @@ const CoverLetterDocument = ({
   documentOptions = {} 
 }) => {
   const { processedLines, formatLine, stats } = useTextProcessor(coverLetter);
-  console.log('\x1b[31m%s\x1b[0m', `WX - processedLines: ${JSON.stringify(processedLines)}`)
   const { documentProps, pageProps, isValid, styles } = usePDFDocument(coverLetter, {
     title: `Cover Letter - ${companyName}`,
     ...documentOptions

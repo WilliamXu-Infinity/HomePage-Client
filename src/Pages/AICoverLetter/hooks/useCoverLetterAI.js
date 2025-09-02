@@ -1,5 +1,4 @@
-// hooks/useCoverLetterAI.js
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import OpenAI from "openai";
 import pdfToText from "react-pdftotext";
 import { serializePrompt } from "../util";
@@ -20,7 +19,7 @@ export const useCoverLetterAI = (apiKey) => {
   const [history, setHistory] = useState([]);
   const [selectedHistoryId, setSelectedHistoryId] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [chatHistory, setChatHistory] = useState([]); // 用于展示的聊天内容
+  const [chatHistory, setChatHistory] = useState([]);
   const [messages, setMessages] = useState([
       { role: "system", content: "You are an AI career assistant that answers based on user's resume and job description." }
     ]);
@@ -44,12 +43,22 @@ export const useCoverLetterAI = (apiKey) => {
         e.id === selectedHistoryId ? { ...e, coverLetter: coverLetter } : e
       );
 
-      console.log('\x1b[31m%s\x1b[0m', `WX - updated: ${JSON.stringify(updated)}`)
-
       sessionStorage.setItem("HISTORY_DATA", JSON.stringify(updated));
       return updated;
     });
     setCoverletterModified(false)
+  }
+
+  const saveNewChatHistory = () => {
+    setHistory(prev => {
+      if (!selectedHistoryId) return prev;
+      const updated = prev.map(e =>
+        e.id === selectedHistoryId ? { ...e, chatHistory: chatHistory } : e
+      );
+
+      sessionStorage.setItem("HISTORY_DATA", JSON.stringify(updated));
+      return updated;
+    });
   }
 
   // 初始化 sessionStorage
@@ -266,10 +275,15 @@ export const useCoverLetterAI = (apiKey) => {
   };
 
   const selectHistory = (entry) => {
+    // save chat before swith
+    saveNewChatHistory()
+
+    // set data to selected history
     setSelectedHistoryId(entry.id);
     sessionStorage.setItem("HISTORY_ID", entry.id);
     setCoverLetter(entry.coverLetter);
     setResumeText(entry.resumeText);
+    setChatHistory(entry?.chatHistory || [])
     setJDText(entry.jdText);
     setJobInfo({
       company: entry.company,

@@ -4,7 +4,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import CoverLetterDocument from "./CoverLetterDocument";
 import { ArrowDownTrayIcon, BookmarkIcon } from "@heroicons/react/24/solid";
 
-const HistoryItem = ({ entry, isSelected, onSelect, coverLetterModified, saveNewCoverletter }) => {
+const HistoryItem = ({ entry, isSelected, selectHistory, coverLetterModified, saveNewCoverletter }) => {
   const doc = useMemo(
     () => <CoverLetterDocument coverLetter={entry.coverLetter} companyName={entry.company} />,
     [entry.coverLetter, entry.company]
@@ -22,7 +22,7 @@ const HistoryItem = ({ entry, isSelected, onSelect, coverLetterModified, saveNew
       className={`flex justify-between items-center p-2 rounded cursor-pointer mb-1 ${
         isSelected ? "bg-blue-200" : "hover:bg-gray-200"
       }`}
-      onClick={() => onSelect(entry)}
+      onClick={() => selectHistory(entry)}
     >
       <span>{entry.company || "Unknown Company"}</span>
       <div className="w-6 h-6 inline-flex items-center justify-center shrink-0">
@@ -66,7 +66,7 @@ const HistoryList = React.memo(function HistoryList({ history, selectedHistoryId
         key={entry.id}
         entry={entry}
         isSelected={entry.id === selectedHistoryId}
-        onSelect={selectHistory}
+        selectHistory={selectHistory}
         coverLetterModified={coverLetterModified}
         saveNewCoverletter={saveNewCoverletter}
       />
